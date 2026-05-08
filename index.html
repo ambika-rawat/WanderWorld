@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WanderWorld – Explore the Globe</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Wander<span>World</span></a>
+  <ul class="nav-links">
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#culture">Culture</a></li>
+    <li><a href="#basics">Travel Basics</a></li>
+    <li><a href="#newsletter" class="nav-cta">Newsletter</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#tools" onclick="closeMM()">🛠️ Travel Tools</a>
+  <a href="#destinations" onclick="closeMM()">🌍 Destinations</a>
+  <a href="#culture" onclick="closeMM()">🎭 Culture</a>
+  <a href="#basics" onclick="closeMM()">✈️ Basics</a>
+  <a href="#newsletter" onclick="closeMM()">📩 Newsletter</a>
+</div>
+
+
+<section id="hero">
+  <div class="hero-text">
+    <span class="hero-tag">✦ Your Complete Travel Companion</span>
+    <h1 class="hero-title">Discover the World<br><em>Plan Smarter,</em><br>Travel Better</h1>
+    <p class="hero-sub">Currency converter, translator, smart trip planner, budget tracker, and even a Dart Game to pick your next adventure — all in one place.</p>
+    <div class="hero-actions">
+      <a href="#tools" class="btn-primary">Try Travel Tools</a>
+      <a href="#destinations" class="btn-secondary">Explore Destinations →</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-num">80+</span><span class="stat-label">Destinations</span></div>
+      <div><span class="stat-num">150+</span><span class="stat-label">Currencies</span></div>
+      <div><span class="stat-num">6</span><span class="stat-label">Continents</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="globe-wrap">
+      <svg width="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="gg" cx="38%" cy="33%">
+            <stop offset="0%" stop-color="#B8D8E8"/>
+            <stop offset="100%" stop-color="#1D6B8C"/>
+          </radialGradient>
+        </defs>
+        <circle cx="200" cy="200" r="180" fill="url(#gg)" opacity=".3" stroke="#1D6B8C" stroke-width="1"/>
+        <ellipse cx="200" cy="200" rx="180" ry="50" fill="none" stroke="#1D6B8C" stroke-width=".5" opacity=".3"/>
+        <ellipse cx="200" cy="200" rx="180" ry="110" fill="none" stroke="#1D6B8C" stroke-width=".5" opacity=".2"/>
+        <ellipse cx="200" cy="200" rx="180" ry="158" fill="none" stroke="#1D6B8C" stroke-width=".5" opacity=".15"/>
+        <line x1="200" y1="20" x2="200" y2="380" stroke="#1D6B8C" stroke-width=".5" opacity=".2"/>
+        <ellipse cx="200" cy="200" rx="65" ry="180" fill="none" stroke="#1D6B8C" stroke-width=".5" opacity=".2"/>
+        <ellipse cx="200" cy="200" rx="130" ry="180" fill="none" stroke="#1D6B8C" stroke-width=".5" opacity=".15"/>
+        <ellipse cx="215" cy="155" rx="30" ry="24" fill="#2D5A3D" opacity=".75"/>
+        <ellipse cx="278" cy="152" rx="48" ry="30" fill="#2D5A3D" opacity=".7"/>
+        <ellipse cx="218" cy="218" rx="26" ry="40" fill="#C8714A" opacity=".65"/>
+        <ellipse cx="128" cy="175" rx="22" ry="42" fill="#2D5A3D" opacity=".65"/>
+        <ellipse cx="142" cy="245" rx="18" ry="32" fill="#2D5A3D" opacity=".6"/>
+        <ellipse cx="305" cy="238" rx="30" ry="20" fill="#E8A83E" opacity=".6"/>
+        <circle cx="215" cy="150" r="5" fill="#C8714A"/><circle cx="215" cy="150" r="9" fill="#C8714A" opacity=".3"/>
+        <circle cx="278" cy="148" r="5" fill="#E8A83E"/><circle cx="278" cy="148" r="9" fill="#E8A83E" opacity=".3"/>
+        <circle cx="132" cy="168" r="5" fill="#1D6B8C"/><circle cx="132" cy="168" r="9" fill="#1D6B8C" opacity=".3"/>
+        <circle cx="305" cy="234" r="4" fill="#2D5A3D"/><circle cx="305" cy="234" r="7" fill="#2D5A3D" opacity=".3"/>
+      </svg>
+      <div class="floating-card c1"><div class="fc-icon or">🏛️</div><div><div class="fc-name">Rome, Italy</div><div class="fc-sub">from $280 ✈</div></div></div>
+      <div class="floating-card c2"><div class="fc-icon bl">🗼</div><div><div class="fc-name">Tokyo, Japan</div><div class="fc-sub">from $580 ✈</div></div></div>
+      <div class="floating-card c3"><div class="fc-icon gr">🏔️</div><div><div class="fc-name">Machu Picchu</div><div class="fc-sub">from $750 ✈</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div id="tools">
+  <div class="tool-tabs">
+    <button class="tool-tab active" onclick="switchTool('currency',this)">💱 Currency Converter</button>
+    <button class="tool-tab" onclick="switchTool('translator',this)">🌐 Phrase Translator</button>
+    <button class="tool-tab" onclick="switchTool('planner',this)">🗺️ Trip Planner & Budget</button>
+    <button class="tool-tab" onclick="switchTool('dart',this)">🎯 Dart Game</button>
+  </div>
+</div>
+
+
+<div class="tool-panel active" id="panel-currency">
+  <div class="tool-container">
+    <h3 class="tool-title">Currency Converter</h3>
+    <p class="tool-sub">Approximate exchange rates for 50+ currencies worldwide</p>
+    <div class="currency-grid">
+      <div class="form-group">
+        <label>Amount</label>
+        <input type="number" id="cur-amount" value="100" min="0" oninput="convertCurrency()">
+      </div>
+      <div class="swap-col">
+        <label>Swap</label>
+        <button class="swap-btn" onclick="swapCurrencies()">⇄</button>
+      </div>
+      <div class="form-group">
+        <label>To Currency</label>
+        <select id="cur-to" onchange="convertCurrency()"></select>
+      </div>
+    </div>
+    <div class="form-group" style="margin-bottom:1rem">
+      <label>From Currency</label>
+      <select id="cur-from" onchange="convertCurrency()"></select>
+    </div>
+    <div class="result-box">
+      <div class="result-amount" id="cur-result">₹ 8,350.00</div>
+      <div class="result-label" id="cur-label">100 USD = 8,350 INR</div>
+      <div class="rate-note">* Rates are approximate for travel planning purposes</div>
+    </div>
+    <p class="quick-title">Quick Conversions</p>
+    <div class="common-rates" id="quick-rates"></div>
+  </div>
+</div>
+
+
+<div class="tool-panel" id="panel-translator">
+  <div class="tool-container">
+    <h3 class="tool-title">Phrase Translator</h3>
+    <p class="tool-sub">Essential travel phrases in 20+ languages</p>
+    <div class="trans-grid">
+      <div class="trans-box">
+        <select id="lang-from"><option value="en">🇬🇧 English</option><option value="hi">🇮🇳 Hindi</option></select>
+        <textarea id="trans-input" placeholder="Type something or click a phrase below…" oninput="doTranslate()"></textarea>
+      </div>
+      <button class="trans-arrow" onclick="swapLangs()">⇄</button>
+      <div class="trans-box">
+        <select id="lang-to" onchange="doTranslate()"></select>
+        <textarea id="trans-output" placeholder="Translation appears here…" readonly></textarea>
+      </div>
+    </div>
+    <button class="translate-btn" onclick="doTranslate()">Translate ✦</button>
+    <div class="phrase-bank">
+      <h4>Essential Travel Phrases — click to translate</h4>
+      <div class="phrase-pills" id="phrase-pills"></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="tool-panel" id="panel-planner">
+  <div class="tool-container">
+    <div class="planner-steps">
+      <div class="p-step active" id="pstep-0" onclick="goStep(0)">1. Destination</div>
+      <div class="p-step" id="pstep-1" onclick="goStep(1)">2. Dates & Budget</div>
+      <div class="p-step" id="pstep-2" onclick="goStep(2)">3. Food & Style</div>
+      <div class="p-step" id="pstep-3" onclick="goStep(3)">4. Your Itinerary</div>
+    </div>
+    <div class="planner-content">
+
+      
+      <div class="planner-page active" id="pp-0">
+        <h3 class="pl-title">Where are you going?</h3>
+        <p class="pl-sub">Search any destination in our database</p>
+        <input type="text" class="dest-search-input" id="pl-dest-input" placeholder="Search destination (e.g. Tokyo, Bali, Paris)…" oninput="filterPlannerDests()">
+        <div class="dest-dropdown" id="pl-dest-dd"></div>
+        <div id="pl-selected-dest" style="display:none;background:rgba(200,113,74,.08);border-radius:10px;padding:1rem;margin-top:.8rem">
+          <div style="display:flex;align-items:center;gap:.8rem">
+            <span id="pl-sel-emoji" style="font-size:2.5rem"></span>
+            <div>
+              <div id="pl-sel-name" style="font-family:'Playfair Display',serif;font-size:1.2rem"></div>
+              <div id="pl-sel-country" style="font-size:.82rem;color:var(--ash)"></div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:right;margin-top:1.2rem">
+          <button class="pl-btn" onclick="nextStep(0)">Next: Dates & Budget →</button>
+        </div>
+      </div>
+
+      
+      <div class="planner-page" id="pp-1">
+        <h3 class="pl-title">How long & what's your budget?</h3>
+        <p class="pl-sub">We'll match options within your range</p>
+        <p style="font-size:.85rem;font-weight:500;margin-bottom:.6rem">Trip Duration</p>
+        <div class="days-row">
+          <div class="days-box" onclick="selectDays(3,this)"><div class="days-num">3</div><div class="days-label">days</div></div>
+          <div class="days-box sel" onclick="selectDays(5,this)"><div class="days-num">5</div><div class="days-label">days</div></div>
+          <div class="days-box" onclick="selectDays(7,this)"><div class="days-num">7</div><div class="days-label">days</div></div>
+          <div class="days-box" onclick="selectDays(10,this)"><div class="days-num">10</div><div class="days-label">days</div></div>
+          <div class="days-box" onclick="selectDays(14,this)"><div class="days-num">14</div><div class="days-label">days</div></div>
+          <div class="days-box" onclick="selectDays(21,this)"><div class="days-num">21</div><div class="days-label">days</div></div>
+        </div>
+        <div class="budget-row" style="margin-top:1rem">
+          <div class="budget-slider-wrap">
+            <label>Daily Hotel Budget <span id="hotel-val">$80</span></label>
+            <input type="range" min="20" max="500" value="80" step="10" id="hotel-range" oninput="updateBudget('hotel')">
+            <div class="slider-labels"><span>$20 Hostel</span><span>$500 Luxury</span></div>
+          </div>
+          <div class="budget-slider-wrap">
+            <label>Daily Food Budget <span id="food-val">$30</span></label>
+            <input type="range" min="10" max="200" value="30" step="5" id="food-range" oninput="updateBudget('food')">
+            <div class="slider-labels"><span>$10 Street</span><span>$200 Fine Dining</span></div>
+          </div>
+        </div>
+        <div class="budget-slider-wrap" style="margin-bottom:1rem">
+          <label>Activity Budget (total trip) <span id="act-val">$200</span></label>
+          <input type="range" min="0" max="2000" value="200" step="50" id="act-range" oninput="updateBudget('act')">
+          <div class="slider-labels"><span>$0 Free only</span><span>$2000 Splurge</span></div>
+        </div>
+        <div class="step-nav">
+          <button class="pl-btn-secondary" onclick="goStep(0)">← Back</button>
+          <button class="pl-btn" onclick="nextStep(1)">Next: Food & Style →</button>
+        </div>
+      </div>
+
+      
+      <div class="planner-page" id="pp-2">
+        <h3 class="pl-title">Food preferences & travel style</h3>
+        <p class="pl-sub">We'll tailor restaurants and activities to you</p>
+        <p style="font-size:.85rem;font-weight:500;margin-bottom:.6rem">Dietary Preference</p>
+        <div class="filter-row">
+          <button class="filter-toggle on" id="ft-all" onclick="setFoodPref('all',this)">🍽️ All food</button>
+          <button class="filter-toggle" id="ft-veg" onclick="setFoodPref('veg',this)">🥗 Vegetarian</button>
+          <button class="filter-toggle" id="ft-vegan" onclick="setFoodPref('vegan',this)">🌱 Vegan</button>
+          <button class="filter-toggle" id="ft-halal" onclick="setFoodPref('halal',this)">☪️ Halal</button>
+        </div>
+        <p style="font-size:.85rem;font-weight:500;margin:.8rem 0 .6rem">Travel Style</p>
+        <div class="filter-row">
+          <button class="filter-toggle on" id="ts-culture" onclick="toggleStyle('culture',this)">🏛️ Culture</button>
+          <button class="filter-toggle" id="ts-adventure" onclick="toggleStyle('adventure',this)">🧗 Adventure</button>
+          <button class="filter-toggle on" id="ts-food" onclick="toggleStyle('food',this)">🍜 Food Tours</button>
+          <button class="filter-toggle" id="ts-relaxation" onclick="toggleStyle('relaxation',this)">🧘 Relaxation</button>
+          <button class="filter-toggle" id="ts-shopping" onclick="toggleStyle('shopping',this)">🛍️ Shopping</button>
+          <button class="filter-toggle" id="ts-nature" onclick="toggleStyle('nature',this)">🌿 Nature</button>
+        </div>
+        <div class="step-nav">
+          <button class="pl-btn-secondary" onclick="goStep(1)">← Back</button>
+          <button class="pl-btn" onclick="buildItinerary()">Build My Itinerary ✦</button>
+        </div>
+      </div>
+
+      
+      <div class="planner-page" id="pp-3">
+        <div id="itin-output"></div>
+        <div style="display:flex;gap:.8rem;margin-top:1.5rem;flex-wrap:wrap">
+          <button class="pl-btn-secondary" onclick="goStep(0)">Plan Another Trip</button>
+          <button class="pl-btn" onclick="window.print()">🖨️ Print Itinerary</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="tool-panel" id="panel-dart">
+  <div class="tool-container">
+    <div class="dart-wrap">
+      <h3 class="tool-title">🎯 Dart Game — Let Fate Decide!</h3>
+      <p class="dart-subtitle">Can't decide where to go? Click the map or throw a dart — wherever it lands, that's your next adventure!</p>
+      <div class="dart-instructions">
+        <div class="dart-instr-item">🖱️ Click anywhere on the map</div>
+        <div class="dart-instr-item">🎯 Or use the Throw button for random</div>
+        <div class="dart-instr-item">✈️ Get instant destination info</div>
+      </div>
+      <div class="world-map-canvas-wrap">
+        <canvas id="worldCanvas" width="700" height="380" onclick="dartClickMap(event)"></canvas>
+      </div>
+      <br>
+      <button class="throw-btn" onclick="throwDart()">🎯 Throw Dart!</button>
+      <div class="throw-count" id="throw-count">Darts thrown: 0</div>
+      <div class="dart-result" id="dart-result">
+        <div id="dart-emoji" style="font-size:3rem"></div>
+        <div class="dart-dest-name" id="dart-dest-name"></div>
+        <div class="dart-dest-info" id="dart-dest-info"></div>
+        <div class="dart-actions">
+          <button class="dart-action-btn primary" onclick="dartPlanTrip()">Plan This Trip →</button>
+          <button class="dart-action-btn secondary" onclick="throwDart()">Throw Again 🎯</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="search-section">
+  <div class="search-bar-wrap">
+    <h2 class="search-title">Find Your Destination</h2>
+    <div class="search-row">
+      <input type="text" id="search-input" placeholder="Search destinations, countries…" autocomplete="off">
+      <button id="search-btn">Search ✦</button>
+    </div>
+    <div class="search-filters">
+      <button class="filter-chip active" data-filter="all">All</button>
+      <button class="filter-chip" data-filter="asia">Asia</button>
+      <button class="filter-chip" data-filter="europe">Europe</button>
+      <button class="filter-chip" data-filter="americas">Americas</button>
+      <button class="filter-chip" data-filter="africa">Africa</button>
+      <button class="filter-chip" data-filter="oceania">Oceania</button>
+      <button class="filter-chip" data-filter="middle-east">Middle East</button>
+    </div>
+    <div class="food-filters">
+      <button class="food-chip" data-food="veg">🥗 Veg Friendly</button>
+      <button class="food-chip" data-food="vegan">🌱 Vegan Options</button>
+      <button class="food-chip" data-food="non">🍖 Non-Veg</button>
+    </div>
+  </div>
+</div>
+
+
+<section id="destinations">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Explore the Globe</span>
+      <h2 class="section-title">World Destinations</h2>
+      <p class="section-sub">80+ curated destinations. Click any card for attractions, food, and ticket prices.</p>
+    </div>
+    <div class="destinations-grid" id="dest-grid">
+      <div id="no-results">No destinations found.</div>
+    </div>
+  </div>
+</section>
+
+
+<section id="culture">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Around the World</span>
+      <h2 class="section-title">Cultural Highlights</h2>
+      <p class="section-sub">Understanding culture makes travel richer and more respectful.</p>
+    </div>
+    <div class="culture-grid">
+      <div class="culture-card reveal"><div class="culture-icon">🍜</div><h3 class="culture-name">Food & Cuisine</h3><p class="culture-text">Every destination tells its story through food. From street markets in Bangkok to trattorie in Bologna, eating locally is travel's greatest pleasure.</p></div>
+      <div class="culture-card reveal"><div class="culture-icon">🎶</div><h3 class="culture-name">Music & Festivals</h3><p class="culture-text">Witness Carnival in Rio, Diwali in India, or the Lantern Festival in Taiwan — festivals are windows into a culture's soul.</p></div>
+      <div class="culture-card reveal"><div class="culture-icon">🏛️</div><h3 class="culture-name">Architecture & Art</h3><p class="culture-text">From the Alhambra's geometric precision to Singapore's bold modernism, architecture reflects centuries of human ambition.</p></div>
+      <div class="culture-card reveal"><div class="culture-icon">🙏</div><h3 class="culture-name">Religion & Customs</h3><p class="culture-text">Remove shoes at temples, dress modestly at mosques, greet locals in their language. Respect deepens your experience.</p></div>
+      <div class="culture-card reveal"><div class="culture-icon">🎨</div><h3 class="culture-name">Traditional Crafts</h3><p class="culture-text">Batik from Indonesia, kilims from Turkey, pottery from Morocco — handicrafts are living art. Buy from artisans directly.</p></div>
+      <div class="culture-card reveal"><div class="culture-icon">👘</div><h3 class="culture-name">Traditional Dress</h3><p class="culture-text">The sari in India, the ao dai in Vietnam, the kente in Ghana — traditional garments carry immense cultural meaning.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<section id="basics">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Before You Go</span>
+      <h2 class="section-title">Travel Basics</h2>
+      <p class="section-sub">Everything travellers need to know before setting off.</p>
+    </div>
+    <div class="basics-grid">
+      <div class="basic-card reveal"><div class="basic-icon">📋</div><h3 class="basic-title">Visas & Entry</h3><p class="basic-text">Check visa requirements well in advance. Many countries offer e-visas or visa-on-arrival. Apply 4–6 weeks early for embassy visits.</p></div>
+      <div class="basic-card ob reveal"><div class="basic-icon">💉</div><h3 class="basic-title">Health & Vaccinations</h3><p class="basic-text">Consult a travel clinic 4–8 weeks before departure. Common vaccines: Hepatitis A & B, Typhoid, Yellow Fever. Always carry travel insurance.</p></div>
+      <div class="basic-card fb reveal"><div class="basic-icon">💱</div><h3 class="basic-title">Money & Currency</h3><p class="basic-text">Notify your bank before travelling. Use ATMs locally for better rates. Keep a mix of cash and card. Avoid airport exchange counters.</p></div>
+      <div class="basic-card gb reveal"><div class="basic-icon">🔌</div><h3 class="basic-title">Power & Connectivity</h3><p class="basic-text">Plug types vary by country — pack a universal adapter. Get a local SIM on arrival. Europe 220V; North America 110V.</p></div>
+      <div class="basic-card reveal"><div class="basic-icon">🧳</div><h3 class="basic-title">Packing Smart</h3><p class="basic-text">Pack light — aim for carry-on only. Use packing cubes. Include a small first aid kit, document copies, and portable chargers.</p></div>
+      <div class="basic-card ob reveal"><div class="basic-icon">🛡️</div><h3 class="basic-title">Safety Essentials</h3><p class="basic-text">Register with your embassy for long trips. Share your itinerary with someone trusted. Use hotel safes for valuables.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<section id="newsletter">
+  <div class="container">
+    <h2 class="section-title">Never Miss a Destination</h2>
+    <p class="section-sub">Weekly guides, tips, and exclusive inspiration. Free, always.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Your email address…" id="email-input">
+      <button onclick="handleSubscribe()">Subscribe ✦</button>
+    </div>
+    <p id="sub-msg" style="color:rgba(255,255,255,.85);margin-top:.9rem;font-size:.85rem;display:none">✓ Welcome, fellow wanderer!</p>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="#hero" class="footer-logo">Wander<span>World</span></a>
+      <p class="footer-tagline">Your complete travel companion — explore, plan, and budget smarter for every adventure.</p>
+    </div>
+    <div class="footer-col"><h4>Explore</h4><ul><li><a href="#destinations">All Destinations</a></li><li><a href="#culture">Culture Guide</a></li><li><a href="#basics">Travel Basics</a></li></ul></div>
+    <div class="footer-col"><h4>Tools</h4><ul><li><a href="#tools">Currency Converter</a></li><li><a href="#tools">Phrase Translator</a></li><li><a href="#tools">Trip Planner</a></li><li><a href="#tools">Dart Game</a></li></ul></div>
+    <div class="footer-col"><h4>Regions</h4><ul><li><a href="#destinations">Asia</a></li><li><a href="#destinations">Europe</a></li><li><a href="#destinations">Americas</a></li><li><a href="#destinations">Africa</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 WanderWorld — Built for curious travellers everywhere ✦</p></div>
+</footer>
+
+
+<div id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-box">
+    <div class="modal-header" id="modal-header"></div>
+    <div class="modal-body">
+      <p class="modal-country" id="modal-country"></p>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <p class="modal-text" id="modal-desc"></p>
+      <div class="modal-grid" id="modal-grid"></div>
+      <h3 class="modal-section-title">✈️ Estimated Ticket Prices</h3>
+      <div id="modal-tickets"></div>
+      <h3 class="modal-section-title">🍽️ Food Options</h3>
+      <div class="food-options" id="modal-food"></div>
+      <h3 class="modal-section-title">Must-See Attractions</h3>
+      <ul class="must-see-list" id="modal-attractions"></ul>
+      <h3 class="modal-section-title">Local Tips</h3>
+      <p class="modal-text" id="modal-tips"></p>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
