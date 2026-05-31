@@ -114,7 +114,7 @@
     <div class="result-box">
       <div class="result-amount" id="cur-result">₹ 8,350.00</div>
       <div class="result-label" id="cur-label">100 USD = 8,350 INR</div>
-      <div class="rate-note">* Rates are approximate for travel planning purposes</div>
+     <div class="rate-note"><span id="rate-note-text">Loading live rates…</span></div>
     </div>
     <p class="quick-title">Quick Conversions</p>
     <div class="common-rates" id="quick-rates"></div>
@@ -138,6 +138,12 @@
       </div>
     </div>
     <button class="translate-btn" onclick="doTranslate()">Translate ✦</button>
+    <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.5rem">
+  <button class="translate-btn" onclick="doTranslate()">Translate ✦</button>
+  <button id="voice-input-btn" onclick="toggleVoiceInput()" style="display:none;padding:.55rem 1rem;border-radius:8px;border:1.5px solid #C8714A;background:transparent;color:#C8714A;font-size:.82rem;cursor:pointer">🎤 Speak</button>
+  <button onclick="speakTranslation()" style="padding:.55rem 1rem;border-radius:8px;border:1.5px solid #C8714A;background:transparent;color:#C8714A;font-size:.82rem;cursor:pointer">🔊 Listen</button>
+  <button id="copy-trans-btn" onclick="copyTranslation()" style="padding:.55rem 1rem;border-radius:8px;border:1.5px solid #C8714A;background:transparent;color:#C8714A;font-size:.82rem;cursor:pointer">📋 Copy</button>
+</div>
     <div class="phrase-bank">
       <h4>Essential Travel Phrases — click to translate</h4>
       <div class="phrase-pills" id="phrase-pills"></div>
