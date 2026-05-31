@@ -1,4 +1,3 @@
-
 const destinations = [
   {
     name:"Kyoto", country:"Japan", continent:"asia", emoji:"⛩️", bg:"#B8D8E8",
@@ -254,7 +253,7 @@ const destinations = [
   }
 ];
 
-
+// ─── CURRENCIES ───────────────────────────────────────────
 const currencies = {
   USD:{name:"US Dollar",symbol:"$",rate:1},
   EUR:{name:"Euro",symbol:"€",rate:.92},
@@ -277,7 +276,6 @@ const currencies = {
   MAD:{name:"Moroccan Dirham",symbol:"MAD",rate:10},
   BRL:{name:"Brazilian Real",symbol:"R$",rate:5},
   MXN:{name:"Mexican Peso",symbol:"$",rate:17},
-  JPY:{name:"Japanese Yen",symbol:"¥",rate:149.5},
   NZD:{name:"New Zealand Dollar",symbol:"NZ$",rate:1.62},
   HKD:{name:"Hong Kong Dollar",symbol:"HK$",rate:7.82},
   PKR:{name:"Pakistani Rupee",symbol:"₨",rate:278},
@@ -297,7 +295,7 @@ const currencies = {
   NPR:{name:"Nepali Rupee",symbol:"₨",rate:133},
 };
 
-
+// ─── LANGUAGES ────────────────────────────────────────────
 const languages = {
   en:{name:"🇬🇧 English"}, hi:{name:"🇮🇳 Hindi"}, es:{name:"🇪🇸 Spanish"},
   fr:{name:"🇫🇷 French"}, de:{name:"🇩🇪 German"}, it:{name:"🇮🇹 Italian"},
@@ -309,11 +307,12 @@ const languages = {
   vi:{name:"🇻🇳 Vietnamese"},
 };
 
+// ─── PHRASE BANK ──────────────────────────────────────────
 const phrases = {
   hello:{en:"Hello!",hi:"नमस्ते!",es:"¡Hola!",fr:"Bonjour!",de:"Hallo!",it:"Ciao!",pt:"Olá!",ja:"こんにちは",ko:"안녕하세요",zh:"你好",ar:"مرحبا",tr:"Merhaba!",th:"สวัสดีครับ",id:"Halo!",nl:"Hallo!",pl:"Cześć!",sv:"Hej!",el:"Γεια σας!",cs:"Ahoj!",ru:"Привет!",he:"שלום!",vi:"Xin chào!"},
   thankyou:{en:"Thank you",hi:"धन्यवाद",es:"Gracias",fr:"Merci",de:"Danke",it:"Grazie",pt:"Obrigado",ja:"ありがとう",ko:"감사합니다",zh:"谢谢",ar:"شكرا",tr:"Teşekkürler",th:"ขอบคุณ",id:"Terima kasih",nl:"Dank je",pl:"Dziękuję",sv:"Tack",el:"Ευχαριστώ",cs:"Děkuji",ru:"Спасибо",he:"תודה",vi:"Cảm ơn"},
   howmuch:{en:"How much does this cost?",hi:"यह कितने का है?",es:"¿Cuánto cuesta esto?",fr:"Combien ça coûte?",de:"Wie viel kostet das?",it:"Quanto costa?",pt:"Quanto custa?",ja:"これはいくらですか?",ko:"이거 얼마예요?",zh:"这个多少钱?",ar:"كم ثمن هذا؟",tr:"Bu ne kadar?",th:"ราคาเท่าไหร่",id:"Berapa harganya?",nl:"Hoeveel kost dit?",pl:"Ile to kosztuje?",sv:"Hur mycket kostar det?",el:"Πόσο κοστίζει;",cs:"Kolik to stojí?",ru:"Сколько это стоит?",he:"כמה זה עולה?",vi:"Cái này giá bao nhiêu?"},
-  help:{en:"Please help me",hi:"कृपया मेरी सहायता करें",es:"Por favor ayúdame",fr:"Aidez-moi s'il vous plaît",de:"Bitte helfen Sie mir",it:"Aiutami per favore",pt:"Por favor me ajude",ja:"助けてください",ko:"도와주세요",zh:"请帮帮我",ar:"الرجاء مساعدتي",tr:"Lütfen yardım edin",th:"ช่วยฉันด้วย",id:"Tolong bantu saya",nl:"Help me alsjeblieft",pl:"Proszę pomóż mi",sv:"Hjälp mig",el:"Βοηθήστε με",cs:"Prosím pomozte mi",ru:"Помогите мне",he:"תעזור לי",vi:"Xin hãy giúp tôi"},
+  help:{en:"Please help me",hi:"कृपया मेरी सहायता करें",es:"Por favor ayúdame",fr:"Aidez-moi s'il vous plaît",de:"Bitte helfen Sie mir",it:"Aiutami per favore",pt:"Por favor me ajude",ja:"助けてください",ko:"도와주세요",zh:"请帮帮我",ar:"الرجاء مساعدتي",tr:"Lütfen yardım edin",th:"ช่วยฉันด้วย",id:"Tolong bantu saya",nl:"Help me alsjeblieft",pl:"Proszę pomoż mi",sv:"Hjälp mig",el:"Βοηθήστε με",cs:"Prosím pomozte mi",ru:"Помогите мне",he:"תעזור לי",vi:"Xin hãy giúp tôi"},
   vegetarian:{en:"I am vegetarian",hi:"मैं शाकाहारी हूं",es:"Soy vegetariano",fr:"Je suis végétarien",de:"Ich bin Vegetarier",it:"Sono vegetariano",pt:"Sou vegetariano",ja:"私はベジタリアンです",ko:"저는 채식주의자입니다",zh:"我是素食者",ar:"أنا نباتي",tr:"Vejetaryenim",th:"ฉันเป็นมังสวิรัติ",id:"Saya vegetarian",nl:"Ik ben vegetariër",pl:"Jestem wegetarianinem",sv:"Jag är vegetarian",el:"Είμαι χορτοφάγος",cs:"Jsem vegetarián",ru:"Я вегетарианец",he:"אני צמחוני",vi:"Tôi ăn chay"},
   where:{en:"Where is the toilet?",hi:"शौचालय कहाँ है?",es:"¿Dónde está el baño?",fr:"Où sont les toilettes?",de:"Wo ist die Toilette?",it:"Dov'è il bagno?",pt:"Onde fica o banheiro?",ja:"トイレはどこですか?",ko:"화장실이 어디예요?",zh:"洗手间在哪里?",ar:"أين الحمام؟",tr:"Tuvalet nerede?",th:"ห้องน้ำอยู่ที่ไหน",id:"Di mana toiletnya?",nl:"Waar is het toilet?",pl:"Gdzie jest toaleta?",sv:"Var är toaletten?",el:"Πού είναι η τουαλέτα;",cs:"Kde je záchod?",ru:"Где туалет?",he:"איפה השירותים?",vi:"Nhà vệ sinh ở đâu?"},
   water:{en:"Can I have water?",hi:"क्या मुझे पानी मिल सकता है?",es:"¿Me da agua?",fr:"De l'eau s'il vous plaît",de:"Wasser bitte",it:"Acqua per favore",pt:"Água por favor",ja:"水をください",ko:"물 주세요",zh:"请给我水",ar:"الماء من فضلك",tr:"Su lütfen",th:"ขอน้ำได้ไหม",id:"Minta air",nl:"Water graag",pl:"Poproszę wodę",sv:"Vatten tack",el:"Νερό παρακαλώ",cs:"Vodu prosím",ru:"Воду пожалуйста",he:"מים בבקשה",vi:"Cho tôi nước"},
@@ -325,14 +324,20 @@ const phraseLabels = {
   where:"🚽 Where is toilet?", water:"💧 Water please"
 };
 
-
+// ─── STATE ────────────────────────────────────────────────
 let currentFilter = 'all';
 let currentFoodFilter = null;
 let dartCount = 0;
 let dartHighlight = null;
-let plannerState = { destIdx: null, days: 5, hotel: 80, food: 30, activities: 200, foodPref: 'all', styles: ['culture','food'] };
+let liveRates = null;
+let isListening = false;
+let recognition = null;
+let plannerState = {
+  destIdx: null, days: 5, hotel: 80, food: 30,
+  activities: 200, foodPref: 'all', styles: ['culture','food']
+};
 
-
+// ─── TOOL SWITCHER ────────────────────────────────────────
 function switchTool(panel, btn) {
   document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tool-tab').forEach(b => b.classList.remove('active'));
@@ -341,32 +346,51 @@ function switchTool(panel, btn) {
   if (panel === 'dart') initDartMap();
 }
 
+// ─── CURRENCY — LIVE RATES ────────────────────────────────
+async function fetchLiveRates() {
+  try {
+    const res = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+    const data = await res.json();
+    liveRates = data.rates;
+    const el = document.getElementById('rate-note-text');
+    if (el) { el.textContent = '✓ Live rates · Updated today'; el.style.color = '#2D8A5A'; }
+  } catch {
+    liveRates = null;
+    const el = document.getElementById('rate-note-text');
+    if (el) { el.textContent = '⚠ Offline — approximate rates'; el.style.color = '#C8714A'; }
+  }
+}
+
+function getRate(code) {
+  if (liveRates && liveRates[code]) return liveRates[code];
+  return currencies[code]?.rate || 1;
+}
 
 function initCurrency() {
   const selFrom = document.getElementById('cur-from');
   const selTo = document.getElementById('cur-to');
+  selFrom.innerHTML = '';
+  selTo.innerHTML = '';
   Object.entries(currencies).forEach(([code, c]) => {
-    const opt1 = `<option value="${code}" ${code==='USD'?'selected':''}>${c.symbol} ${code} – ${c.name}</option>`;
-    const opt2 = `<option value="${code}" ${code==='INR'?'selected':''}>${c.symbol} ${code} – ${c.name}</option>`;
-    selFrom.innerHTML += opt1;
-    selTo.innerHTML += opt2;
+    selFrom.innerHTML += `<option value="${code}" ${code==='USD'?'selected':''}>${c.symbol} ${code} – ${c.name}</option>`;
+    selTo.innerHTML += `<option value="${code}" ${code==='INR'?'selected':''}>${c.symbol} ${code} – ${c.name}</option>`;
   });
-  convertCurrency();
+  fetchLiveRates().then(() => convertCurrency());
 }
 
 function convertCurrency() {
   const amount = parseFloat(document.getElementById('cur-amount').value) || 0;
   const from = document.getElementById('cur-from').value;
   const to = document.getElementById('cur-to').value;
-  const inUSD = amount / currencies[from].rate;
-  const result = inUSD * currencies[to].rate;
-  const sym = currencies[to].symbol;
-  document.getElementById('cur-result').textContent = `${sym} ${result.toLocaleString('en', {maximumFractionDigits:2})}`;
+  const inUSD = amount / getRate(from);
+  const result = inUSD * getRate(to);
+  const sym = currencies[to]?.symbol || '';
+  document.getElementById('cur-result').textContent = `${sym} ${result.toLocaleString('en',{maximumFractionDigits:2})}`;
   document.getElementById('cur-label').textContent = `${amount} ${from} = ${result.toFixed(2)} ${to}`;
   const qr = document.getElementById('quick-rates');
   qr.innerHTML = '';
-  [1, 5, 10, 20, 50, 100, 200, 500, 1000].forEach(amt => {
-    const r = ((amt / currencies[from].rate) * currencies[to].rate).toFixed(2);
+  [1,5,10,20,50,100,200,500,1000].forEach(amt => {
+    const r = ((amt / getRate(from)) * getRate(to)).toFixed(2);
     qr.innerHTML += `<div class="rate-chip"><div class="from">${amt} ${from}</div><div class="to">= ${sym}${r}</div></div>`;
   });
 }
@@ -378,13 +402,15 @@ function swapCurrencies() {
   convertCurrency();
 }
 
-
+// ─── TRANSLATOR — MyMemory API + Voice + TTS ──────────────
 function initTranslator() {
   const sel = document.getElementById('lang-to');
+  sel.innerHTML = '';
   Object.entries(languages).forEach(([code, l]) => {
     sel.innerHTML += `<option value="${code}" ${code==='ja'?'selected':''}>${l.name}</option>`;
   });
   const pp = document.getElementById('phrase-pills');
+  pp.innerHTML = '';
   Object.entries(phraseLabels).forEach(([key, label]) => {
     const btn = document.createElement('button');
     btn.className = 'phrase-pill';
@@ -395,25 +421,102 @@ function initTranslator() {
     };
     pp.appendChild(btn);
   });
+  // Voice input setup
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (SR) {
+    recognition = new SR();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+    recognition.onresult = e => {
+      document.getElementById('trans-input').value = e.results[0][0].transcript;
+      isListening = false;
+      updateVoiceBtn(false);
+      doTranslate();
+    };
+    recognition.onend = () => { isListening = false; updateVoiceBtn(false); };
+    recognition.onerror = () => { isListening = false; updateVoiceBtn(false); };
+    const vb = document.getElementById('voice-input-btn');
+    if (vb) vb.style.display = 'inline-flex';
+  }
 }
 
-function doTranslate() {
+function updateVoiceBtn(on) {
+  const btn = document.getElementById('voice-input-btn');
+  if (!btn) return;
+  btn.textContent = on ? '🔴 Listening…' : '🎤 Speak';
+  btn.style.background = on ? '#C8714A' : '';
+  btn.style.color = on ? '#fff' : '';
+}
+
+function toggleVoiceInput() {
+  if (!recognition) return;
+  if (isListening) { recognition.stop(); isListening = false; updateVoiceBtn(false); }
+  else { recognition.start(); isListening = true; updateVoiceBtn(true); }
+}
+
+async function doTranslate() {
   const text = document.getElementById('trans-input').value.trim();
   const toLang = document.getElementById('lang-to').value;
-  if (!text) { document.getElementById('trans-output').value = ''; return; }
-  for (const [key, phraseMap] of Object.entries(phrases)) {
-    if (phraseMap['en'].toLowerCase() === text.toLowerCase() && phraseMap[toLang]) {
-      document.getElementById('trans-output').value = phraseMap[toLang];
-      return;
+  const out = document.getElementById('trans-output');
+  const btn = document.querySelector('.translate-btn');
+  if (!text) { out.value = ''; return; }
+
+  // Phrase bank first (instant, offline)
+  for (const [key, map] of Object.entries(phrases)) {
+    if (map['en'].toLowerCase() === text.toLowerCase() && map[toLang]) {
+      out.value = map[toLang]; return;
     }
   }
-  for (const [key, phraseMap] of Object.entries(phrases)) {
-    if (phraseMap['en'].toLowerCase().includes(text.toLowerCase().slice(0, 8)) && phraseMap[toLang]) {
-      document.getElementById('trans-output').value = phraseMap[toLang];
-      return;
+
+  // MyMemory API — translates any sentence
+  out.value = '…translating';
+  if (btn) { btn.textContent = 'Translating…'; btn.disabled = true; }
+  try {
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|${toLang}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const result = data?.responseData?.translatedText || '';
+    if (data.responseStatus === 200 && result && !result.toLowerCase().includes('invalid') && !result.toLowerCase().includes('quota')) {
+      out.value = result;
+    } else {
+      out.value = '[Daily free limit reached — try again tomorrow or use phrase buttons]';
     }
+  } catch {
+    // Fallback: partial phrase match
+    let found = false;
+    for (const [key, map] of Object.entries(phrases)) {
+      if (map['en'].toLowerCase().includes(text.toLowerCase().slice(0,6)) && map[toLang]) {
+        out.value = map[toLang] + ' (closest match)'; found = true; break;
+      }
+    }
+    if (!found) out.value = '[No internet — use phrase buttons above]';
   }
-  document.getElementById('trans-output').value = `[Use the phrase buttons above, or type an exact phrase from the bank!]`;
+  if (btn) { btn.textContent = 'Translate ✦'; btn.disabled = false; }
+}
+
+function speakTranslation() {
+  const text = document.getElementById('trans-output').value;
+  const lang = document.getElementById('lang-to').value;
+  if (!text || text.startsWith('[')) return;
+  if (!('speechSynthesis' in window)) return;
+  const langMap = {en:'en-US',hi:'hi-IN',es:'es-ES',fr:'fr-FR',de:'de-DE',it:'it-IT',pt:'pt-PT',ja:'ja-JP',ko:'ko-KR',zh:'zh-CN',ar:'ar-SA',tr:'tr-TR',th:'th-TH',id:'id-ID',nl:'nl-NL',pl:'pl-PL',sv:'sv-SE',el:'el-GR',cs:'cs-CZ',ru:'ru-RU',he:'he-IL',vi:'vi-VN'};
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = langMap[lang] || 'en-US';
+  u.rate = 0.9;
+  window.speechSynthesis.speak(u);
+}
+
+function copyTranslation() {
+  const text = document.getElementById('trans-output').value;
+  if (!text || text.startsWith('[')) return;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copy-trans-btn');
+    if (!btn) return;
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = '📋 Copy', 1500);
+  });
 }
 
 function swapLangs() {
@@ -422,7 +525,7 @@ function swapLangs() {
   [fi.value, to.value] = [to.value, fi.value];
 }
 
-
+// ─── PLANNER ──────────────────────────────────────────────
 function filterPlannerDests() {
   const q = document.getElementById('pl-dest-input').value.toLowerCase();
   const dd = document.getElementById('pl-dest-dd');
@@ -433,7 +536,7 @@ function filterPlannerDests() {
   if (!matches.length) { dd.style.display = 'none'; return; }
   dd.style.display = 'block';
   dd.innerHTML = '';
-  matches.slice(0, 8).forEach(d => {
+  matches.slice(0,8).forEach(d => {
     const idx = destinations.indexOf(d);
     const div = document.createElement('div');
     div.className = 'dest-option';
@@ -456,16 +559,16 @@ function selectPlannerDest(idx) {
 }
 
 function goStep(n) {
-  document.querySelectorAll('.planner-page').forEach((p, i) => p.classList.toggle('active', i === n));
-  document.querySelectorAll('.p-step').forEach((s, i) => {
-    s.classList.toggle('active', i === n);
-    s.classList.toggle('done', i < n);
+  document.querySelectorAll('.planner-page').forEach((p,i) => p.classList.toggle('active', i===n));
+  document.querySelectorAll('.p-step').forEach((s,i) => {
+    s.classList.toggle('active', i===n);
+    s.classList.toggle('done', i<n);
   });
 }
 
 function nextStep(from) {
-  if (from === 0 && plannerState.destIdx === null) { alert('Please select a destination first!'); return; }
-  goStep(from + 1);
+  if (from===0 && plannerState.destIdx===null) { alert('Please select a destination first!'); return; }
+  goStep(from+1);
 }
 
 function selectDays(n, el) {
@@ -475,9 +578,9 @@ function selectDays(n, el) {
 }
 
 function updateBudget(type) {
-  if (type === 'hotel') { plannerState.hotel = +document.getElementById('hotel-range').value; document.getElementById('hotel-val').textContent = '$' + plannerState.hotel; }
-  if (type === 'food') { plannerState.food = +document.getElementById('food-range').value; document.getElementById('food-val').textContent = '$' + plannerState.food; }
-  if (type === 'act') { plannerState.activities = +document.getElementById('act-range').value; document.getElementById('act-val').textContent = '$' + plannerState.activities; }
+  if (type==='hotel') { plannerState.hotel = +document.getElementById('hotel-range').value; document.getElementById('hotel-val').textContent = '$'+plannerState.hotel; }
+  if (type==='food') { plannerState.food = +document.getElementById('food-range').value; document.getElementById('food-val').textContent = '$'+plannerState.food; }
+  if (type==='act') { plannerState.activities = +document.getElementById('act-range').value; document.getElementById('act-val').textContent = '$'+plannerState.activities; }
 }
 
 function setFoodPref(pref, el) {
@@ -488,7 +591,7 @@ function setFoodPref(pref, el) {
 
 function toggleStyle(style, el) {
   el.classList.toggle('on');
-  if (plannerState.styles.includes(style)) plannerState.styles = plannerState.styles.filter(s => s !== style);
+  if (plannerState.styles.includes(style)) plannerState.styles = plannerState.styles.filter(s => s!==style);
   else plannerState.styles.push(style);
 }
 
@@ -513,35 +616,32 @@ function buildItinerary() {
   const fi = foodItems[pref] || foodItems.all;
   const allAttractions = [...d.attractions];
   const styles = plannerState.styles;
-
   let daysHtml = '';
-  for (let day = 1; day <= days; day++) {
-    const attr = allAttractions[(day - 1) % allAttractions.length];
-    const afternoon = styles.includes('adventure') && day % 2 === 0 ? 'Adventure activity / outdoor experience' : styles.includes('food') ? 'Food tour / market visit' : 'Afternoon sightseeing';
+  for (let day=1; day<=days; day++) {
+    const attr = allAttractions[(day-1) % allAttractions.length];
+    const afternoon = styles.includes('adventure') && day%2===0 ? 'Adventure activity / outdoor experience' : styles.includes('food') ? 'Food tour / market visit' : 'Afternoon sightseeing';
     const evening = styles.includes('relaxation') ? 'Relaxing evening / rooftop bar' : styles.includes('culture') ? 'Cultural show / local performance' : 'Evening street exploration';
-    const dayFood = day === 1 ? `Try ${d.name}'s most iconic dish` : day === days ? 'Farewell dinner at best-rated restaurant' : fi.dinner;
+    const dayFood = day===1 ? `Try ${d.name}'s most iconic dish` : day===days ? 'Farewell dinner at best-rated restaurant' : fi.dinner;
     daysHtml += `
     <div class="itin-day">
       <div class="itin-day-header" onclick="toggleDay(this)">
-        <span><span class="day-badge">Day ${day}</span> ${getDayTitle(day, days, d.name)}</span>
-        <span style="color:var(--clay);font-size:.85rem">~$${(plannerState.hotel + plannerState.food + plannerState.activities/days + 15).toFixed(0)}</span>
+        <span><span class="day-badge">Day ${day}</span> ${getDayTitle(day,days,d.name)}</span>
+        <span style="color:var(--clay);font-size:.85rem">~$${(plannerState.hotel+plannerState.food+plannerState.activities/days+15).toFixed(0)}</span>
       </div>
       <div class="itin-day-body" style="display:none">
-        <div class="itin-item"><span class="itin-time">7:00 AM</span><div class="itin-act"><strong>${fi.breakfast}</strong><span>${d.name} morning routine</span></div><span class="itin-cost">$${(plannerState.food*0.2).toFixed(0)}</span></div>
+        <div class="itin-item"><span class="itin-time">7:00 AM</span><div class="itin-act"><strong>${fi.breakfast}</strong><span>${d.name} morning routine</span></div><span class="itin-cost">$${(plannerState.food*.2).toFixed(0)}</span></div>
         <div class="itin-item"><span class="itin-time">9:00 AM</span><div class="itin-act"><strong>${attr}</strong><span>Top attraction — arrive early to avoid crowds</span></div><span class="itin-cost">$${(plannerState.activities/days/2).toFixed(0)}</span></div>
-        <div class="itin-item"><span class="itin-time">1:00 PM</span><div class="itin-act"><strong>${fi.lunch}</strong><span>${pref==='veg'?'🥗 Vegetarian':pref==='vegan'?'🌱 Vegan':pref==='halal'?'☪️ Halal':'🍽️ Local'} option</span></div><span class="itin-cost">$${(plannerState.food*0.35).toFixed(0)}</span></div>
+        <div class="itin-item"><span class="itin-time">1:00 PM</span><div class="itin-act"><strong>${fi.lunch}</strong><span>${pref==='veg'?'🥗 Vegetarian':pref==='vegan'?'🌱 Vegan':pref==='halal'?'☪️ Halal':'🍽️ Local'} option</span></div><span class="itin-cost">$${(plannerState.food*.35).toFixed(0)}</span></div>
         <div class="itin-item"><span class="itin-time">3:00 PM</span><div class="itin-act"><strong>${afternoon}</strong><span>Afternoon exploration</span></div><span class="itin-cost">$${(plannerState.activities/days/3).toFixed(0)}</span></div>
-        <div class="itin-item"><span class="itin-time">7:00 PM</span><div class="itin-act"><strong>${dayFood}</strong><span>${foodLevel}</span></div><span class="itin-cost">$${(plannerState.food*0.45).toFixed(0)}</span></div>
+        <div class="itin-item"><span class="itin-time">7:00 PM</span><div class="itin-act"><strong>${dayFood}</strong><span>${foodLevel}</span></div><span class="itin-cost">$${(plannerState.food*.45).toFixed(0)}</span></div>
         <div class="itin-item"><span class="itin-time">9:00 PM</span><div class="itin-act"><strong>${evening}</strong><span>End of day</span></div><span class="itin-cost">—</span></div>
       </div>
     </div>`;
   }
-
-  const hotelPct = Math.round(hotelTotal / grandTotal * 100);
-  const foodPct = Math.round(foodTotal / grandTotal * 100);
-  const actPct = Math.round(actTotal / grandTotal * 100);
-  const transPct = Math.round(transportEst / grandTotal * 100);
-
+  const hotelPct = Math.round(hotelTotal/grandTotal*100);
+  const foodPct = Math.round(foodTotal/grandTotal*100);
+  const actPct = Math.round(actTotal/grandTotal*100);
+  const transPct = Math.round(transportEst/grandTotal*100);
   document.getElementById('itin-output').innerHTML = `
     <div class="itin-header">
       <h3>${d.emoji} ${days}-Day ${d.name} Itinerary</h3>
@@ -567,42 +667,38 @@ function buildItinerary() {
         <div style="font-size:.75rem;opacity:.5;margin-top:.3rem">+ ${d.ticketFrom} estimated flight</div>
       </div>
     </div>`;
-
   document.querySelectorAll('.itin-day-body')[0].style.display = 'block';
 }
 
 function getDayTitle(day, total, dest) {
-  if (day === 1) return `Arrival & ${dest} First Look`;
-  if (day === total) return 'Final Day & Departure';
-  if (day === 2) return 'Deep Dive into Culture';
-  if (day === 3) return 'Hidden Gems & Local Life';
+  if (day===1) return `Arrival & ${dest} First Look`;
+  if (day===total) return 'Final Day & Departure';
+  if (day===2) return 'Deep Dive into Culture';
+  if (day===3) return 'Hidden Gems & Local Life';
   return `Exploration Day ${day}`;
 }
 
 function toggleDay(header) {
   const body = header.nextElementSibling;
-  body.style.display = body.style.display === 'none' ? 'block' : 'none';
+  body.style.display = body.style.display==='none' ? 'block' : 'none';
 }
 
-
+// ─── DART GAME ────────────────────────────────────────────
 function initDartMap() {
   const canvas = document.getElementById('worldCanvas');
   if (!canvas) return;
   drawWorldMap();
 }
 
-function drawWorldMap(highlight = null) {
+function drawWorldMap(highlight=null) {
   const canvas = document.getElementById('worldCanvas');
   const ctx = canvas.getContext('2d');
-  const W = 700, H = 380;
-  ctx.fillStyle = '#1D6B8C';
-  ctx.fillRect(0, 0, W, H);
-  ctx.strokeStyle = 'rgba(255,255,255,.08)';
-  ctx.lineWidth = .5;
-  for (let x = 0; x < W; x += 70) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
-  for (let y = 0; y < H; y += 38) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
-
-  const lands = [
+  const W=700, H=380;
+  ctx.fillStyle='#1D6B8C'; ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='rgba(255,255,255,.08)'; ctx.lineWidth=.5;
+  for(let x=0;x<W;x+=70){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=38){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  const lands=[
     {x:470,y:60,w:90,h:75,c:'#2D5A3D'},{x:550,y:50,w:170,h:120,c:'#2D5A3D'},
     {x:480,y:145,w:95,h:140,c:'#C8714A'},{x:90,y:40,w:160,h:130,c:'#2D5A3D'},
     {x:160,y:195,w:100,h:140,c:'#E8A83E'},{x:590,y:230,w:100,h:75,c:'#E8A83E'},
@@ -613,123 +709,102 @@ function drawWorldMap(highlight = null) {
     {x:655,y:285,w:18,h:40,c:'#2D5A3D'},{x:420,y:30,w:30,h:20,c:'#AAC8D8'},
     {x:625,y:155,w:20,h:40,c:'#2D5A3D'},{x:178,y:155,w:32,h:12,c:'#C08040'},
   ];
-
-  lands.forEach(l => {
-    const r = Math.min(l.w, l.h) * 0.35;
+  lands.forEach(l=>{
+    const r=Math.min(l.w,l.h)*.35;
     ctx.beginPath();
-    ctx.moveTo(l.x+r, l.y);
-    ctx.lineTo(l.x+l.w-r, l.y);
-    ctx.arcTo(l.x+l.w, l.y, l.x+l.w, l.y+r, r);
-    ctx.lineTo(l.x+l.w, l.y+l.h-r);
-    ctx.arcTo(l.x+l.w, l.y+l.h, l.x+l.w-r, l.y+l.h, r);
-    ctx.lineTo(l.x+r, l.y+l.h);
-    ctx.arcTo(l.x, l.y+l.h, l.x, l.y+l.h-r, r);
-    ctx.lineTo(l.x, l.y+r);
-    ctx.arcTo(l.x, l.y, l.x+r, l.y, r);
+    ctx.moveTo(l.x+r,l.y); ctx.lineTo(l.x+l.w-r,l.y);
+    ctx.arcTo(l.x+l.w,l.y,l.x+l.w,l.y+r,r);
+    ctx.lineTo(l.x+l.w,l.y+l.h-r);
+    ctx.arcTo(l.x+l.w,l.y+l.h,l.x+l.w-r,l.y+l.h,r);
+    ctx.lineTo(l.x+r,l.y+l.h);
+    ctx.arcTo(l.x,l.y+l.h,l.x,l.y+l.h-r,r);
+    ctx.lineTo(l.x,l.y+r);
+    ctx.arcTo(l.x,l.y,l.x+r,l.y,r);
     ctx.closePath();
-    ctx.fillStyle = l.c;
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(255,255,255,.15)';
-    ctx.lineWidth = .5;
-    ctx.stroke();
+    ctx.fillStyle=l.c; ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,.15)'; ctx.lineWidth=.5; ctx.stroke();
   });
-
-  ctx.fillStyle = 'rgba(255,255,255,.3)';
-  ctx.font = '9px sans-serif';
-  ctx.textAlign = 'center';
+  ctx.fillStyle='rgba(255,255,255,.3)'; ctx.font='9px sans-serif'; ctx.textAlign='center';
   [{t:'Europe',x:515,y:100},{t:'Asia',x:640,y:105},{t:'Africa',x:527,y:210},{t:'N.America',x:170,y:100},{t:'S.America',x:210,y:265},{t:'Australia',x:640,y:268}]
-    .forEach(l => ctx.fillText(l.t, l.x, l.y));
-
-  destinations.forEach((d, i) => {
-    const px = Math.round(d.mapX * W);
-    const py = Math.round(d.mapY * H);
-    ctx.beginPath();
-    ctx.arc(px, py, highlight === i ? 8 : 5, 0, Math.PI*2);
-    ctx.fillStyle = highlight === i ? '#E8A83E' : '#FDFAF4';
-    ctx.fill();
-    ctx.strokeStyle = highlight === i ? '#C8714A' : 'rgba(200,113,74,.5)';
-    ctx.lineWidth = highlight === i ? 2.5 : 1.5;
-    ctx.stroke();
-    if (highlight === i) {
-      ctx.beginPath();
-      ctx.arc(px, py, 14, 0, Math.PI*2);
-      ctx.strokeStyle = 'rgba(232,168,62,.5)';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-      ctx.fillStyle = '#E8A83E';
-      ctx.font = 'bold 11px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(d.name, px, py - 18);
+    .forEach(l=>ctx.fillText(l.t,l.x,l.y));
+  destinations.forEach((d,i)=>{
+    const px=Math.round(d.mapX*W), py=Math.round(d.mapY*H);
+    ctx.beginPath(); ctx.arc(px,py,highlight===i?8:5,0,Math.PI*2);
+    ctx.fillStyle=highlight===i?'#E8A83E':'#FDFAF4'; ctx.fill();
+    ctx.strokeStyle=highlight===i?'#C8714A':'rgba(200,113,74,.5)';
+    ctx.lineWidth=highlight===i?2.5:1.5; ctx.stroke();
+    if(highlight===i){
+      ctx.beginPath(); ctx.arc(px,py,14,0,Math.PI*2);
+      ctx.strokeStyle='rgba(232,168,62,.5)'; ctx.lineWidth=2; ctx.stroke();
+      ctx.fillStyle='#E8A83E'; ctx.font='bold 11px sans-serif'; ctx.textAlign='center';
+      ctx.fillText(d.name,px,py-18);
     }
   });
 }
 
 function dartClickMap(e) {
-  const canvas = document.getElementById('worldCanvas');
-  const rect = canvas.getBoundingClientRect();
-  const scaleX = canvas.width / rect.width;
-  const scaleY = canvas.height / rect.height;
-  const cx = (e.clientX - rect.left) * scaleX;
-  const cy = (e.clientY - rect.top) * scaleY;
-  let best = 0, bestDist = Infinity;
-  destinations.forEach((d, i) => {
-    const dist = Math.hypot(cx - d.mapX*700, cy - d.mapY*380);
-    if (dist < bestDist) { bestDist = dist; best = i; }
+  const canvas=document.getElementById('worldCanvas');
+  const rect=canvas.getBoundingClientRect();
+  const scaleX=canvas.width/rect.width, scaleY=canvas.height/rect.height;
+  const cx=(e.clientX-rect.left)*scaleX, cy=(e.clientY-rect.top)*scaleY;
+  let best=0, bestDist=Infinity;
+  destinations.forEach((d,i)=>{
+    const dist=Math.hypot(cx-d.mapX*700, cy-d.mapY*380);
+    if(dist<bestDist){bestDist=dist;best=i;}
   });
   showDartResult(best);
 }
 
 function throwDart() {
   dartCount++;
-  document.getElementById('throw-count').textContent = 'Darts thrown: ' + dartCount;
-  showDartResult(Math.floor(Math.random() * destinations.length));
+  document.getElementById('throw-count').textContent='Darts thrown: '+dartCount;
+  showDartResult(Math.floor(Math.random()*destinations.length));
 }
 
 function showDartResult(idx) {
-  dartHighlight = idx;
-  drawWorldMap(idx);
-  const d = destinations[idx];
-  const res = document.getElementById('dart-result');
+  dartHighlight=idx; drawWorldMap(idx);
+  const d=destinations[idx];
+  const res=document.getElementById('dart-result');
   res.classList.add('show');
-  document.getElementById('dart-emoji').textContent = d.emoji;
-  document.getElementById('dart-dest-name').textContent = `${d.name}, ${d.country}`;
-  document.getElementById('dart-dest-info').textContent = `${d.continent.charAt(0).toUpperCase()+d.continent.slice(1)} · Best time: ${d.bestTime} · Flights from ${d.ticketFrom}`;
+  document.getElementById('dart-emoji').textContent=d.emoji;
+  document.getElementById('dart-dest-name').textContent=`${d.name}, ${d.country}`;
+  document.getElementById('dart-dest-info').textContent=`${d.continent.charAt(0).toUpperCase()+d.continent.slice(1)} · Best time: ${d.bestTime} · Flights from ${d.ticketFrom}`;
 }
 
 function dartPlanTrip() {
-  if (dartHighlight === null) return;
-  plannerState.destIdx = dartHighlight;
-  const d = destinations[dartHighlight];
-  document.getElementById('pl-dest-input').value = `${d.name}, ${d.country}`;
-  document.getElementById('pl-selected-dest').style.display = 'block';
-  document.getElementById('pl-sel-emoji').textContent = d.emoji;
-  document.getElementById('pl-sel-name').textContent = d.name;
-  document.getElementById('pl-sel-country').textContent = d.country;
-  document.querySelectorAll('.tool-tab').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+  if(dartHighlight===null) return;
+  plannerState.destIdx=dartHighlight;
+  const d=destinations[dartHighlight];
+  document.getElementById('pl-dest-input').value=`${d.name}, ${d.country}`;
+  document.getElementById('pl-selected-dest').style.display='block';
+  document.getElementById('pl-sel-emoji').textContent=d.emoji;
+  document.getElementById('pl-sel-name').textContent=d.name;
+  document.getElementById('pl-sel-country').textContent=d.country;
+  document.querySelectorAll('.tool-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));
   document.getElementById('panel-planner').classList.add('active');
   document.querySelectorAll('.tool-tab')[2].classList.add('active');
   goStep(1);
   document.getElementById('tools').scrollIntoView({behavior:'smooth'});
 }
 
-
+// ─── DESTINATION CARDS ────────────────────────────────────
 function buildCards() {
-  const grid = document.getElementById('dest-grid');
-  const nr = document.getElementById('no-results');
-  destinations.forEach((d, i) => {
-    const card = document.createElement('div');
-    card.className = 'dest-card visible';
-    card.id = 'dcard-' + i;
-    card.dataset.continent = d.continent;
-    const tagsHtml = d.tags.map(t => `<span class="tag tag-${t}">${t}</span>`).join('');
-    const foodDots = `<div class="food-dots">
-      ${d.food.veg ? '<span class="food-dot veg" title="Vegetarian friendly"></span>' : ''}
-      ${d.food.vegan ? '<span class="food-dot vegan" title="Vegan options"></span>' : ''}
-      ${d.food.non ? '<span class="food-dot non" title="Non-veg cuisine"></span>' : ''}
+  const grid=document.getElementById('dest-grid');
+  const nr=document.getElementById('no-results');
+  destinations.forEach((d,i)=>{
+    const card=document.createElement('div');
+    card.className='dest-card visible';
+    card.id='dcard-'+i;
+    card.dataset.continent=d.continent;
+    const tagsHtml=d.tags.map(t=>`<span class="tag tag-${t}">${t}</span>`).join('');
+    const foodDots=`<div class="food-dots">
+      ${d.food.veg?'<span class="food-dot veg" title="Vegetarian friendly"></span>':''}
+      ${d.food.vegan?'<span class="food-dot vegan" title="Vegan options"></span>':''}
+      ${d.food.non?'<span class="food-dot non" title="Non-veg cuisine"></span>':''}
     </div>`;
-    const contLabel = d.continent === 'middle-east' ? 'Middle East' : d.continent.charAt(0).toUpperCase() + d.continent.slice(1);
-    card.innerHTML = `
+    const contLabel=d.continent==='middle-east'?'Middle East':d.continent.charAt(0).toUpperCase()+d.continent.slice(1);
+    card.innerHTML=`
       <div class="dest-img-ph" style="background:${d.bg}">
         ${d.emoji}
         <span class="dest-continent-tag">${contLabel}</span>
@@ -745,113 +820,130 @@ function buildCards() {
           <button class="dest-btn" onclick="openModal(${i})">Explore →</button>
         </div>
       </div>`;
-    grid.insertBefore(card, nr);
+    grid.insertBefore(card,nr);
   });
 }
 
 function renderCards() {
-  const s = document.getElementById('search-input').value.toLowerCase();
-  let count = 0;
-  destinations.forEach((d, i) => {
-    const card = document.getElementById('dcard-' + i);
-    if (!card) return;
-    const mc = currentFilter === 'all' || d.continent === currentFilter;
-    const ms = !s || (d.name + d.country + d.desc + d.tags.join(' ')).toLowerCase().includes(s);
-    const mf = !currentFoodFilter ||
-      (currentFoodFilter === 'veg' && d.food.veg) ||
-      (currentFoodFilter === 'vegan' && d.food.vegan) ||
-      (currentFoodFilter === 'non' && d.food.non);
-    const show = mc && ms && mf;
-    card.classList.toggle('visible', show);
-    if (show) count++;
+  const s=document.getElementById('search-input').value.toLowerCase();
+  let count=0;
+  destinations.forEach((d,i)=>{
+    const card=document.getElementById('dcard-'+i);
+    if(!card) return;
+    const mc=currentFilter==='all'||d.continent===currentFilter;
+    const ms=!s||(d.name+d.country+d.desc+d.tags.join(' ')).toLowerCase().includes(s);
+    const mf=!currentFoodFilter||
+      (currentFoodFilter==='veg'&&d.food.veg)||
+      (currentFoodFilter==='vegan'&&d.food.vegan)||
+      (currentFoodFilter==='non'&&d.food.non);
+    const show=mc&&ms&&mf;
+    card.classList.toggle('visible',show);
+    if(show) count++;
   });
-  document.getElementById('no-results').classList.toggle('show', count === 0);
+  document.getElementById('no-results').classList.toggle('show',count===0);
 }
 
+// ─── MODAL (with hotel booking link) ─────────────────────
 function openModal(i) {
-  const d = destinations[i];
-  document.getElementById('modal-header').style.background = d.bg;
-  document.getElementById('modal-header').innerHTML = `<button class="modal-close" onclick="closeModal()">✕</button><span>${d.emoji}</span>`;
-  document.getElementById('modal-country').textContent = d.country;
-  document.getElementById('modal-title').textContent = d.name;
-  document.getElementById('modal-desc').textContent = d.fullDesc;
-  document.getElementById('modal-grid').innerHTML = `
+  const d=destinations[i];
+  document.getElementById('modal-header').style.background=d.bg;
+  document.getElementById('modal-header').innerHTML=`<button class="modal-close" onclick="closeModal()">✕</button><span>${d.emoji}</span>`;
+  document.getElementById('modal-country').textContent=d.country;
+  document.getElementById('modal-title').textContent=d.name;
+  document.getElementById('modal-desc').textContent=d.fullDesc;
+  document.getElementById('modal-grid').innerHTML=`
     <div class="modal-info-card"><p class="mic-label">Currency</p><p class="mic-value">${d.currency}</p></div>
     <div class="modal-info-card"><p class="mic-label">Language</p><p class="mic-value">${d.language}</p></div>
     <div class="modal-info-card"><p class="mic-label">Best Time</p><p class="mic-value">${d.bestTime}</p></div>
     <div class="modal-info-card"><p class="mic-label">Climate</p><p class="mic-value">${d.climate}</p></div>`;
-  document.getElementById('modal-tickets').innerHTML = d.tickets.map(t =>
+  document.getElementById('modal-tickets').innerHTML=d.tickets.map(t=>
     `<div class="ticket-row"><span class="ticket-type">${t.type}</span><span class="ticket-price">${t.price}</span></div>`
   ).join('');
-  document.getElementById('modal-food').innerHTML = d.foodDetail.map(f =>
+  document.getElementById('modal-food').innerHTML=d.foodDetail.map(f=>
     `<div class="food-option"><span class="food-type-dot ${f.dot}"></span><div><strong>${f.type}</strong>: ${f.note}</div></div>`
   ).join('');
-  document.getElementById('modal-attractions').innerHTML = d.attractions.map(a => `<li>${a}</li>`).join('');
-  document.getElementById('modal-tips').textContent = d.localTips;
+  document.getElementById('modal-attractions').innerHTML=d.attractions.map(a=>`<li>${a}</li>`).join('');
+  document.getElementById('modal-tips').textContent=d.localTips;
+  // Hotel booking deep link
+  const existing=document.getElementById('modal-hotel-link');
+  if(existing) existing.remove();
+  const encoded=encodeURIComponent(d.name);
+  const hotelDiv=document.createElement('div');
+  hotelDiv.id='modal-hotel-link';
+  hotelDiv.style.cssText='margin-top:1.2rem;padding:1rem 1.2rem;background:rgba(29,107,140,0.08);border-radius:12px;';
+  hotelDiv.innerHTML=`
+    <h3 style="font-size:.9rem;font-weight:600;margin-bottom:.6rem;color:inherit">🏨 Find Hotels in ${d.name}</h3>
+    <a href="https://www.booking.com/search.html?ss=${encoded}&aid=304142" target="_blank" rel="noopener"
+       style="display:inline-block;background:#1D6B8C;color:#fff;padding:.55rem 1.1rem;border-radius:8px;text-decoration:none;font-size:.82rem;font-weight:500;transition:opacity .15s"
+       onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+       Search Hotels on Booking.com →
+    </a>
+    <p style="font-size:.72rem;color:#888;margin-top:.4rem">Opens Booking.com with ${d.name} pre-filled</p>`;
+  document.querySelector('.modal-body').appendChild(hotelDiv);
   document.getElementById('modal-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 
 function closeModal(e) {
-  if (!e || e.target === document.getElementById('modal-overlay')) {
+  if(!e||e.target===document.getElementById('modal-overlay')){
     document.getElementById('modal-overlay').classList.remove('open');
-    document.body.style.overflow = '';
+    document.body.style.overflow='';
   }
 }
 
-
-window.addEventListener('scroll', () =>
-  document.getElementById('navbar').classList.toggle('scrolled', scrollY > 40)
+// ─── EVENT LISTENERS & INIT ───────────────────────────────
+window.addEventListener('scroll',()=>
+  document.getElementById('navbar').classList.toggle('scrolled',scrollY>40)
 );
 
-document.getElementById('hamburger').addEventListener('click', () => {
+document.getElementById('hamburger').addEventListener('click',()=>{
   document.getElementById('hamburger').classList.toggle('open');
   document.getElementById('mobile-menu').classList.toggle('open');
 });
 
-function closeMM() {
+function closeMM(){
   document.getElementById('hamburger').classList.remove('open');
   document.getElementById('mobile-menu').classList.remove('open');
 }
 
-document.querySelectorAll('.filter-chip').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+document.querySelectorAll('.filter-chip').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
-    currentFilter = btn.dataset.filter;
+    currentFilter=btn.dataset.filter;
     renderCards();
   });
 });
 
-document.querySelectorAll('.food-chip').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const same = btn.classList.contains('active');
-    document.querySelectorAll('.food-chip').forEach(b => b.classList.remove('active'));
-    if (!same) { btn.classList.add('active'); currentFoodFilter = btn.dataset.food; }
-    else currentFoodFilter = null;
+document.querySelectorAll('.food-chip').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const same=btn.classList.contains('active');
+    document.querySelectorAll('.food-chip').forEach(b=>b.classList.remove('active'));
+    if(!same){btn.classList.add('active');currentFoodFilter=btn.dataset.food;}
+    else currentFoodFilter=null;
     renderCards();
   });
 });
 
-document.getElementById('search-input').addEventListener('input', renderCards);
-document.getElementById('search-btn').addEventListener('click', renderCards);
+document.getElementById('search-input').addEventListener('input',renderCards);
+document.getElementById('search-btn').addEventListener('click',renderCards);
 
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
   });
-}, { threshold: .1 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-function handleSubscribe() {
-  const inp = document.getElementById('email-input');
-  if (inp.value && inp.value.includes('@')) {
-    inp.value = '';
-    document.getElementById('sub-msg').style.display = 'block';
+function handleSubscribe(){
+  const inp=document.getElementById('email-input');
+  if(inp.value&&inp.value.includes('@')){
+    inp.value='';
+    document.getElementById('sub-msg').style.display='block';
   }
 }
 
-
+// ─── BOOT ─────────────────────────────────────────────────
 buildCards();
 initCurrency();
 initTranslator();
