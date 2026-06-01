@@ -1,3 +1,4 @@
+
 const destinations = [
   {
     name:"Kyoto", country:"Japan", continent:"asia", emoji:"⛩️", bg:"#B8D8E8",
@@ -253,7 +254,7 @@ const destinations = [
   }
 ];
 
-// ─── CURRENCIES ───────────────────────────────────────────
+
 const currencies = {
   USD:{name:"US Dollar",symbol:"$",rate:1},
   EUR:{name:"Euro",symbol:"€",rate:.92},
@@ -276,6 +277,7 @@ const currencies = {
   MAD:{name:"Moroccan Dirham",symbol:"MAD",rate:10},
   BRL:{name:"Brazilian Real",symbol:"R$",rate:5},
   MXN:{name:"Mexican Peso",symbol:"$",rate:17},
+  JPY:{name:"Japanese Yen",symbol:"¥",rate:149.5},
   NZD:{name:"New Zealand Dollar",symbol:"NZ$",rate:1.62},
   HKD:{name:"Hong Kong Dollar",symbol:"HK$",rate:7.82},
   PKR:{name:"Pakistani Rupee",symbol:"₨",rate:278},
@@ -295,7 +297,7 @@ const currencies = {
   NPR:{name:"Nepali Rupee",symbol:"₨",rate:133},
 };
 
-// ─── LANGUAGES ────────────────────────────────────────────
+
 const languages = {
   en:{name:"🇬🇧 English"}, hi:{name:"🇮🇳 Hindi"}, es:{name:"🇪🇸 Spanish"},
   fr:{name:"🇫🇷 French"}, de:{name:"🇩🇪 German"}, it:{name:"🇮🇹 Italian"},
@@ -307,12 +309,11 @@ const languages = {
   vi:{name:"🇻🇳 Vietnamese"},
 };
 
-// ─── PHRASE BANK ──────────────────────────────────────────
 const phrases = {
   hello:{en:"Hello!",hi:"नमस्ते!",es:"¡Hola!",fr:"Bonjour!",de:"Hallo!",it:"Ciao!",pt:"Olá!",ja:"こんにちは",ko:"안녕하세요",zh:"你好",ar:"مرحبا",tr:"Merhaba!",th:"สวัสดีครับ",id:"Halo!",nl:"Hallo!",pl:"Cześć!",sv:"Hej!",el:"Γεια σας!",cs:"Ahoj!",ru:"Привет!",he:"שלום!",vi:"Xin chào!"},
   thankyou:{en:"Thank you",hi:"धन्यवाद",es:"Gracias",fr:"Merci",de:"Danke",it:"Grazie",pt:"Obrigado",ja:"ありがとう",ko:"감사합니다",zh:"谢谢",ar:"شكرا",tr:"Teşekkürler",th:"ขอบคุณ",id:"Terima kasih",nl:"Dank je",pl:"Dziękuję",sv:"Tack",el:"Ευχαριστώ",cs:"Děkuji",ru:"Спасибо",he:"תודה",vi:"Cảm ơn"},
   howmuch:{en:"How much does this cost?",hi:"यह कितने का है?",es:"¿Cuánto cuesta esto?",fr:"Combien ça coûte?",de:"Wie viel kostet das?",it:"Quanto costa?",pt:"Quanto custa?",ja:"これはいくらですか?",ko:"이거 얼마예요?",zh:"这个多少钱?",ar:"كم ثمن هذا؟",tr:"Bu ne kadar?",th:"ราคาเท่าไหร่",id:"Berapa harganya?",nl:"Hoeveel kost dit?",pl:"Ile to kosztuje?",sv:"Hur mycket kostar det?",el:"Πόσο κοστίζει;",cs:"Kolik to stojí?",ru:"Сколько это стоит?",he:"כמה זה עולה?",vi:"Cái này giá bao nhiêu?"},
-  help:{en:"Please help me",hi:"कृपया मेरी सहायता करें",es:"Por favor ayúdame",fr:"Aidez-moi s'il vous plaît",de:"Bitte helfen Sie mir",it:"Aiutami per favore",pt:"Por favor me ajude",ja:"助けてください",ko:"도와주세요",zh:"请帮帮我",ar:"الرجاء مساعدتي",tr:"Lütfen yardım edin",th:"ช่วยฉันด้วย",id:"Tolong bantu saya",nl:"Help me alsjeblieft",pl:"Proszę pomoż mi",sv:"Hjälp mig",el:"Βοηθήστε με",cs:"Prosím pomozte mi",ru:"Помогите мне",he:"תעזור לי",vi:"Xin hãy giúp tôi"},
+  help:{en:"Please help me",hi:"कृपया मेरी सहायता करें",es:"Por favor ayúdame",fr:"Aidez-moi s'il vous plaît",de:"Bitte helfen Sie mir",it:"Aiutami per favore",pt:"Por favor me ajude",ja:"助けてください",ko:"도와주세요",zh:"请帮帮我",ar:"الرجاء مساعدتي",tr:"Lütfen yardım edin",th:"ช่วยฉันด้วย",id:"Tolong bantu saya",nl:"Help me alsjeblieft",pl:"Proszę pomóż mi",sv:"Hjälp mig",el:"Βοηθήστε με",cs:"Prosím pomozte mi",ru:"Помогите мне",he:"תעזור לי",vi:"Xin hãy giúp tôi"},
   vegetarian:{en:"I am vegetarian",hi:"मैं शाकाहारी हूं",es:"Soy vegetariano",fr:"Je suis végétarien",de:"Ich bin Vegetarier",it:"Sono vegetariano",pt:"Sou vegetariano",ja:"私はベジタリアンです",ko:"저는 채식주의자입니다",zh:"我是素食者",ar:"أنا نباتي",tr:"Vejetaryenim",th:"ฉันเป็นมังสวิรัติ",id:"Saya vegetarian",nl:"Ik ben vegetariër",pl:"Jestem wegetarianinem",sv:"Jag är vegetarian",el:"Είμαι χορτοφάγος",cs:"Jsem vegetarián",ru:"Я вегетарианец",he:"אני צמחוני",vi:"Tôi ăn chay"},
   where:{en:"Where is the toilet?",hi:"शौचालय कहाँ है?",es:"¿Dónde está el baño?",fr:"Où sont les toilettes?",de:"Wo ist die Toilette?",it:"Dov'è il bagno?",pt:"Onde fica o banheiro?",ja:"トイレはどこですか?",ko:"화장실이 어디예요?",zh:"洗手间在哪里?",ar:"أين الحمام؟",tr:"Tuvalet nerede?",th:"ห้องน้ำอยู่ที่ไหน",id:"Di mana toiletnya?",nl:"Waar is het toilet?",pl:"Gdzie jest toaleta?",sv:"Var är toaletten?",el:"Πού είναι η τουαλέτα;",cs:"Kde je záchod?",ru:"Где туалет?",he:"איפה השירותים?",vi:"Nhà vệ sinh ở đâu?"},
   water:{en:"Can I have water?",hi:"क्या मुझे पानी मिल सकता है?",es:"¿Me da agua?",fr:"De l'eau s'il vous plaît",de:"Wasser bitte",it:"Acqua per favore",pt:"Água por favor",ja:"水をください",ko:"물 주세요",zh:"请给我水",ar:"الماء من فضلك",tr:"Su lütfen",th:"ขอน้ำได้ไหม",id:"Minta air",nl:"Water graag",pl:"Poproszę wodę",sv:"Vatten tack",el:"Νερό παρακαλώ",cs:"Vodu prosím",ru:"Воду пожалуйста",he:"מים בבקשה",vi:"Cho tôi nước"},
@@ -324,20 +325,77 @@ const phraseLabels = {
   where:"🚽 Where is toilet?", water:"💧 Water please"
 };
 
-// ─── STATE ────────────────────────────────────────────────
+const fallbackCityData = {
+  paris: {
+    restaurants: [
+      { name:'Le Potager du Marais', amenity:'restaurant', cuisine:'vegan;vegetarian', lat:48.8587, lon:2.3541, display_name:'Le Marais, Paris, France', source:'curated' },
+      { name:'Wild & The Moon', amenity:'restaurant', cuisine:'vegan', lat:48.8647, lon:2.3636, display_name:'Paris, France', source:'curated' },
+      { name:'Hank Burger', amenity:'restaurant', cuisine:'vegan', lat:48.8579, lon:2.3588, display_name:'Rue des Archives, Paris, France', source:'curated' }
+    ],
+    hotels: [
+      { name:'Hotel Eiffel Blomet', tourism:'hotel', stars:'4', lat:48.8427, lon:2.2991, display_name:'15th arrondissement, Paris, France', source:'curated' },
+      { name:'Hotel Malte - Astotel', tourism:'hotel', stars:'4', lat:48.8663, lon:2.3364, display_name:'Paris, France', source:'curated' },
+      { name:'Generator Paris', tourism:'hostel', lat:48.8811, lon:2.3685, display_name:'Paris, France', source:'curated' }
+    ],
+    attractions: [
+      { name:'Eiffel Tower', tourism:'attraction', lat:48.8584, lon:2.2945, display_name:'Champ de Mars, Paris, France', source:'curated' },
+      { name:'Louvre Museum', tourism:'museum', lat:48.8606, lon:2.3376, display_name:'Rue de Rivoli, Paris, France', source:'curated' },
+      { name:'Sacré-Cœur Basilica', tourism:'attraction', lat:48.8867, lon:2.3431, display_name:'Montmartre, Paris, France', source:'curated' },
+      { name:'Seine River Walk', leisure:'park', lat:48.8589, lon:2.3470, display_name:'Paris, France', source:'curated' }
+    ],
+    adventures: [
+      { name:'Montmartre Walking Climb', tourism:'viewpoint', lat:48.8867, lon:2.3431, display_name:'Montmartre, Paris, France', source:'curated' },
+      { name:'Luxembourg Gardens', leisure:'garden', lat:48.8462, lon:2.3372, display_name:'Paris, France', source:'curated' }
+    ]
+  },
+  edinburgh: {
+    restaurants: [
+      { name:'Holy Cow', amenity:'restaurant', cuisine:'vegan', lat:55.9547, lon:-3.1911, display_name:'Edinburgh, United Kingdom', source:'curated' },
+      { name:'Seeds For The Soul', amenity:'restaurant', cuisine:'vegan', lat:55.9402, lon:-3.1815, display_name:'Bruntsfield, Edinburgh, United Kingdom', source:'curated' },
+      { name:'Hendersons', amenity:'restaurant', cuisine:'vegetarian;vegan', lat:55.9467, lon:-3.2035, display_name:'Edinburgh, United Kingdom', source:'curated' }
+    ],
+    hotels: [
+      { name:'Motel One Edinburgh-Royal', tourism:'hotel', lat:55.9508, lon:-3.1903, display_name:'Market Street, Edinburgh, United Kingdom', source:'curated' },
+      { name:'Apex Grassmarket Hotel', tourism:'hotel', stars:'4', lat:55.9471, lon:-3.1955, display_name:'Grassmarket, Edinburgh, United Kingdom', source:'curated' },
+      { name:'CoDE Pod Hostel - THE CoURT', tourism:'hostel', lat:55.9491, lon:-3.1906, display_name:'Old Town, Edinburgh, United Kingdom', source:'curated' }
+    ],
+    attractions: [
+      { name:'Edinburgh Castle', tourism:'attraction', lat:55.9486, lon:-3.1999, display_name:'Castlehill, Edinburgh, United Kingdom', source:'curated' },
+      { name:'Royal Mile', tourism:'attraction', lat:55.9500, lon:-3.1875, display_name:'Old Town, Edinburgh, United Kingdom', source:'curated' },
+      { name:'National Museum of Scotland', tourism:'museum', lat:55.9470, lon:-3.1900, display_name:'Chambers Street, Edinburgh, United Kingdom', source:'curated' }
+    ],
+    adventures: [
+      { name:"Arthur's Seat", natural:'peak', lat:55.9441, lon:-3.1618, display_name:'Holyrood Park, Edinburgh, United Kingdom', source:'curated' },
+      { name:'Calton Hill', tourism:'viewpoint', lat:55.9550, lon:-3.1827, display_name:'Edinburgh, United Kingdom', source:'curated' },
+      { name:'Water of Leith Walkway', leisure:'park', lat:55.9580, lon:-3.2267, display_name:'Edinburgh, United Kingdom', source:'curated' }
+    ]
+  },
+  kyoto: {
+    attractions: [
+      { name:'Fushimi Inari Taisha', tourism:'attraction', lat:34.9671, lon:135.7727, display_name:'Kyoto, Japan', source:'curated' },
+      { name:'Arashiyama Bamboo Grove', tourism:'attraction', lat:35.0170, lon:135.6719, display_name:'Kyoto, Japan', source:'curated' },
+      { name:'Kinkaku-ji', tourism:'attraction', lat:35.0394, lon:135.7292, display_name:'Kyoto, Japan', source:'curated' }
+    ],
+    adventures: [
+      { name:'Philosopher’s Path Walk', leisure:'park', lat:35.0267, lon:135.7953, display_name:'Kyoto, Japan', source:'curated' }
+    ]
+  }
+};
+
+const allCountries = [
+  "Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo","Costa Rica","Cote d'Ivoire","Croatia","Cuba","Cyprus","Czechia","Democratic Republic of the Congo","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea","North Macedonia","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","UAE","Uganda","Ukraine","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"
+];
+
+
 let currentFilter = 'all';
 let currentFoodFilter = null;
 let dartCount = 0;
 let dartHighlight = null;
-let liveRates = null;
-let isListening = false;
-let recognition = null;
-let plannerState = {
-  destIdx: null, days: 5, hotel: 80, food: 30,
-  activities: 200, foodPref: 'all', styles: ['culture','food']
-};
+let plannerState = { destIdx: null, customDest: null, days: 5, hotel: 80, food: 30, activities: 200, foodPref: 'all', styles: ['culture','food'], origin: null, live: null, recommendedHotel: null };
+let translateTimer = null;
+let activeRecognizer = null;
 
-// ─── TOOL SWITCHER ────────────────────────────────────────
+
 function switchTool(panel, btn) {
   document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tool-tab').forEach(b => b.classList.remove('active'));
@@ -346,51 +404,32 @@ function switchTool(panel, btn) {
   if (panel === 'dart') initDartMap();
 }
 
-// ─── CURRENCY — LIVE RATES ────────────────────────────────
-async function fetchLiveRates() {
-  try {
-    const res = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
-    const data = await res.json();
-    liveRates = data.rates;
-    const el = document.getElementById('rate-note-text');
-    if (el) { el.textContent = '✓ Live rates · Updated today'; el.style.color = '#2D8A5A'; }
-  } catch {
-    liveRates = null;
-    const el = document.getElementById('rate-note-text');
-    if (el) { el.textContent = '⚠ Offline — approximate rates'; el.style.color = '#C8714A'; }
-  }
-}
-
-function getRate(code) {
-  if (liveRates && liveRates[code]) return liveRates[code];
-  return currencies[code]?.rate || 1;
-}
 
 function initCurrency() {
   const selFrom = document.getElementById('cur-from');
   const selTo = document.getElementById('cur-to');
-  selFrom.innerHTML = '';
-  selTo.innerHTML = '';
   Object.entries(currencies).forEach(([code, c]) => {
-    selFrom.innerHTML += `<option value="${code}" ${code==='USD'?'selected':''}>${c.symbol} ${code} – ${c.name}</option>`;
-    selTo.innerHTML += `<option value="${code}" ${code==='INR'?'selected':''}>${c.symbol} ${code} – ${c.name}</option>`;
+    const opt1 = `<option value="${code}" ${code==='USD'?'selected':''}>${c.symbol} ${code} – ${c.name}</option>`;
+    const opt2 = `<option value="${code}" ${code==='INR'?'selected':''}>${c.symbol} ${code} – ${c.name}</option>`;
+    selFrom.innerHTML += opt1;
+    selTo.innerHTML += opt2;
   });
-  fetchLiveRates().then(() => convertCurrency());
+  convertCurrency();
 }
 
 function convertCurrency() {
   const amount = parseFloat(document.getElementById('cur-amount').value) || 0;
   const from = document.getElementById('cur-from').value;
   const to = document.getElementById('cur-to').value;
-  const inUSD = amount / getRate(from);
-  const result = inUSD * getRate(to);
-  const sym = currencies[to]?.symbol || '';
-  document.getElementById('cur-result').textContent = `${sym} ${result.toLocaleString('en',{maximumFractionDigits:2})}`;
+  const inUSD = amount / currencies[from].rate;
+  const result = inUSD * currencies[to].rate;
+  const sym = currencies[to].symbol;
+  document.getElementById('cur-result').textContent = `${sym} ${result.toLocaleString('en', {maximumFractionDigits:2})}`;
   document.getElementById('cur-label').textContent = `${amount} ${from} = ${result.toFixed(2)} ${to}`;
   const qr = document.getElementById('quick-rates');
   qr.innerHTML = '';
-  [1,5,10,20,50,100,200,500,1000].forEach(amt => {
-    const r = ((amt / getRate(from)) * getRate(to)).toFixed(2);
+  [1, 5, 10, 20, 50, 100, 200, 500, 1000].forEach(amt => {
+    const r = ((amt / currencies[from].rate) * currencies[to].rate).toFixed(2);
     qr.innerHTML += `<div class="rate-chip"><div class="from">${amt} ${from}</div><div class="to">= ${sym}${r}</div></div>`;
   });
 }
@@ -402,15 +441,15 @@ function swapCurrencies() {
   convertCurrency();
 }
 
-// ─── TRANSLATOR — MyMemory API + Voice + TTS ──────────────
+
 function initTranslator() {
-  const sel = document.getElementById('lang-to');
-  sel.innerHTML = '';
+  const from = document.getElementById('lang-from');
+  const to = document.getElementById('lang-to');
   Object.entries(languages).forEach(([code, l]) => {
-    sel.innerHTML += `<option value="${code}" ${code==='ja'?'selected':''}>${l.name}</option>`;
+    from.innerHTML += `<option value="${code}" ${code==='en'?'selected':''}>${l.name}</option>`;
+    to.innerHTML += `<option value="${code}" ${code==='hi'?'selected':''}>${l.name}</option>`;
   });
   const pp = document.getElementById('phrase-pills');
-  pp.innerHTML = '';
   Object.entries(phraseLabels).forEach(([key, label]) => {
     const btn = document.createElement('button');
     btn.className = 'phrase-pill';
@@ -421,111 +460,133 @@ function initTranslator() {
     };
     pp.appendChild(btn);
   });
-  // Voice input setup
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (SR) {
-    recognition = new SR();
-    recognition.continuous = false;
-    recognition.interimResults = false;
-    recognition.lang = 'en-US';
-    recognition.onresult = e => {
-      document.getElementById('trans-input').value = e.results[0][0].transcript;
-      isListening = false;
-      updateVoiceBtn(false);
-      doTranslate();
-    };
-    recognition.onend = () => { isListening = false; updateVoiceBtn(false); };
-    recognition.onerror = () => { isListening = false; updateVoiceBtn(false); };
-    const vb = document.getElementById('voice-input-btn');
-    if (vb) vb.style.display = 'inline-flex';
-  }
 }
 
-function updateVoiceBtn(on) {
-  const btn = document.getElementById('voice-input-btn');
-  if (!btn) return;
-  btn.textContent = on ? '🔴 Listening…' : '🎤 Speak';
-  btn.style.background = on ? '#C8714A' : '';
-  btn.style.color = on ? '#fff' : '';
+function doTranslate() {
+  clearTimeout(translateTimer);
+  translateTimer = setTimeout(runTranslate, 350);
 }
 
-function toggleVoiceInput() {
-  if (!recognition) return;
-  if (isListening) { recognition.stop(); isListening = false; updateVoiceBtn(false); }
-  else { recognition.start(); isListening = true; updateVoiceBtn(true); }
-}
-
-async function doTranslate() {
+async function runTranslate() {
   const text = document.getElementById('trans-input').value.trim();
+  const fromLang = document.getElementById('lang-from').value;
   const toLang = document.getElementById('lang-to').value;
-  const out = document.getElementById('trans-output');
-  const btn = document.querySelector('.translate-btn');
-  if (!text) { out.value = ''; return; }
+  const output = document.getElementById('trans-output');
+  setTranslatorStatus('Ready');
+  if (!text) { output.value = ''; return; }
+  if (fromLang === toLang) { output.value = text; return; }
 
-  // Phrase bank first (instant, offline)
-  for (const [key, map] of Object.entries(phrases)) {
-    if (map['en'].toLowerCase() === text.toLowerCase() && map[toLang]) {
-      out.value = map[toLang]; return;
-    }
+  const phraseHit = findPhraseTranslation(text, fromLang, toLang);
+  if (phraseHit) {
+    output.value = phraseHit;
+    setTranslatorStatus('Phrase backup');
   }
 
-  // MyMemory API — translates any sentence
-  out.value = '…translating';
-  if (btn) { btn.textContent = 'Translating…'; btn.disabled = true; }
   try {
-    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|${toLang}`;
+    setTranslatorStatus('Translating...');
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${encodeURIComponent(fromLang)}|${encodeURIComponent(toLang)}`;
     const res = await fetch(url);
+    if (!res.ok) throw new Error('Translation request failed');
     const data = await res.json();
-    const result = data?.responseData?.translatedText || '';
-    if (data.responseStatus === 200 && result && !result.toLowerCase().includes('invalid') && !result.toLowerCase().includes('quota')) {
-      out.value = result;
-    } else {
-      out.value = '[Daily free limit reached — try again tomorrow or use phrase buttons]';
+    const translated = data?.responseData?.translatedText;
+    if (translated) {
+      output.value = decodeHtml(translated);
+      setTranslatorStatus('Live translation');
+      return;
     }
-  } catch {
-    // Fallback: partial phrase match
-    let found = false;
-    for (const [key, map] of Object.entries(phrases)) {
-      if (map['en'].toLowerCase().includes(text.toLowerCase().slice(0,6)) && map[toLang]) {
-        out.value = map[toLang] + ' (closest match)'; found = true; break;
-      }
-    }
-    if (!found) out.value = '[No internet — use phrase buttons above]';
+    throw new Error('No translation returned');
+  } catch (err) {
+    if (!phraseHit) output.value = 'Live translation is unavailable right now. Try a shorter sentence or check your connection.';
+    setTranslatorStatus(phraseHit ? 'Offline phrase backup' : 'Translation unavailable');
   }
-  if (btn) { btn.textContent = 'Translate ✦'; btn.disabled = false; }
 }
 
-function speakTranslation() {
-  const text = document.getElementById('trans-output').value;
-  const lang = document.getElementById('lang-to').value;
-  if (!text || text.startsWith('[')) return;
-  if (!('speechSynthesis' in window)) return;
-  const langMap = {en:'en-US',hi:'hi-IN',es:'es-ES',fr:'fr-FR',de:'de-DE',it:'it-IT',pt:'pt-PT',ja:'ja-JP',ko:'ko-KR',zh:'zh-CN',ar:'ar-SA',tr:'tr-TR',th:'th-TH',id:'id-ID',nl:'nl-NL',pl:'pl-PL',sv:'sv-SE',el:'el-GR',cs:'cs-CZ',ru:'ru-RU',he:'he-IL',vi:'vi-VN'};
-  window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = langMap[lang] || 'en-US';
-  u.rate = 0.9;
-  window.speechSynthesis.speak(u);
-}
-
-function copyTranslation() {
-  const text = document.getElementById('trans-output').value;
-  if (!text || text.startsWith('[')) return;
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.getElementById('copy-trans-btn');
-    if (!btn) return;
-    btn.textContent = '✓ Copied!';
-    setTimeout(() => btn.textContent = '📋 Copy', 1500);
-  });
+function findPhraseTranslation(text, fromLang, toLang) {
+  const needle = text.toLowerCase();
+  for (const phraseMap of Object.values(phrases)) {
+    if (phraseMap[fromLang]?.toLowerCase() === needle && phraseMap[toLang]) return phraseMap[toLang];
+  }
+  for (const phraseMap of Object.values(phrases)) {
+    const fromText = phraseMap[fromLang] || phraseMap.en;
+    if (fromText?.toLowerCase().includes(needle.slice(0, 8)) && phraseMap[toLang]) return phraseMap[toLang];
+  }
+  return '';
 }
 
 function swapLangs() {
   const fi = document.getElementById('trans-input');
-  const to = document.getElementById('trans-output');
-  [fi.value, to.value] = [to.value, fi.value];
+  const out = document.getElementById('trans-output');
+  const from = document.getElementById('lang-from');
+  const to = document.getElementById('lang-to');
+  [from.value, to.value] = [to.value, from.value];
+  [fi.value, out.value] = [out.value, fi.value];
+  doTranslate();
 }
 
-// ─── PLANNER ──────────────────────────────────────────────
+function setTranslatorStatus(text) {
+  const el = document.getElementById('translator-status');
+  if (el) el.textContent = text;
+}
+
+function decodeHtml(html) {
+  const el = document.createElement('textarea');
+  el.innerHTML = html;
+  return el.value;
+}
+
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]));
+}
+
+function clearTranslation() {
+  document.getElementById('trans-input').value = '';
+  document.getElementById('trans-output').value = '';
+  setTranslatorStatus('Ready');
+}
+
+function startVoiceInput() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    alert('Voice input is not supported in this browser. Try Chrome or Edge.');
+    return;
+  }
+  if (activeRecognizer) activeRecognizer.stop();
+  const btn = document.getElementById('voice-listen');
+  activeRecognizer = new SpeechRecognition();
+  activeRecognizer.lang = speechLocale(document.getElementById('lang-from').value);
+  activeRecognizer.interimResults = false;
+  activeRecognizer.maxAlternatives = 1;
+  btn.classList.add('listening');
+  btn.textContent = 'Listening...';
+  setTranslatorStatus('Listening...');
+  activeRecognizer.onresult = e => {
+    document.getElementById('trans-input').value = e.results[0][0].transcript;
+    doTranslate();
+  };
+  activeRecognizer.onerror = () => setTranslatorStatus('Voice input failed');
+  activeRecognizer.onend = () => {
+    btn.classList.remove('listening');
+    btn.textContent = '🎙️ Speak';
+    activeRecognizer = null;
+  };
+  activeRecognizer.start();
+}
+
+function speakTranslation() {
+  const text = document.getElementById('trans-output').value.trim();
+  if (!text || !window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = speechLocale(document.getElementById('lang-to').value);
+  window.speechSynthesis.speak(utterance);
+}
+
+function speechLocale(code) {
+  const locales = { en:'en-US', hi:'hi-IN', es:'es-ES', fr:'fr-FR', de:'de-DE', it:'it-IT', pt:'pt-PT', ja:'ja-JP', ko:'ko-KR', zh:'zh-CN', ar:'ar-SA', tr:'tr-TR', th:'th-TH', id:'id-ID', nl:'nl-NL', pl:'pl-PL', sv:'sv-SE', el:'el-GR', cs:'cs-CZ', ru:'ru-RU', he:'he-IL', vi:'vi-VN' };
+  return locales[code] || code;
+}
+
+
 function filterPlannerDests() {
   const q = document.getElementById('pl-dest-input').value.toLowerCase();
   const dd = document.getElementById('pl-dest-dd');
@@ -533,10 +594,11 @@ function filterPlannerDests() {
   const matches = destinations.filter(d =>
     d.name.toLowerCase().includes(q) || d.country.toLowerCase().includes(q)
   );
-  if (!matches.length) { dd.style.display = 'none'; return; }
+  const countryMatches = allCountries.filter(c => c.toLowerCase().includes(q)).slice(0, 4);
+  if (!matches.length && !countryMatches.length) { dd.style.display = 'none'; return; }
   dd.style.display = 'block';
   dd.innerHTML = '';
-  matches.slice(0,8).forEach(d => {
+  matches.slice(0, 8).forEach(d => {
     const idx = destinations.indexOf(d);
     const div = document.createElement('div');
     div.className = 'dest-option';
@@ -544,31 +606,161 @@ function filterPlannerDests() {
     div.onclick = () => selectPlannerDest(idx);
     dd.appendChild(div);
   });
+  countryMatches.forEach(country => {
+    const div = document.createElement('div');
+    div.className = 'dest-option';
+    div.innerHTML = `<span>🌐 <strong>${country}</strong></span><span>Country</span>`;
+    div.onclick = () => selectPlannerPlace({ name: country, country, lat: null, lon: null, type: 'country' });
+    dd.appendChild(div);
+  });
 }
 
 function selectPlannerDest(idx) {
   plannerState.destIdx = idx;
+  plannerState.customDest = null;
   const d = destinations[idx];
+  applyDestinationTheme(d);
   document.getElementById('pl-dest-input').value = `${d.name}, ${d.country}`;
   document.getElementById('pl-dest-dd').style.display = 'none';
   const sel = document.getElementById('pl-selected-dest');
   sel.style.display = 'block';
-  document.getElementById('pl-sel-emoji').textContent = d.emoji;
+  setImageBackground(document.getElementById('pl-sel-emoji'), imageForDestination(d));
   document.getElementById('pl-sel-name').textContent = d.name;
   document.getElementById('pl-sel-country').textContent = `${d.country} · ${d.ticketFrom} est. flight`;
 }
 
+function selectPlannerPlace(place) {
+  plannerState.destIdx = null;
+  plannerState.customDest = normalizePlaceDestination(place);
+  const d = plannerState.customDest;
+  applyDestinationTheme(d);
+  document.getElementById('pl-dest-input').value = `${d.name}, ${d.country}`;
+  document.getElementById('pl-dest-dd').style.display = 'none';
+  const sel = document.getElementById('pl-selected-dest');
+  sel.style.display = 'block';
+  setImageBackground(document.getElementById('pl-sel-emoji'), imageForDestination(d));
+  document.getElementById('pl-sel-name').textContent = d.name;
+  document.getElementById('pl-sel-country').textContent = `${d.country} · worldwide place search`;
+}
+
+function normalizePlaceDestination(place) {
+  const name = place.name || place.display_name?.split(',')[0] || 'Selected place';
+  const country = place.country || place.address?.country || place.display_name?.split(',').slice(-1)[0]?.trim() || 'Worldwide';
+  return {
+    name, country, continent:'worldwide', emoji: place.type === 'country' ? '🌐' : '📍', bg:'#DDEEF5',
+    desc: place.display_name || `${name}, ${country}`,
+    fullDesc: place.display_name || `${name}, ${country}`,
+    tags:['culture','food'], food:{veg:true,vegan:true,non:true}, ticketFrom:'varies',
+    currency:'Check locally', language:'Local language varies', bestTime:'Check seasonal weather', climate:'Varies',
+    tickets:[{type:'Flights and local transport',price:'Check live booking sites'},{type:'Attractions',price:'Varies by place'}],
+    foodDetail:[{type:'Vegetarian',dot:'veg',note:'The itinerary searches live restaurant names nearby.'},{type:'Vegan',dot:'vegan',note:'Vegan-friendly places are prioritized when available.'},{type:'Non-Veg',dot:'non',note:'Local restaurants are included for all-food plans.'}],
+    attractions:['Historic center or main landmark','Local market or food street','Museum, viewpoint, or cultural district','Walkable neighborhood exploration'],
+    localTips:'Use the live hotel and restaurant matches below, then confirm hours, prices, and booking details before you go.',
+    mapX:.5, mapY:.4, lat: place.lat ? Number(place.lat) : null, lon: place.lon ? Number(place.lon) : null
+  };
+}
+
+function imageForDestination(dest) {
+  const query = `${dest.name} ${dest.country} landmark luxury travel`;
+  return unsplashUrl(query, '1600x1000');
+}
+
+function imageForPlace(place, dest) {
+  const query = `${place?.name || dest?.name || 'travel'} ${dest?.name || ''} ${dest?.country || ''}`;
+  return unsplashUrl(query, '900x650');
+}
+
+function unsplashUrl(query, size = '1200x800') {
+  return `https://source.unsplash.com/${size}/?${encodeURIComponent(query)}`;
+}
+
+function setImageBackground(el, url) {
+  if (!el) return;
+  el.textContent = '';
+  el.style.backgroundImage = `linear-gradient(rgba(0,0,0,.05), rgba(0,0,0,.12)), url("${url}")`;
+}
+
+function applyDestinationTheme(dest) {
+  const slug = (dest.name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  document.body.className = document.body.className
+    .split(' ')
+    .filter(c => !c.startsWith('luxe-') && c !== 'destination-themed')
+    .join(' ');
+  document.body.classList.add('destination-themed', `luxe-${slug}`);
+  document.body.style.setProperty('--theme-image', `url("${imageForDestination(dest)}")`);
+}
+
+async function searchGlobalPlaces() {
+  const query = document.getElementById('pl-dest-input').value.trim();
+  const dd = document.getElementById('pl-dest-dd');
+  if (!query) { alert('Type a city, country, landmark, or place first.'); return; }
+  dd.style.display = 'block';
+  dd.innerHTML = '<div class="dest-option"><span>Searching worldwide...</span><span></span></div>';
+  try {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&limit=8&addressdetails=1&q=${encodeURIComponent(query)}`;
+    const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+    if (!res.ok) throw new Error('Place search failed');
+    const places = await res.json();
+    dd.innerHTML = '';
+    if (!places.length) {
+      dd.innerHTML = '<div class="dest-option"><span>No worldwide matches found.</span><span></span></div>';
+      return;
+    }
+    places.forEach(place => {
+      const div = document.createElement('div');
+      div.className = 'dest-option';
+      const label = place.display_name.split(',').slice(0, 3).join(',');
+      div.innerHTML = `<span>📍 <strong>${escapeHtml(label)}</strong></span><span>${escapeHtml(place.type || 'place')}</span>`;
+      div.onclick = () => selectPlannerPlace(place);
+      dd.appendChild(div);
+    });
+  } catch (err) {
+    dd.innerHTML = '<div class="dest-option"><span>Worldwide search is unavailable right now.</span><span></span></div>';
+  }
+}
+
+function useMyLocation() {
+  if (!navigator.geolocation) {
+    alert('Location is not supported by this browser.');
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(async pos => {
+    const lat = pos.coords.latitude;
+    const lon = pos.coords.longitude;
+    try {
+      const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&addressdetails=1&lat=${lat}&lon=${lon}`);
+      const place = await res.json();
+      selectPlannerPlace({ ...place, lat, lon, name: place.address?.city || place.address?.town || place.address?.village || 'Current location' });
+    } catch (err) {
+      selectPlannerPlace({ name:'Current location', country:'Nearby', lat, lon, display_name:'Your current location' });
+    }
+  }, () => alert('Location permission was not granted.'));
+}
+
+function initCountryList() {
+  const sel = document.getElementById('country-list');
+  if (!sel) return;
+  sel.innerHTML = '<option value="">Browse countries...</option>' + allCountries.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+}
+
+function selectCountryFromList() {
+  const sel = document.getElementById('country-list');
+  if (!sel.value) return;
+  document.getElementById('pl-dest-input').value = sel.value;
+  selectPlannerPlace({ name: sel.value, country: sel.value, type: 'country' });
+}
+
 function goStep(n) {
-  document.querySelectorAll('.planner-page').forEach((p,i) => p.classList.toggle('active', i===n));
-  document.querySelectorAll('.p-step').forEach((s,i) => {
-    s.classList.toggle('active', i===n);
-    s.classList.toggle('done', i<n);
+  document.querySelectorAll('.planner-page').forEach((p, i) => p.classList.toggle('active', i === n));
+  document.querySelectorAll('.p-step').forEach((s, i) => {
+    s.classList.toggle('active', i === n);
+    s.classList.toggle('done', i < n);
   });
 }
 
 function nextStep(from) {
-  if (from===0 && plannerState.destIdx===null) { alert('Please select a destination first!'); return; }
-  goStep(from+1);
+  if (from === 0 && plannerState.destIdx === null && !plannerState.customDest) { alert('Please select a destination first!'); return; }
+  goStep(from + 1);
 }
 
 function selectDays(n, el) {
@@ -578,9 +770,9 @@ function selectDays(n, el) {
 }
 
 function updateBudget(type) {
-  if (type==='hotel') { plannerState.hotel = +document.getElementById('hotel-range').value; document.getElementById('hotel-val').textContent = '$'+plannerState.hotel; }
-  if (type==='food') { plannerState.food = +document.getElementById('food-range').value; document.getElementById('food-val').textContent = '$'+plannerState.food; }
-  if (type==='act') { plannerState.activities = +document.getElementById('act-range').value; document.getElementById('act-val').textContent = '$'+plannerState.activities; }
+  if (type === 'hotel') { plannerState.hotel = +document.getElementById('hotel-range').value; document.getElementById('hotel-val').textContent = '$' + plannerState.hotel; }
+  if (type === 'food') { plannerState.food = +document.getElementById('food-range').value; document.getElementById('food-val').textContent = '$' + plannerState.food; }
+  if (type === 'act') { plannerState.activities = +document.getElementById('act-range').value; document.getElementById('act-val').textContent = '$' + plannerState.activities; }
 }
 
 function setFoodPref(pref, el) {
@@ -591,13 +783,13 @@ function setFoodPref(pref, el) {
 
 function toggleStyle(style, el) {
   el.classList.toggle('on');
-  if (plannerState.styles.includes(style)) plannerState.styles = plannerState.styles.filter(s => s!==style);
+  if (plannerState.styles.includes(style)) plannerState.styles = plannerState.styles.filter(s => s !== style);
   else plannerState.styles.push(style);
 }
 
 function buildItinerary() {
   goStep(3);
-  const d = destinations[plannerState.destIdx];
+  const d = plannerState.customDest || destinations[plannerState.destIdx];
   const days = plannerState.days;
   const hotelTotal = plannerState.hotel * days;
   const foodTotal = plannerState.food * days;
@@ -616,32 +808,37 @@ function buildItinerary() {
   const fi = foodItems[pref] || foodItems.all;
   const allAttractions = [...d.attractions];
   const styles = plannerState.styles;
+  plannerState.live = null;
+  plannerState.recommendedHotel = null;
+
   let daysHtml = '';
-  for (let day=1; day<=days; day++) {
-    const attr = allAttractions[(day-1) % allAttractions.length];
-    const afternoon = styles.includes('adventure') && day%2===0 ? 'Adventure activity / outdoor experience' : styles.includes('food') ? 'Food tour / market visit' : 'Afternoon sightseeing';
+  for (let day = 1; day <= days; day++) {
+    const attr = allAttractions[(day - 1) % allAttractions.length];
+    const afternoon = styles.includes('adventure') && day % 2 === 0 ? 'Adventure activity / outdoor experience' : styles.includes('food') ? 'Food tour / market visit' : 'Afternoon sightseeing';
     const evening = styles.includes('relaxation') ? 'Relaxing evening / rooftop bar' : styles.includes('culture') ? 'Cultural show / local performance' : 'Evening street exploration';
-    const dayFood = day===1 ? `Try ${d.name}'s most iconic dish` : day===days ? 'Farewell dinner at best-rated restaurant' : fi.dinner;
+    const dayFood = day === 1 ? `Try ${d.name}'s most iconic dish` : day === days ? 'Farewell dinner at best-rated restaurant' : fi.dinner;
     daysHtml += `
     <div class="itin-day">
       <div class="itin-day-header" onclick="toggleDay(this)">
-        <span><span class="day-badge">Day ${day}</span> ${getDayTitle(day,days,d.name)}</span>
-        <span style="color:var(--clay);font-size:.85rem">~$${(plannerState.hotel+plannerState.food+plannerState.activities/days+15).toFixed(0)}</span>
+        <span><span class="day-badge">Day ${day}</span> ${getDayTitle(day, days, d.name)}</span>
+        <span style="color:var(--clay);font-size:.85rem">~$${(plannerState.hotel + plannerState.food + plannerState.activities/days + 15).toFixed(0)}</span>
       </div>
       <div class="itin-day-body" style="display:none">
-        <div class="itin-item"><span class="itin-time">7:00 AM</span><div class="itin-act"><strong>${fi.breakfast}</strong><span>${d.name} morning routine</span></div><span class="itin-cost">$${(plannerState.food*.2).toFixed(0)}</span></div>
-        <div class="itin-item"><span class="itin-time">9:00 AM</span><div class="itin-act"><strong>${attr}</strong><span>Top attraction — arrive early to avoid crowds</span></div><span class="itin-cost">$${(plannerState.activities/days/2).toFixed(0)}</span></div>
-        <div class="itin-item"><span class="itin-time">1:00 PM</span><div class="itin-act"><strong>${fi.lunch}</strong><span>${pref==='veg'?'🥗 Vegetarian':pref==='vegan'?'🌱 Vegan':pref==='halal'?'☪️ Halal':'🍽️ Local'} option</span></div><span class="itin-cost">$${(plannerState.food*.35).toFixed(0)}</span></div>
-        <div class="itin-item"><span class="itin-time">3:00 PM</span><div class="itin-act"><strong>${afternoon}</strong><span>Afternoon exploration</span></div><span class="itin-cost">$${(plannerState.activities/days/3).toFixed(0)}</span></div>
-        <div class="itin-item"><span class="itin-time">7:00 PM</span><div class="itin-act"><strong>${dayFood}</strong><span>${foodLevel}</span></div><span class="itin-cost">$${(plannerState.food*.45).toFixed(0)}</span></div>
+        <div class="itin-item"><span class="itin-time">7:00 AM</span><div class="itin-thumb js-thumb" data-day="${day}" data-slot="breakfast" style="background-image:url('${imageForDestination(d)}')"></div><div class="itin-act"><strong class="js-breakfast" data-day="${day}">${fi.breakfast}</strong><span class="js-breakfast-note" data-day="${day}">${d.name} morning routine</span></div><span class="itin-cost">$${(plannerState.food*0.2).toFixed(0)}</span></div>
+        <div class="itin-item"><span class="itin-time">9:00 AM</span><div class="itin-thumb js-thumb" data-day="${day}" data-slot="attraction" style="background-image:url('${imageForDestination(d)}')"></div><div class="itin-act"><strong class="js-attraction" data-day="${day}">${attr}</strong><span class="js-attraction-note" data-day="${day}">Finding a real trusted place nearby...</span></div><span class="itin-cost">$${(plannerState.activities/days/2).toFixed(0)}</span></div>
+        <div class="itin-item"><span class="itin-time">1:00 PM</span><div class="itin-thumb js-thumb" data-day="${day}" data-slot="lunch" style="background-image:url('${imageForDestination(d)}')"></div><div class="itin-act"><strong class="js-lunch" data-day="${day}">${fi.lunch}</strong><span class="js-lunch-note" data-day="${day}">${pref==='veg'?'🥗 Vegetarian':pref==='vegan'?'🌱 Vegan':pref==='halal'?'☪️ Halal':'🍽️ Local'} option</span></div><span class="itin-cost">$${(plannerState.food*0.35).toFixed(0)}</span></div>
+        <div class="itin-item"><span class="itin-time">3:00 PM</span><div class="itin-thumb js-thumb" data-day="${day}" data-slot="adventure" style="background-image:url('${imageForDestination(d)}')"></div><div class="itin-act"><strong class="js-adventure" data-day="${day}">${afternoon}</strong><span class="js-adventure-note" data-day="${day}">Finding safe adventure or trusted activity spots...</span></div><span class="itin-cost">$${(plannerState.activities/days/3).toFixed(0)}</span></div>
+        <div class="itin-item"><span class="itin-time">7:00 PM</span><div class="itin-thumb js-thumb" data-day="${day}" data-slot="dinner" style="background-image:url('${imageForDestination(d)}')"></div><div class="itin-act"><strong class="js-dinner" data-day="${day}">${dayFood}</strong><span class="js-dinner-note" data-day="${day}">${foodLevel}</span></div><span class="itin-cost">$${(plannerState.food*0.45).toFixed(0)}</span></div>
         <div class="itin-item"><span class="itin-time">9:00 PM</span><div class="itin-act"><strong>${evening}</strong><span>End of day</span></div><span class="itin-cost">—</span></div>
       </div>
     </div>`;
   }
-  const hotelPct = Math.round(hotelTotal/grandTotal*100);
-  const foodPct = Math.round(foodTotal/grandTotal*100);
-  const actPct = Math.round(actTotal/grandTotal*100);
-  const transPct = Math.round(transportEst/grandTotal*100);
+
+  const hotelPct = Math.round(hotelTotal / grandTotal * 100);
+  const foodPct = Math.round(foodTotal / grandTotal * 100);
+  const actPct = Math.round(actTotal / grandTotal * 100);
+  const transPct = Math.round(transportEst / grandTotal * 100);
+
   document.getElementById('itin-output').innerHTML = `
     <div class="itin-header">
       <h3>${d.emoji} ${days}-Day ${d.name} Itinerary</h3>
@@ -650,6 +847,24 @@ function buildItinerary() {
         <div class="itin-stat">🏨 <strong>${hotelType}</strong></div>
         <div class="itin-stat">🍽️ <strong>${foodLevel}</strong></div>
         <div class="itin-stat">${pref==='veg'?'🥗 Vegetarian':pref==='vegan'?'🌱 Vegan':pref==='halal'?'☪️ Halal':'🍽️ All food'}</div>
+      </div>
+    </div>
+    <div class="live-results">
+      <div class="live-panel">
+        <h4>Actual Restaurants Nearby</h4>
+        <p class="live-note">Live OpenStreetMap results prioritizing ${pref==='vegan'?'vegan':pref==='veg'?'vegetarian':pref==='halal'?'halal':'popular local'} options near ${d.name}.</p>
+        <div class="place-list" id="restaurant-results"><div class="place-empty">Finding real restaurant names...</div></div>
+      </div>
+      <div class="live-panel">
+        <h4>Hotels For Your Budget</h4>
+        <p class="live-note">Live hotel/hostel/guesthouse names matched to your daily budget level: ${hotelType}.</p>
+        <div class="place-list" id="hotel-results"><div class="place-empty">Finding real hotel names...</div></div>
+      </div>
+      <div class="live-panel transport-panel">
+        <h4>How To Get Around</h4>
+        <p class="live-note">Use your current location to reach the recommended hotel, then use hotel-based route hints for each place.</p>
+        <button class="voice-btn" onclick="useOriginForTransport()">Use my current location</button>
+        <div class="place-list" id="transport-results"><div class="place-empty">Local apps and route advice will appear here.</div></div>
       </div>
     </div>
     ${daysHtml}
@@ -667,38 +882,517 @@ function buildItinerary() {
         <div style="font-size:.75rem;opacity:.5;margin-top:.3rem">+ ${d.ticketFrom} estimated flight</div>
       </div>
     </div>`;
+
   document.querySelectorAll('.itin-day-body')[0].style.display = 'block';
+  loadLiveTravelMatches(d);
 }
 
 function getDayTitle(day, total, dest) {
-  if (day===1) return `Arrival & ${dest} First Look`;
-  if (day===total) return 'Final Day & Departure';
-  if (day===2) return 'Deep Dive into Culture';
-  if (day===3) return 'Hidden Gems & Local Life';
+  if (day === 1) return `Arrival & ${dest} First Look`;
+  if (day === total) return 'Final Day & Departure';
+  if (day === 2) return 'Deep Dive into Culture';
+  if (day === 3) return 'Hidden Gems & Local Life';
   return `Exploration Day ${day}`;
 }
 
 function toggleDay(header) {
   const body = header.nextElementSibling;
-  body.style.display = body.style.display==='none' ? 'block' : 'none';
+  body.style.display = body.style.display === 'none' ? 'block' : 'none';
 }
 
-// ─── DART GAME ────────────────────────────────────────────
+async function loadLiveTravelMatches(dest) {
+  const restaurantBox = document.getElementById('restaurant-results');
+  const hotelBox = document.getElementById('hotel-results');
+  const transportBox = document.getElementById('transport-results');
+  renderTransportAdvice(transportBox, dest, null);
+  try {
+    const coords = await getDestinationCoords(dest);
+    if (!coords) throw new Error('No coordinates');
+    const [restaurantsResult, hotelsResult, attractionsResult, adventuresResult] = await Promise.allSettled([
+      getRestaurantMatches(dest, coords),
+      getHotelMatches(dest, coords),
+      getAttractionMatches(dest, coords),
+      getAdventureMatches(dest, coords)
+    ]);
+    const restaurants = restaurantsResult.status === 'fulfilled' ? restaurantsResult.value : [];
+    const hotels = hotelsResult.status === 'fulfilled' ? hotelsResult.value : [];
+    const attractions = attractionsResult.status === 'fulfilled' ? attractionsResult.value : [];
+    const adventures = adventuresResult.status === 'fulfilled' ? adventuresResult.value : [];
+    plannerState.live = { restaurants, hotels, attractions, adventures, coords };
+    renderRestaurantMatches(restaurantBox, restaurants, dest);
+    renderHotelMatches(hotelBox, hotels, dest);
+    updateItineraryWithLivePlaces(dest);
+    renderTransportAdvice(transportBox, dest, coords);
+  } catch (err) {
+    restaurantBox.innerHTML = `<div class="place-empty">Could not load live restaurants. Try the worldwide search again, or confirm names on Google Maps before travelling.</div>`;
+    hotelBox.innerHTML = `<div class="place-empty">Could not load live hotels. Booking sites will have the most current rates and availability.</div>`;
+    renderTransportAdvice(transportBox, dest, null);
+  }
+}
+
+async function getDestinationCoords(dest) {
+  if (dest.lat && dest.lon) return { lat: dest.lat, lon: dest.lon };
+  const query = `${dest.name}, ${dest.country}`;
+  const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(query)}`);
+  if (!res.ok) throw new Error('Geocoding failed');
+  const data = await res.json();
+  if (!data.length) return null;
+  dest.lat = Number(data[0].lat);
+  dest.lon = Number(data[0].lon);
+  return { lat: dest.lat, lon: dest.lon };
+}
+
+async function getRestaurantMatches(dest, coords) {
+  const pref = plannerState.foodPref;
+  const osm = await fetchNearbyPlaces(coords.lat, coords.lon, 'restaurants').catch(() => []);
+  const fallbackQuery = `${pref === 'vegan' ? 'vegan restaurant' : pref === 'veg' ? 'vegetarian restaurant' : pref === 'halal' ? 'halal restaurant' : 'restaurant'} ${dest.name} ${dest.country}`;
+  const searched = await searchNamedPlaces(fallbackQuery, 'restaurant').catch(() => []);
+  return mergePlaces(mergePlaces(osm, searched), fallbackFor(dest, 'restaurants'));
+}
+
+async function getHotelMatches(dest, coords) {
+  const osm = await fetchNearbyPlaces(coords.lat, coords.lon, 'hotels').catch(() => []);
+  const hotelQuery = `${plannerState.hotel < 45 ? 'hostel' : plannerState.hotel < 130 ? 'guest house hotel' : 'hotel'} ${dest.name} ${dest.country}`;
+  const searched = await searchNamedPlaces(hotelQuery, 'hotel').catch(() => []);
+  return mergePlaces(mergePlaces(osm, searched), fallbackFor(dest, 'hotels'));
+}
+
+async function getAttractionMatches(dest, coords) {
+  const osm = await fetchNearbyPlaces(coords.lat, coords.lon, 'attractions').catch(() => []);
+  const searched = await searchNamedPlaces(`top tourist attractions ${dest.name} ${dest.country}`, 'attraction').catch(() => []);
+  return mergePlaces(mergePlaces(osm, searched), fallbackFor(dest, 'attractions'));
+}
+
+async function getAdventureMatches(dest, coords) {
+  const osm = await fetchNearbyPlaces(coords.lat, coords.lon, 'adventures').catch(() => []);
+  const searched = await searchNamedPlaces(`safe adventure activities parks viewpoints ${dest.name} ${dest.country}`, 'adventure').catch(() => []);
+  return mergePlaces(mergePlaces(osm, searched), fallbackFor(dest, 'adventures'));
+}
+
+function fallbackFor(dest, key) {
+  const name = (dest.name || '').toLowerCase();
+  const country = (dest.country || '').toLowerCase();
+  const cityKey = Object.keys(fallbackCityData).find(k => name.includes(k) || country.includes(k));
+  return cityKey ? (fallbackCityData[cityKey][key] || []) : [];
+}
+
+async function searchNamedPlaces(query, kind) {
+  const url = `https://nominatim.openstreetmap.org/search?format=json&limit=10&addressdetails=1&q=${encodeURIComponent(query)}`;
+  const res = await fetchWithTimeout(url, {}, 9000);
+  if (!res.ok) throw new Error('Place search failed');
+  const data = await res.json();
+  return data
+    .map(place => ({
+      name: place.name || place.display_name?.split(',')[0],
+      amenity: kind === 'restaurant' ? 'restaurant' : undefined,
+      tourism: kind === 'hotel' ? guessHotelType(place) : undefined,
+      category: kind,
+      cuisine: kind === 'restaurant' ? plannerState.foodPref : undefined,
+      display_name: place.display_name,
+      lat: Number(place.lat),
+      lon: Number(place.lon),
+      source: 'search'
+    }))
+    .filter(p => p.name);
+}
+
+function mergePlaces(primary, fallback) {
+  const seen = new Set();
+  return [...primary, ...fallback].filter(place => {
+    const key = place.name.toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function guessHotelType(place) {
+  const txt = `${place.type || ''} ${place.class || ''} ${place.display_name || ''}`.toLowerCase();
+  if (txt.includes('hostel')) return 'hostel';
+  if (txt.includes('guest')) return 'guest_house';
+  return 'hotel';
+}
+
+async function fetchNearbyPlaces(lat, lon, kind) {
+  const radius = kind === 'adventures' || kind === 'attractions' ? 8000 : 4500;
+  const queries = {
+    restaurants: `[out:json][timeout:18];(node["amenity"~"restaurant|cafe|fast_food"](around:${radius},${lat},${lon});way["amenity"~"restaurant|cafe|fast_food"](around:${radius},${lat},${lon}););out center tags 100;`,
+    hotels: `[out:json][timeout:18];(node["tourism"~"hotel|hostel|guest_house|apartment"](around:${radius},${lat},${lon});way["tourism"~"hotel|hostel|guest_house|apartment"](around:${radius},${lat},${lon}););out center tags 80;`,
+    attractions: `[out:json][timeout:18];(node["tourism"~"attraction|museum|gallery|viewpoint|zoo|aquarium"](around:${radius},${lat},${lon});way["tourism"~"attraction|museum|gallery|viewpoint|zoo|aquarium"](around:${radius},${lat},${lon});node["historic"](around:${radius},${lat},${lon});way["historic"](around:${radius},${lat},${lon});node["leisure"~"park|garden"](around:${radius},${lat},${lon});way["leisure"~"park|garden"](around:${radius},${lat},${lon}););out center tags 100;`,
+    adventures: `[out:json][timeout:18];(node["tourism"~"viewpoint|theme_park|zoo|aquarium"](around:${radius},${lat},${lon});way["tourism"~"viewpoint|theme_park|zoo|aquarium"](around:${radius},${lat},${lon});node["leisure"~"park|nature_reserve|sports_centre|swimming_pool|track"](around:${radius},${lat},${lon});way["leisure"~"park|nature_reserve|sports_centre|swimming_pool|track"](around:${radius},${lat},${lon});node["natural"~"peak|beach|wood|water"](around:${radius},${lat},${lon});way["natural"~"peak|beach|wood|water"](around:${radius},${lat},${lon}););out center tags 100;`
+  };
+  const query = queries[kind];
+  const endpoints = [
+    'https://overpass-api.de/api/interpreter',
+    'https://overpass.kumi.systems/api/interpreter',
+    'https://overpass.openstreetmap.ru/api/interpreter'
+  ];
+  let data = null;
+  for (const endpoint of endpoints) {
+    try {
+      const res = await fetchWithTimeout(`${endpoint}?data=${encodeURIComponent(query)}`, {}, 12000);
+      if (!res.ok) continue;
+      data = await res.json();
+      break;
+    } catch (err) {}
+  }
+  if (!data) throw new Error('Overpass failed');
+  return data.elements
+    .map(el => ({ ...el.tags, category: kind, lat: el.lat || el.center?.lat, lon: el.lon || el.center?.lon }))
+    .filter(p => p.name);
+}
+
+async function fetchWithTimeout(url, options = {}, timeout = 10000) {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } finally {
+    clearTimeout(id);
+  }
+}
+
+function renderRestaurantMatches(box, places, dest) {
+  const pref = plannerState.foodPref;
+  const sorted = [...places].sort((a, b) => restaurantScore(b, pref) - restaurantScore(a, pref));
+  const preferred = sorted.filter(p => restaurantScore(p, pref) >= (pref === 'vegan' ? 5 : pref === 'veg' ? 4 : pref === 'halal' ? 5 : 0));
+  const ranked = (preferred.length >= 3 ? preferred : sorted).slice(0, 6);
+  if (!ranked.length) {
+    box.innerHTML = `<div class="place-empty">No named restaurants found in the live map data near ${escapeHtml(dest.name)}.</div>`;
+    return;
+  }
+  box.innerHTML = ranked.map(p => {
+    const badges = [];
+    if (p['diet:vegetarian'] === 'yes' || p['diet:vegetarian'] === 'only') badges.push('<span class="place-badge">vegetarian</span>');
+    if (p['diet:vegan'] === 'yes' || p['diet:vegan'] === 'only') badges.push('<span class="place-badge vegan">vegan</span>');
+    if (p['diet:halal'] === 'yes' || p['diet:halal'] === 'only') badges.push('<span class="place-badge">halal</span>');
+    if (p.source === 'search' && pref === 'veg') badges.push('<span class="place-badge">vegetarian search</span>');
+    if (p.source === 'search' && pref === 'vegan') badges.push('<span class="place-badge vegan">vegan search</span>');
+    if (p.source === 'search' && pref === 'halal') badges.push('<span class="place-badge">halal search</span>');
+    if (p.cuisine) badges.push(`<span class="place-badge">${escapeHtml(p.cuisine.split(';')[0])}</span>`);
+    return `<div class="place-card with-photo">
+      <div class="place-photo" style="background-image:url('${imageForPlace(p, dest)}')"></div>
+      <div><div class="place-name">${escapeHtml(p.name)}</div>
+      <div class="place-meta">${escapeHtml(p.amenity || 'restaurant')}${p['addr:street'] ? ' · ' + escapeHtml(p['addr:street']) : p.display_name ? ' · ' + escapeHtml(shortAddress(p.display_name)) : ''}</div>
+      <div class="place-badges">${badges.length ? badges.join('') : '<span class="place-badge">check menu</span>'}</div></div>
+    </div>`;
+  }).join('');
+}
+
+function restaurantScore(place, pref) {
+  let score = 0;
+  if (pref === 'veg' && (place['diet:vegetarian'] === 'yes' || place['diet:vegetarian'] === 'only')) score += 8;
+  if (pref === 'vegan' && (place['diet:vegan'] === 'yes' || place['diet:vegan'] === 'only')) score += 10;
+  if (pref === 'halal' && (place['diet:halal'] === 'yes' || place['diet:halal'] === 'only')) score += 8;
+  if (/vegan|vegetarian|plant|salad|organic/i.test(`${place.name} ${place.cuisine || ''}`)) score += pref === 'vegan' ? 5 : 3;
+  if (place.website || place.phone) score += 1;
+  return score;
+}
+
+function renderHotelMatches(box, places, dest) {
+  const budget = plannerState.hotel;
+  const typePref = budget < 45 ? ['hostel','guest_house'] : budget < 130 ? ['guest_house','hotel','apartment'] : ['hotel','apartment'];
+  const ranked = [...places].sort((a, b) => hotelScore(b, typePref) - hotelScore(a, typePref)).slice(0, 6);
+  if (!ranked.length) {
+    box.innerHTML = `<div class="place-empty">No named hotels found in the live map data near ${escapeHtml(dest.name)}.</div>`;
+    return;
+  }
+  plannerState.recommendedHotel = ranked[0];
+  box.innerHTML = ranked.map(p => {
+    const type = p.tourism || 'hotel';
+    const selected = plannerState.recommendedHotel?.name === p.name;
+    return `<div class="place-card with-photo">
+      <div class="place-photo" style="background-image:url('${imageForPlace(p, dest)}')"></div>
+      <div><div class="place-name">${escapeHtml(p.name)}${selected ? ' <span class="place-badge hotel">recommended stay</span>' : ''}</div>
+      <div class="place-meta">${escapeHtml(type.replace('_',' '))}${p.stars ? ' · ' + escapeHtml(p.stars) + ' stars' : ''}${p['addr:street'] ? ' · ' + escapeHtml(p['addr:street']) : p.display_name ? ' · ' + escapeHtml(shortAddress(p.display_name)) : ''}</div>
+      <div class="place-badges"><span class="place-badge hotel">${escapeHtml(type.replace('_',' '))}</span><span class="place-badge price">${budgetHotelLabel(budget)}</span>${p.lat && p.lon ? '<span class="place-badge">route ready</span>' : ''}</div></div>
+    </div>`;
+  }).join('');
+}
+
+function renderTrustedMatches(box, attractions, adventures, dest) {
+  const picks = mergePlaces(attractions, adventures)
+    .sort((a, b) => placeTrustScore(b) - placeTrustScore(a))
+    .slice(0, 8);
+  if (!picks.length) {
+    box.innerHTML = `<div class="place-empty">No trusted attractions found in live map data near ${escapeHtml(dest.name)}. Check local tourism boards before final booking.</div>`;
+    return;
+  }
+  box.innerHTML = picks.map(p => {
+    const label = placeKindLabel(p);
+    return `<div class="place-card">
+      <div class="place-name">${escapeHtml(p.name)}</div>
+      <div class="place-meta">${escapeHtml(label)}${p.display_name ? ' · ' + escapeHtml(shortAddress(p.display_name)) : p['addr:street'] ? ' · ' + escapeHtml(p['addr:street']) : ''}</div>
+      <div class="place-badges"><span class="place-badge">trusted public place</span><span class="place-badge">${escapeHtml(label)}</span>${p.website ? '<span class="place-badge">official site</span>' : ''}</div>
+    </div>`;
+  }).join('');
+}
+
+function shortAddress(displayName) {
+  return displayName.split(',').slice(1, 4).map(s => s.trim()).filter(Boolean).join(', ');
+}
+
+function placeKindLabel(place) {
+  if (place.tourism) return place.tourism.replace('_', ' ');
+  if (place.historic) return 'historic site';
+  if (place.leisure) return place.leisure.replace('_', ' ');
+  if (place.natural) return place.natural.replace('_', ' ');
+  if (place.category === 'adventure') return 'safe adventure spot';
+  if (place.category === 'attraction') return 'attraction';
+  return 'trusted place';
+}
+
+function placeTrustScore(place) {
+  let score = 0;
+  if (place.tourism) score += 5;
+  if (place.historic) score += 4;
+  if (place.leisure === 'park' || place.leisure === 'garden') score += 3;
+  if (place.website || place.wikidata || place.wikipedia) score += 3;
+  if (place.operator || place.opening_hours) score += 2;
+  if (place.name && place.name.length > 2) score += 1;
+  if (/casino|adult|nightclub/i.test(`${place.name} ${place.amenity || ''}`)) score -= 8;
+  return score;
+}
+
+function updateItineraryWithLivePlaces(dest) {
+  const live = plannerState.live;
+  if (!live) return;
+  const hotel = plannerState.recommendedHotel;
+  const attractions = live.attractions.length ? live.attractions : dest.attractions.map(name => ({ name, category: 'attraction' }));
+  const adventures = live.adventures.length ? live.adventures : attractions;
+  const restaurants = live.restaurants.length ? live.restaurants : [];
+  const safePicks = mergePlaces(attractions, adventures).sort((a, b) => placeTrustScore(b) - placeTrustScore(a));
+  const days = plannerState.days;
+  for (let day = 1; day <= days; day++) {
+    const attr = safePicks[(day - 1) % Math.max(safePicks.length, 1)];
+    const adv = adventures[(day - 1) % Math.max(adventures.length, 1)] || attr;
+    const lunch = restaurants[(day - 1) % Math.max(restaurants.length, 1)];
+    const dinner = restaurants[(day + 2) % Math.max(restaurants.length, 1)];
+    setLiveText('.js-attraction', day, attr?.name || 'Main attraction');
+    setLiveText('.js-attraction-note', day, liveRouteNote(hotel, attr, 'trusted visit'));
+    setLiveText('.js-adventure', day, adv?.name || 'Safe local activity');
+    setLiveText('.js-adventure-note', day, `${placeKindLabel(adv || {})} · ${liveRouteNote(hotel, adv, 'safe adventure')}`);
+    if (lunch) {
+      setLiveText('.js-lunch', day, lunch.name);
+      setLiveText('.js-lunch-note', day, `${plannerState.foodPref === 'all' ? 'restaurant' : plannerState.foodPref + ' option'} · ${liveRouteNote(hotel, lunch, 'lunch')}`);
+      setThumb(day, 'lunch', imageForPlace(lunch, dest));
+    }
+    if (dinner) {
+      setLiveText('.js-dinner', day, dinner.name);
+      setLiveText('.js-dinner-note', day, `${plannerState.foodPref === 'all' ? 'dinner spot' : plannerState.foodPref + ' dinner'} · ${liveRouteNote(hotel, dinner, 'dinner')}`);
+      setThumb(day, 'dinner', imageForPlace(dinner, dest));
+    }
+    if (attr) setThumb(day, 'attraction', imageForPlace(attr, dest));
+    if (adv) setThumb(day, 'adventure', imageForPlace(adv, dest));
+    if (hotel) setThumb(day, 'breakfast', imageForPlace(hotel, dest));
+    if (hotel) {
+      setLiveText('.js-breakfast-note', day, `Start from recommended stay: ${hotel.name}`);
+    }
+  }
+}
+
+function setLiveText(selector, day, text) {
+  const el = document.querySelector(`${selector}[data-day="${day}"]`);
+  if (el) el.textContent = text;
+}
+
+function setThumb(day, slot, url) {
+  const el = document.querySelector(`.js-thumb[data-day="${day}"][data-slot="${slot}"]`);
+  if (el) el.style.backgroundImage = `url("${url}")`;
+}
+
+function liveRouteNote(from, to, fallback) {
+  if (!from?.lat || !from?.lon || !to?.lat || !to?.lon) return fallback;
+  const km = haversineKm(Number(from.lat), Number(from.lon), Number(to.lat), Number(to.lon));
+  if (km <= 1.5) return `from hotel: walk about ${Math.max(5, Math.round(km * 13))} min`;
+  if (km <= 8) return `from hotel: public transport or ride app, ${km.toFixed(1)} km`;
+  return `from hotel: transit/taxi recommended, ${km.toFixed(0)} km`;
+}
+
+function hotelScore(place, preferredTypes) {
+  let score = preferredTypes.includes(place.tourism) ? 5 : 0;
+  if (place.stars) score += Math.min(Number(place.stars) || 0, 5);
+  if (place.website || place.phone) score += 1;
+  return score;
+}
+
+function budgetHotelLabel(budget) {
+  if (budget < 45) return 'budget pick';
+  if (budget < 130) return 'mid-range fit';
+  if (budget < 250) return 'comfort fit';
+  return 'luxury fit';
+}
+
+function renderTransportAdvice(box, dest, coords) {
+  if (!box) return;
+  const apps = transportAppsForCountry(dest.country);
+  const appCards = apps.map(app => `<div class="transport-card"><strong>${escapeHtml(app.name)}</strong><span>${escapeHtml(app.use)}</span></div>`).join('');
+  const stay = plannerState.recommendedHotel;
+  const routeTarget = stay?.lat && stay?.lon ? stay : coords;
+  const route = plannerState.origin && routeTarget ? routeAdvice(plannerState.origin, routeTarget) : null;
+  const routeHtml = route ? `
+    <div class="place-card">
+      <div class="place-name">${escapeHtml(route.title)}${stay?.name ? ` to ${escapeHtml(stay.name)}` : ''}</div>
+      <div class="place-meta">${escapeHtml(route.detail)}${stay?.name ? ' This is the website recommended hotel route.' : ''}</div>
+      <div class="place-badges">${route.badges.map(b => `<span class="place-badge">${escapeHtml(b)}</span>`).join('')}</div>
+    </div>` : `
+    <div class="place-card">
+      <div class="place-name">${stay?.name ? `Recommended stay: ${escapeHtml(stay.name)}` : 'Set your current location for route advice'}</div>
+      <div class="place-meta">${stay?.name ? 'Click “Use my current location” to get help reaching this hotel, then follow the hotel-based route hints in the itinerary.' : 'The app can then recommend walking for close trips, public transport for city travel, or ride-hailing when distance is high.'}</div>
+    </div>`;
+  box.innerHTML = `
+    ${routeHtml}
+    <div class="place-card">
+      <div class="place-name">Useful local transport apps</div>
+      <div class="transport-grid">${appCards}</div>
+    </div>
+    <div class="place-card">
+      <div class="place-name">General route method</div>
+      <div class="place-meta">For short city hops, walk when under 1.5 km. Use metro, tram, bus, or train for 1.5-15 km. Use airport rail, intercity rail, coach, or flights for longer jumps.</div>
+    </div>`;
+}
+
+function useOriginForTransport() {
+  const box = document.getElementById('transport-results');
+  const dest = plannerState.customDest || destinations[plannerState.destIdx];
+  if (!navigator.geolocation) {
+    if (box) box.innerHTML = '<div class="place-empty">Your browser does not support location. Use Google Maps, Apple Maps, or a local transit app for exact routes.</div>';
+    return;
+  }
+  if (box) box.innerHTML = '<div class="place-empty">Checking your current location...</div>';
+  navigator.geolocation.getCurrentPosition(async pos => {
+    plannerState.origin = { lat: pos.coords.latitude, lon: pos.coords.longitude };
+    const coords = await getDestinationCoords(dest).catch(() => null);
+    renderTransportAdvice(box, dest, coords);
+  }, () => {
+    if (box) box.innerHTML = '<div class="place-empty">Location permission was not granted. Local apps are still listed below.</div>';
+    renderTransportAdvice(box, dest, dest?.lat && dest?.lon ? { lat: dest.lat, lon: dest.lon } : null);
+  });
+}
+
+function routeAdvice(origin, target) {
+  const km = haversineKm(origin.lat, origin.lon, target.lat, target.lon);
+  if (km <= 1.5) {
+    return {
+      title: 'Walking is recommended',
+      detail: `About ${km.toFixed(1)} km away. Walk if the area feels safe and weather is fine.`,
+      badges: ['walk', `${Math.max(5, Math.round(km * 13))} min`]
+    };
+  }
+  if (km <= 8) {
+    return {
+      title: 'Use public transport or a short ride',
+      detail: `About ${km.toFixed(1)} km away. Metro, tram, bus, or a ride-hailing app will usually be easier than walking.`,
+      badges: ['metro/bus', 'taxi option']
+    };
+  }
+  if (km <= 60) {
+    return {
+      title: 'Use rail, bus, or ride-hailing',
+      detail: `About ${km.toFixed(0)} km away. Check city rail, regional train, coach, or taxi prices.`,
+      badges: ['train/bus', 'ride-hailing']
+    };
+  }
+  return {
+    title: 'Plan intercity transport',
+    detail: `About ${km.toFixed(0)} km away. Check intercity train, coach, domestic flight, or airport transfer apps.`,
+    badges: ['train', 'coach', 'flight']
+  };
+}
+
+function haversineKm(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function transportAppsForCountry(country = '') {
+  const c = country.toLowerCase();
+  if (c.includes('united kingdom') || c.includes('scotland') || c.includes('england')) return [
+    { name:'Citymapper', use:'Best for city walking, bus, tram, and train routes in major UK cities.' },
+    { name:'Trainline', use:'Book UK train tickets and compare routes.' },
+    { name:'Uber / Bolt', use:'Ride-hailing in many UK cities.' },
+    { name:'Google Maps', use:'Reliable walking and public transport directions.' }
+  ];
+  if (c.includes('japan')) return [
+    { name:'Japan Travel by NAVITIME', use:'Rail, metro, walking, and route planning.' },
+    { name:'Suica / PASMO', use:'Transit IC cards for trains, buses, and stores.' },
+    { name:'GO Taxi', use:'Taxi booking in many Japanese cities.' },
+    { name:'Google Maps', use:'Strong train platform and walking guidance.' }
+  ];
+  if (c.includes('india')) return [
+    { name:'Rapido / Uber / Ola', use:'Ride-hailing and local auto/cab options.' },
+    { name:'IRCTC Rail Connect', use:'Book long-distance Indian Railways trains.' },
+    { name:'redBus', use:'Intercity bus booking.' },
+    { name:'Google Maps', use:'Walking, metro, bus, and traffic estimates.' }
+  ];
+  if (c.includes('france')) return [
+    { name:'Citymapper', use:'Metro, bus, RER, tram, and walking in major cities.' },
+    { name:'SNCF Connect', use:'Book French trains.' },
+    { name:'Bonjour RATP', use:'Paris metro, bus, tram, and RER.' },
+    { name:'Uber / Bolt', use:'Ride-hailing in many cities.' }
+  ];
+  if (c.includes('italy')) return [
+    { name:'Trenitalia', use:'National and regional train booking.' },
+    { name:'Italo Treno', use:'High-speed train booking.' },
+    { name:'Free Now / Uber', use:'Taxi and rides in larger cities.' },
+    { name:'Moovit', use:'Local bus, tram, and metro directions.' }
+  ];
+  if (c.includes('spain')) return [
+    { name:'Renfe', use:'Spanish trains and high-speed rail.' },
+    { name:'Cabify / Uber / Bolt', use:'Ride-hailing in major cities.' },
+    { name:'Citymapper', use:'Metro, bus, and walking in supported cities.' },
+    { name:'Moovit', use:'Public transport directions.' }
+  ];
+  if (c.includes('united states') || c.includes('usa')) return [
+    { name:'Google Maps / Apple Maps', use:'Walking, transit, driving, and traffic.' },
+    { name:'Uber / Lyft', use:'Ride-hailing almost everywhere.' },
+    { name:'Transit', use:'Public transport times in many US cities.' },
+    { name:'Amtrak', use:'Intercity train booking.' }
+  ];
+  if (c.includes('thailand')) return [
+    { name:'Grab', use:'Ride-hailing, taxis, and food delivery.' },
+    { name:'Bolt', use:'Often cheaper ride-hailing in major cities.' },
+    { name:'ViaBus', use:'Bangkok bus tracking.' },
+    { name:'Google Maps', use:'Walking, BTS/MRT, and road routes.' }
+  ];
+  if (c.includes('indonesia')) return [
+    { name:'Gojek', use:'Bike taxis, cars, food, and local services.' },
+    { name:'Grab', use:'Ride-hailing and deliveries.' },
+    { name:'Traveloka', use:'Flights, hotels, trains, and transfers.' },
+    { name:'Google Maps', use:'Walking and route planning.' }
+  ];
+  return [
+    { name:'Google Maps', use:'Walking, public transport, driving, and local business hours.' },
+    { name:'Rome2Rio', use:'Compare train, bus, ferry, flight, and driving options.' },
+    { name:'Moovit', use:'Public transport directions in many countries.' },
+    { name:'Uber / Bolt / Grab / Careem', use:'Check which ride-hailing app operates locally.' }
+  ];
+}
+
+
 function initDartMap() {
   const canvas = document.getElementById('worldCanvas');
   if (!canvas) return;
   drawWorldMap();
 }
 
-function drawWorldMap(highlight=null) {
+function drawWorldMap(highlight = null) {
   const canvas = document.getElementById('worldCanvas');
   const ctx = canvas.getContext('2d');
-  const W=700, H=380;
-  ctx.fillStyle='#1D6B8C'; ctx.fillRect(0,0,W,H);
-  ctx.strokeStyle='rgba(255,255,255,.08)'; ctx.lineWidth=.5;
-  for(let x=0;x<W;x+=70){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
-  for(let y=0;y<H;y+=38){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
-  const lands=[
+  const W = 700, H = 380;
+  ctx.fillStyle = '#1D6B8C';
+  ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = 'rgba(255,255,255,.08)';
+  ctx.lineWidth = .5;
+  for (let x = 0; x < W; x += 70) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  for (let y = 0; y < H; y += 38) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+
+  const lands = [
     {x:470,y:60,w:90,h:75,c:'#2D5A3D'},{x:550,y:50,w:170,h:120,c:'#2D5A3D'},
     {x:480,y:145,w:95,h:140,c:'#C8714A'},{x:90,y:40,w:160,h:130,c:'#2D5A3D'},
     {x:160,y:195,w:100,h:140,c:'#E8A83E'},{x:590,y:230,w:100,h:75,c:'#E8A83E'},
@@ -709,104 +1403,125 @@ function drawWorldMap(highlight=null) {
     {x:655,y:285,w:18,h:40,c:'#2D5A3D'},{x:420,y:30,w:30,h:20,c:'#AAC8D8'},
     {x:625,y:155,w:20,h:40,c:'#2D5A3D'},{x:178,y:155,w:32,h:12,c:'#C08040'},
   ];
-  lands.forEach(l=>{
-    const r=Math.min(l.w,l.h)*.35;
+
+  lands.forEach(l => {
+    const r = Math.min(l.w, l.h) * 0.35;
     ctx.beginPath();
-    ctx.moveTo(l.x+r,l.y); ctx.lineTo(l.x+l.w-r,l.y);
-    ctx.arcTo(l.x+l.w,l.y,l.x+l.w,l.y+r,r);
-    ctx.lineTo(l.x+l.w,l.y+l.h-r);
-    ctx.arcTo(l.x+l.w,l.y+l.h,l.x+l.w-r,l.y+l.h,r);
-    ctx.lineTo(l.x+r,l.y+l.h);
-    ctx.arcTo(l.x,l.y+l.h,l.x,l.y+l.h-r,r);
-    ctx.lineTo(l.x,l.y+r);
-    ctx.arcTo(l.x,l.y,l.x+r,l.y,r);
+    ctx.moveTo(l.x+r, l.y);
+    ctx.lineTo(l.x+l.w-r, l.y);
+    ctx.arcTo(l.x+l.w, l.y, l.x+l.w, l.y+r, r);
+    ctx.lineTo(l.x+l.w, l.y+l.h-r);
+    ctx.arcTo(l.x+l.w, l.y+l.h, l.x+l.w-r, l.y+l.h, r);
+    ctx.lineTo(l.x+r, l.y+l.h);
+    ctx.arcTo(l.x, l.y+l.h, l.x, l.y+l.h-r, r);
+    ctx.lineTo(l.x, l.y+r);
+    ctx.arcTo(l.x, l.y, l.x+r, l.y, r);
     ctx.closePath();
-    ctx.fillStyle=l.c; ctx.fill();
-    ctx.strokeStyle='rgba(255,255,255,.15)'; ctx.lineWidth=.5; ctx.stroke();
+    ctx.fillStyle = l.c;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,.15)';
+    ctx.lineWidth = .5;
+    ctx.stroke();
   });
-  ctx.fillStyle='rgba(255,255,255,.3)'; ctx.font='9px sans-serif'; ctx.textAlign='center';
+
+  ctx.fillStyle = 'rgba(255,255,255,.3)';
+  ctx.font = '9px sans-serif';
+  ctx.textAlign = 'center';
   [{t:'Europe',x:515,y:100},{t:'Asia',x:640,y:105},{t:'Africa',x:527,y:210},{t:'N.America',x:170,y:100},{t:'S.America',x:210,y:265},{t:'Australia',x:640,y:268}]
-    .forEach(l=>ctx.fillText(l.t,l.x,l.y));
-  destinations.forEach((d,i)=>{
-    const px=Math.round(d.mapX*W), py=Math.round(d.mapY*H);
-    ctx.beginPath(); ctx.arc(px,py,highlight===i?8:5,0,Math.PI*2);
-    ctx.fillStyle=highlight===i?'#E8A83E':'#FDFAF4'; ctx.fill();
-    ctx.strokeStyle=highlight===i?'#C8714A':'rgba(200,113,74,.5)';
-    ctx.lineWidth=highlight===i?2.5:1.5; ctx.stroke();
-    if(highlight===i){
-      ctx.beginPath(); ctx.arc(px,py,14,0,Math.PI*2);
-      ctx.strokeStyle='rgba(232,168,62,.5)'; ctx.lineWidth=2; ctx.stroke();
-      ctx.fillStyle='#E8A83E'; ctx.font='bold 11px sans-serif'; ctx.textAlign='center';
-      ctx.fillText(d.name,px,py-18);
+    .forEach(l => ctx.fillText(l.t, l.x, l.y));
+
+  destinations.forEach((d, i) => {
+    const px = Math.round(d.mapX * W);
+    const py = Math.round(d.mapY * H);
+    ctx.beginPath();
+    ctx.arc(px, py, highlight === i ? 8 : 5, 0, Math.PI*2);
+    ctx.fillStyle = highlight === i ? '#E8A83E' : '#FDFAF4';
+    ctx.fill();
+    ctx.strokeStyle = highlight === i ? '#C8714A' : 'rgba(200,113,74,.5)';
+    ctx.lineWidth = highlight === i ? 2.5 : 1.5;
+    ctx.stroke();
+    if (highlight === i) {
+      ctx.beginPath();
+      ctx.arc(px, py, 14, 0, Math.PI*2);
+      ctx.strokeStyle = 'rgba(232,168,62,.5)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.fillStyle = '#E8A83E';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(d.name, px, py - 18);
     }
   });
 }
 
 function dartClickMap(e) {
-  const canvas=document.getElementById('worldCanvas');
-  const rect=canvas.getBoundingClientRect();
-  const scaleX=canvas.width/rect.width, scaleY=canvas.height/rect.height;
-  const cx=(e.clientX-rect.left)*scaleX, cy=(e.clientY-rect.top)*scaleY;
-  let best=0, bestDist=Infinity;
-  destinations.forEach((d,i)=>{
-    const dist=Math.hypot(cx-d.mapX*700, cy-d.mapY*380);
-    if(dist<bestDist){bestDist=dist;best=i;}
+  const canvas = document.getElementById('worldCanvas');
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  const cx = (e.clientX - rect.left) * scaleX;
+  const cy = (e.clientY - rect.top) * scaleY;
+  let best = 0, bestDist = Infinity;
+  destinations.forEach((d, i) => {
+    const dist = Math.hypot(cx - d.mapX*700, cy - d.mapY*380);
+    if (dist < bestDist) { bestDist = dist; best = i; }
   });
   showDartResult(best);
 }
 
 function throwDart() {
   dartCount++;
-  document.getElementById('throw-count').textContent='Darts thrown: '+dartCount;
-  showDartResult(Math.floor(Math.random()*destinations.length));
+  document.getElementById('throw-count').textContent = 'Darts thrown: ' + dartCount;
+  showDartResult(Math.floor(Math.random() * destinations.length));
 }
 
 function showDartResult(idx) {
-  dartHighlight=idx; drawWorldMap(idx);
-  const d=destinations[idx];
-  const res=document.getElementById('dart-result');
+  dartHighlight = idx;
+  drawWorldMap(idx);
+  const d = destinations[idx];
+  const res = document.getElementById('dart-result');
   res.classList.add('show');
-  document.getElementById('dart-emoji').textContent=d.emoji;
-  document.getElementById('dart-dest-name').textContent=`${d.name}, ${d.country}`;
-  document.getElementById('dart-dest-info').textContent=`${d.continent.charAt(0).toUpperCase()+d.continent.slice(1)} · Best time: ${d.bestTime} · Flights from ${d.ticketFrom}`;
+  document.getElementById('dart-emoji').textContent = d.emoji;
+  document.getElementById('dart-dest-name').textContent = `${d.name}, ${d.country}`;
+  document.getElementById('dart-dest-info').textContent = `${d.continent.charAt(0).toUpperCase()+d.continent.slice(1)} · Best time: ${d.bestTime} · Flights from ${d.ticketFrom}`;
 }
 
 function dartPlanTrip() {
-  if(dartHighlight===null) return;
-  plannerState.destIdx=dartHighlight;
-  const d=destinations[dartHighlight];
-  document.getElementById('pl-dest-input').value=`${d.name}, ${d.country}`;
-  document.getElementById('pl-selected-dest').style.display='block';
-  document.getElementById('pl-sel-emoji').textContent=d.emoji;
-  document.getElementById('pl-sel-name').textContent=d.name;
-  document.getElementById('pl-sel-country').textContent=d.country;
-  document.querySelectorAll('.tool-tab').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));
+  if (dartHighlight === null) return;
+  plannerState.destIdx = dartHighlight;
+  plannerState.customDest = null;
+  const d = destinations[dartHighlight];
+  document.getElementById('pl-dest-input').value = `${d.name}, ${d.country}`;
+  document.getElementById('pl-selected-dest').style.display = 'block';
+  document.getElementById('pl-sel-emoji').textContent = d.emoji;
+  document.getElementById('pl-sel-name').textContent = d.name;
+  document.getElementById('pl-sel-country').textContent = d.country;
+  document.querySelectorAll('.tool-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-planner').classList.add('active');
   document.querySelectorAll('.tool-tab')[2].classList.add('active');
   goStep(1);
   document.getElementById('tools').scrollIntoView({behavior:'smooth'});
 }
 
-// ─── DESTINATION CARDS ────────────────────────────────────
+
 function buildCards() {
-  const grid=document.getElementById('dest-grid');
-  const nr=document.getElementById('no-results');
-  destinations.forEach((d,i)=>{
-    const card=document.createElement('div');
-    card.className='dest-card visible';
-    card.id='dcard-'+i;
-    card.dataset.continent=d.continent;
-    const tagsHtml=d.tags.map(t=>`<span class="tag tag-${t}">${t}</span>`).join('');
-    const foodDots=`<div class="food-dots">
-      ${d.food.veg?'<span class="food-dot veg" title="Vegetarian friendly"></span>':''}
-      ${d.food.vegan?'<span class="food-dot vegan" title="Vegan options"></span>':''}
-      ${d.food.non?'<span class="food-dot non" title="Non-veg cuisine"></span>':''}
+  const grid = document.getElementById('dest-grid');
+  const nr = document.getElementById('no-results');
+  destinations.forEach((d, i) => {
+    const card = document.createElement('div');
+    card.className = 'dest-card visible';
+    card.id = 'dcard-' + i;
+    card.dataset.continent = d.continent;
+    const tagsHtml = d.tags.map(t => `<span class="tag tag-${t}">${t}</span>`).join('');
+    const foodDots = `<div class="food-dots">
+      ${d.food.veg ? '<span class="food-dot veg" title="Vegetarian friendly"></span>' : ''}
+      ${d.food.vegan ? '<span class="food-dot vegan" title="Vegan options"></span>' : ''}
+      ${d.food.non ? '<span class="food-dot non" title="Non-veg cuisine"></span>' : ''}
     </div>`;
-    const contLabel=d.continent==='middle-east'?'Middle East':d.continent.charAt(0).toUpperCase()+d.continent.slice(1);
-    card.innerHTML=`
-      <div class="dest-img-ph" style="background:${d.bg}">
-        ${d.emoji}
+    const contLabel = d.continent === 'middle-east' ? 'Middle East' : d.continent.charAt(0).toUpperCase() + d.continent.slice(1);
+    card.innerHTML = `
+      <div class="dest-img-ph" style="background-image:linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.28)),url('${imageForDestination(d)}')">
         <span class="dest-continent-tag">${contLabel}</span>
         <span class="price-tag">✈ ${d.ticketFrom}</span>
       </div>
@@ -820,130 +1535,116 @@ function buildCards() {
           <button class="dest-btn" onclick="openModal(${i})">Explore →</button>
         </div>
       </div>`;
-    grid.insertBefore(card,nr);
+    grid.insertBefore(card, nr);
   });
 }
 
 function renderCards() {
-  const s=document.getElementById('search-input').value.toLowerCase();
-  let count=0;
-  destinations.forEach((d,i)=>{
-    const card=document.getElementById('dcard-'+i);
-    if(!card) return;
-    const mc=currentFilter==='all'||d.continent===currentFilter;
-    const ms=!s||(d.name+d.country+d.desc+d.tags.join(' ')).toLowerCase().includes(s);
-    const mf=!currentFoodFilter||
-      (currentFoodFilter==='veg'&&d.food.veg)||
-      (currentFoodFilter==='vegan'&&d.food.vegan)||
-      (currentFoodFilter==='non'&&d.food.non);
-    const show=mc&&ms&&mf;
-    card.classList.toggle('visible',show);
-    if(show) count++;
+  const s = document.getElementById('search-input').value.toLowerCase();
+  let count = 0;
+  destinations.forEach((d, i) => {
+    const card = document.getElementById('dcard-' + i);
+    if (!card) return;
+    const mc = currentFilter === 'all' || d.continent === currentFilter;
+    const ms = !s || (d.name + d.country + d.desc + d.tags.join(' ')).toLowerCase().includes(s);
+    const mf = !currentFoodFilter ||
+      (currentFoodFilter === 'veg' && d.food.veg) ||
+      (currentFoodFilter === 'vegan' && d.food.vegan) ||
+      (currentFoodFilter === 'non' && d.food.non);
+    const show = mc && ms && mf;
+    card.classList.toggle('visible', show);
+    if (show) count++;
   });
-  document.getElementById('no-results').classList.toggle('show',count===0);
+  document.getElementById('no-results').classList.toggle('show', count === 0);
 }
 
-// ─── MODAL (with hotel booking link) ─────────────────────
 function openModal(i) {
-  const d=destinations[i];
-  document.getElementById('modal-header').style.background=d.bg;
-  document.getElementById('modal-header').innerHTML=`<button class="modal-close" onclick="closeModal()">✕</button><span>${d.emoji}</span>`;
-  document.getElementById('modal-country').textContent=d.country;
-  document.getElementById('modal-title').textContent=d.name;
-  document.getElementById('modal-desc').textContent=d.fullDesc;
-  document.getElementById('modal-grid').innerHTML=`
+  const d = destinations[i];
+  applyDestinationTheme(d);
+  document.getElementById('modal-header').style.backgroundImage = `linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.35)),url('${imageForDestination(d)}')`;
+  document.getElementById('modal-header').innerHTML = `<button class="modal-close" onclick="closeModal()">✕</button>`;
+  document.getElementById('modal-country').textContent = d.country;
+  document.getElementById('modal-title').textContent = d.name;
+  document.getElementById('modal-desc').textContent = d.fullDesc;
+  document.getElementById('modal-grid').innerHTML = `
     <div class="modal-info-card"><p class="mic-label">Currency</p><p class="mic-value">${d.currency}</p></div>
     <div class="modal-info-card"><p class="mic-label">Language</p><p class="mic-value">${d.language}</p></div>
     <div class="modal-info-card"><p class="mic-label">Best Time</p><p class="mic-value">${d.bestTime}</p></div>
     <div class="modal-info-card"><p class="mic-label">Climate</p><p class="mic-value">${d.climate}</p></div>`;
-  document.getElementById('modal-tickets').innerHTML=d.tickets.map(t=>
+  document.getElementById('modal-tickets').innerHTML = d.tickets.map(t =>
     `<div class="ticket-row"><span class="ticket-type">${t.type}</span><span class="ticket-price">${t.price}</span></div>`
   ).join('');
-  document.getElementById('modal-food').innerHTML=d.foodDetail.map(f=>
+  document.getElementById('modal-food').innerHTML = d.foodDetail.map(f =>
     `<div class="food-option"><span class="food-type-dot ${f.dot}"></span><div><strong>${f.type}</strong>: ${f.note}</div></div>`
   ).join('');
-  document.getElementById('modal-attractions').innerHTML=d.attractions.map(a=>`<li>${a}</li>`).join('');
-  document.getElementById('modal-tips').textContent=d.localTips;
-  // Hotel booking deep link
-  const existing=document.getElementById('modal-hotel-link');
-  if(existing) existing.remove();
-  const encoded=encodeURIComponent(d.name);
-  const hotelDiv=document.createElement('div');
-  hotelDiv.id='modal-hotel-link';
-  hotelDiv.style.cssText='margin-top:1.2rem;padding:1rem 1.2rem;background:rgba(29,107,140,0.08);border-radius:12px;';
-  hotelDiv.innerHTML=`
-    <h3 style="font-size:.9rem;font-weight:600;margin-bottom:.6rem;color:inherit">🏨 Find Hotels in ${d.name}</h3>
-    <a href="https://www.booking.com/search.html?ss=${encoded}&aid=304142" target="_blank" rel="noopener"
-       style="display:inline-block;background:#1D6B8C;color:#fff;padding:.55rem 1.1rem;border-radius:8px;text-decoration:none;font-size:.82rem;font-weight:500;transition:opacity .15s"
-       onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
-       Search Hotels on Booking.com →
-    </a>
-    <p style="font-size:.72rem;color:#888;margin-top:.4rem">Opens Booking.com with ${d.name} pre-filled</p>`;
-  document.querySelector('.modal-body').appendChild(hotelDiv);
+  document.getElementById('modal-attractions').innerHTML = d.attractions.map(a => `<li>${a}</li>`).join('');
+  document.getElementById('modal-tips').textContent = d.localTips;
   document.getElementById('modal-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal(e) {
-  if(!e||e.target===document.getElementById('modal-overlay')){
+  if (!e || e.target === document.getElementById('modal-overlay')) {
     document.getElementById('modal-overlay').classList.remove('open');
-    document.body.style.overflow='';
+    document.body.style.overflow = '';
   }
 }
 
-// ─── EVENT LISTENERS & INIT ───────────────────────────────
-window.addEventListener('scroll',()=>
-  document.getElementById('navbar').classList.toggle('scrolled',scrollY>40)
+
+window.addEventListener('scroll', () =>
+  document.getElementById('navbar').classList.toggle('scrolled', scrollY > 40)
 );
 
-document.getElementById('hamburger').addEventListener('click',()=>{
+document.getElementById('hamburger').addEventListener('click', () => {
   document.getElementById('hamburger').classList.toggle('open');
   document.getElementById('mobile-menu').classList.toggle('open');
 });
 
-function closeMM(){
+function closeMM() {
   document.getElementById('hamburger').classList.remove('open');
   document.getElementById('mobile-menu').classList.remove('open');
 }
 
-document.querySelectorAll('.filter-chip').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));
+document.querySelectorAll('.filter-chip').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    currentFilter=btn.dataset.filter;
+    currentFilter = btn.dataset.filter;
     renderCards();
   });
 });
 
-document.querySelectorAll('.food-chip').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const same=btn.classList.contains('active');
-    document.querySelectorAll('.food-chip').forEach(b=>b.classList.remove('active'));
-    if(!same){btn.classList.add('active');currentFoodFilter=btn.dataset.food;}
-    else currentFoodFilter=null;
+document.querySelectorAll('.food-chip').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const same = btn.classList.contains('active');
+    document.querySelectorAll('.food-chip').forEach(b => b.classList.remove('active'));
+    if (!same) { btn.classList.add('active'); currentFoodFilter = btn.dataset.food; }
+    else currentFoodFilter = null;
     renderCards();
   });
 });
 
-document.getElementById('search-input').addEventListener('input',renderCards);
-document.getElementById('search-btn').addEventListener('click',renderCards);
+document.getElementById('search-input').addEventListener('input', renderCards);
+document.getElementById('search-btn').addEventListener('click', renderCards);
 
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
   });
-},{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}, { threshold: .1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-function handleSubscribe(){
-  const inp=document.getElementById('email-input');
-  if(inp.value&&inp.value.includes('@')){
-    inp.value='';
-    document.getElementById('sub-msg').style.display='block';
+function handleSubscribe() {
+  const inp = document.getElementById('email-input');
+  if (inp.value && inp.value.includes('@')) {
+    inp.value = '';
+    document.getElementById('sub-msg').style.display = 'block';
   }
 }
 
-// ─── BOOT ─────────────────────────────────────────────────
+
 buildCards();
 initCurrency();
 initTranslator();
+initCountryList();
+
