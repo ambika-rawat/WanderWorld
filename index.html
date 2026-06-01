@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WanderWorld – Explore the Globe</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
@@ -82,7 +82,7 @@
 <div id="tools">
   <div class="tool-tabs">
     <button class="tool-tab active" onclick="switchTool('currency',this)">💱 Currency Converter</button>
-    <button class="tool-tab" onclick="switchTool('translator',this)">🌐 Phrase Translator</button>
+    <button class="tool-tab" onclick="switchTool('translator',this)">🌐 Voice Translator</button>
     <button class="tool-tab" onclick="switchTool('planner',this)">🗺️ Trip Planner & Budget</button>
     <button class="tool-tab" onclick="switchTool('dart',this)">🎯 Dart Game</button>
   </div>
@@ -114,7 +114,7 @@
     <div class="result-box">
       <div class="result-amount" id="cur-result">₹ 8,350.00</div>
       <div class="result-label" id="cur-label">100 USD = 8,350 INR</div>
-     <div class="rate-note"><span id="rate-note-text">Loading live rates…</span></div>
+      <div class="rate-note">* Rates are approximate for travel planning purposes</div>
     </div>
     <p class="quick-title">Quick Conversions</p>
     <div class="common-rates" id="quick-rates"></div>
@@ -124,26 +124,28 @@
 
 <div class="tool-panel" id="panel-translator">
   <div class="tool-container">
-    <h3 class="tool-title">Phrase Translator</h3>
-    <p class="tool-sub">Essential travel phrases in 20+ languages</p>
+    <h3 class="tool-title">Voice Translator</h3>
+    <p class="tool-sub">Type or speak anything. Uses live translation when online, with travel phrases as backup.</p>
     <div class="trans-grid">
       <div class="trans-box">
-        <select id="lang-from"><option value="en">🇬🇧 English</option><option value="hi">🇮🇳 Hindi</option></select>
+        <select id="lang-from"></select>
         <textarea id="trans-input" placeholder="Type something or click a phrase below…" oninput="doTranslate()"></textarea>
+        <div class="voice-controls">
+          <button class="voice-btn" id="voice-listen" onclick="startVoiceInput()">🎙️ Speak</button>
+          <button class="voice-btn ghost" onclick="clearTranslation()">Clear</button>
+        </div>
       </div>
       <button class="trans-arrow" onclick="swapLangs()">⇄</button>
       <div class="trans-box">
         <select id="lang-to" onchange="doTranslate()"></select>
         <textarea id="trans-output" placeholder="Translation appears here…" readonly></textarea>
+        <div class="voice-controls">
+          <button class="voice-btn" onclick="speakTranslation()">🔊 Listen</button>
+          <span class="translator-status" id="translator-status">Ready</span>
+        </div>
       </div>
     </div>
     <button class="translate-btn" onclick="doTranslate()">Translate ✦</button>
-    <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.5rem">
-  <button class="translate-btn" onclick="doTranslate()">Translate ✦</button>
-  <button id="voice-input-btn" onclick="toggleVoiceInput()" style="display:none;padding:.55rem 1rem;border-radius:8px;border:1.5px solid #C8714A;background:transparent;color:#C8714A;font-size:.82rem;cursor:pointer">🎤 Speak</button>
-  <button onclick="speakTranslation()" style="padding:.55rem 1rem;border-radius:8px;border:1.5px solid #C8714A;background:transparent;color:#C8714A;font-size:.82rem;cursor:pointer">🔊 Listen</button>
-  <button id="copy-trans-btn" onclick="copyTranslation()" style="padding:.55rem 1rem;border-radius:8px;border:1.5px solid #C8714A;background:transparent;color:#C8714A;font-size:.82rem;cursor:pointer">📋 Copy</button>
-</div>
     <div class="phrase-bank">
       <h4>Essential Travel Phrases — click to translate</h4>
       <div class="phrase-pills" id="phrase-pills"></div>
@@ -165,12 +167,20 @@
       
       <div class="planner-page active" id="pp-0">
         <h3 class="pl-title">Where are you going?</h3>
-        <p class="pl-sub">Search any destination in our database</p>
-        <input type="text" class="dest-search-input" id="pl-dest-input" placeholder="Search destination (e.g. Tokyo, Bali, Paris)…" oninput="filterPlannerDests()">
+        <p class="pl-sub">Search cities, countries, landmarks, or nearby places worldwide</p>
+        <input type="text" class="dest-search-input" id="pl-dest-input" placeholder="Search any city, country, landmark, or place…" oninput="filterPlannerDests()">
         <div class="dest-dropdown" id="pl-dest-dd"></div>
+        <div class="global-place-tools">
+          <button class="pl-btn-secondary compact" onclick="searchGlobalPlaces()">Search worldwide</button>
+          <button class="pl-btn-secondary compact" onclick="useMyLocation()">Use my location</button>
+        </div>
+        <div class="country-list-wrap">
+          <label for="country-list">Countries list</label>
+          <select id="country-list" onchange="selectCountryFromList()"></select>
+        </div>
         <div id="pl-selected-dest" style="display:none;background:rgba(200,113,74,.08);border-radius:10px;padding:1rem;margin-top:.8rem">
           <div style="display:flex;align-items:center;gap:.8rem">
-            <span id="pl-sel-emoji" style="font-size:2.5rem"></span>
+            <span id="pl-sel-emoji" class="selected-dest-photo"></span>
             <div>
               <div id="pl-sel-name" style="font-family:'Playfair Display',serif;font-size:1.2rem"></div>
               <div id="pl-sel-country" style="font-size:.82rem;color:var(--ash)"></div>
@@ -317,7 +327,7 @@
     <div class="section-header reveal">
       <span class="section-label">Explore the Globe</span>
       <h2 class="section-title">World Destinations</h2>
-      <p class="section-sub">80+ curated destinations. Click any card for attractions, food, and ticket prices.</p>
+      <p class="section-sub">Curated destinations plus worldwide search for cities, countries, landmarks, hotels, and restaurants.</p>
     </div>
     <div class="destinations-grid" id="dest-grid">
       <div id="no-results">No destinations found.</div>
@@ -384,7 +394,7 @@
       <p class="footer-tagline">Your complete travel companion — explore, plan, and budget smarter for every adventure.</p>
     </div>
     <div class="footer-col"><h4>Explore</h4><ul><li><a href="#destinations">All Destinations</a></li><li><a href="#culture">Culture Guide</a></li><li><a href="#basics">Travel Basics</a></li></ul></div>
-    <div class="footer-col"><h4>Tools</h4><ul><li><a href="#tools">Currency Converter</a></li><li><a href="#tools">Phrase Translator</a></li><li><a href="#tools">Trip Planner</a></li><li><a href="#tools">Dart Game</a></li></ul></div>
+    <div class="footer-col"><h4>Tools</h4><ul><li><a href="#tools">Currency Converter</a></li><li><a href="#tools">Voice Translator</a></li><li><a href="#tools">Trip Planner</a></li><li><a href="#tools">Dart Game</a></li></ul></div>
     <div class="footer-col"><h4>Regions</h4><ul><li><a href="#destinations">Asia</a></li><li><a href="#destinations">Europe</a></li><li><a href="#destinations">Americas</a></li><li><a href="#destinations">Africa</a></li></ul></div>
   </div>
   <div class="footer-bottom"><p>© 2025 WanderWorld — Built for curious travellers everywhere ✦</p></div>
@@ -411,6 +421,6 @@
   </div>
 </div>
 
-<script src="script.js"></script>
+<script src="script.js?v=3"></script>
 </body>
 </html>
