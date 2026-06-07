@@ -1,4 +1,5 @@
 
+
 const destinations = [
   {
     name:"Kyoto", country:"Japan", continent:"asia", emoji:"⛩️", bg:"#B8D8E8",
@@ -1647,7 +1648,7 @@ function loadSharedItinerary() {
 function addBlogPost() {
   const name = document.getElementById('blog-name').value.trim() || 'Traveller';
   const media = document.getElementById('blog-media').value.trim();
-const text = document.getElementById('blog-text').value.trim();
+  const text = document.getElementById('blog-text').value.trim();
   if (!text) return;
   const posts = JSON.parse(localStorage.getItem('ww-blog-posts') || '[]');
   posts.unshift({ name, media, text, date: new Date().toLocaleDateString() });
@@ -1859,78 +1860,6 @@ function openModal(i) {
   hydratePlaceImage(document.getElementById('modal-header'), d.name, imageForDestination(d));
   document.getElementById('modal-country').textContent = d.country;
   document.getElementById('modal-title').textContent = d.name;
-   document.getElementById('pl-sel-country').textContent = d.country;
-  document.querySelectorAll('.tool-tab').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel-planner').classList.add('active');
-  document.querySelectorAll('.tool-tab')[2].classList.add('active');
-  goStep(1);
-  document.getElementById('tools').scrollIntoView({behavior:'smooth'});
-}
-
-
-function buildCards() {
-  const grid = document.getElementById('dest-grid');
-  const nr = document.getElementById('no-results');
-  destinations.forEach((d, i) => {
-    const card = document.createElement('div');
-    card.className = 'dest-card visible';
-    card.id = 'dcard-' + i;
-    card.dataset.continent = d.continent;
-    const tagsHtml = d.tags.map(t => `<span class="tag tag-${t}">${t}</span>`).join('');
-    const foodDots = `<div class="food-dots">
-      ${d.food.veg ? '<span class="food-dot veg" title="Vegetarian friendly"></span>' : ''}
-      ${d.food.vegan ? '<span class="food-dot vegan" title="Vegan options"></span>' : ''}
-      ${d.food.non ? '<span class="food-dot non" title="Non-veg cuisine"></span>' : ''}
-    </div>`;
-    const contLabel = d.continent === 'middle-east' ? 'Middle East' : d.continent.charAt(0).toUpperCase() + d.continent.slice(1);
-    card.innerHTML = `
-      <div class="dest-img-ph" style="background-image:linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.28)),url('${imageForDestination(d)}')">
-        <span class="dest-continent-tag">${contLabel}</span>
-        <span class="price-tag">✈ ${d.ticketFrom}</span>
-      </div>
-      <div class="dest-body">
-        <p class="dest-country">${d.country}</p>
-        <h3 class="dest-name">${d.name}</h3>
-        <p class="dest-desc">${d.desc}</p>
-        ${foodDots}
-        <div class="dest-footer">
-          <div class="dest-tags">${tagsHtml}</div>
-          <button class="dest-btn" onclick="openModal(${i})">Explore →</button>
-        </div>
-      </div>`;
-    grid.insertBefore(card, nr);
-    hydrateDestinationCard(card, d);
-  });
-}
-
-function renderCards() {
-  const s = document.getElementById('search-input').value.toLowerCase();
-  let count = 0;
-  destinations.forEach((d, i) => {
-    const card = document.getElementById('dcard-' + i);
-    if (!card) return;
-    const mc = currentFilter === 'all' || d.continent === currentFilter;
-    const ms = !s || (d.name + d.country + d.desc + d.tags.join(' ')).toLowerCase().includes(s);
-    const mf = !currentFoodFilter ||
-      (currentFoodFilter === 'veg' && d.food.veg) ||
-      (currentFoodFilter === 'vegan' && d.food.vegan) ||
-      (currentFoodFilter === 'non' && d.food.non);
-    const show = mc && ms && mf;
-    card.classList.toggle('visible', show);
-    if (show) count++;
-  });
-  document.getElementById('no-results').classList.toggle('show', count === 0);
-}
-
-function openModal(i) {
-  const d = destinations[i];
-  applyDestinationTheme(d);
-  document.getElementById('modal-header').style.backgroundImage = `linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.35)),url('${imageForDestination(d)}')`;
-  document.getElementById('modal-header').innerHTML = `<button class="modal-close" onclick="closeModal()">✕</button>`;
-  hydratePlaceImage(document.getElementById('modal-header'), d.name, imageForDestination(d));
-  document.getElementById('modal-country').textContent = d.country;
-  document.getElementById('modal-title').textContent = d.name;
   document.getElementById('modal-desc').textContent = d.fullDesc;
   document.getElementById('modal-grid').innerHTML = `
     <div class="modal-info-card"><p class="mic-label">Currency</p><p class="mic-value">${d.currency}</p></div>
@@ -2014,4 +1943,3 @@ initCurrency();
 initTranslator();
 initCountryList();
 loadSharedItinerary();
-
