@@ -1647,4 +1647,371 @@ function loadSharedItinerary() {
 function addBlogPost() {
   const name = document.getElementById('blog-name').value.trim() || 'Traveller';
   const media = document.getElementById('blog-media').value.trim();
+const text = document.getElementById('blog-text').value.trim();
+  if (!text) return;
+  const posts = JSON.parse(localStorage.getItem('ww-blog-posts') || '[]');
+  posts.unshift({ name, media, text, date: new Date().toLocaleDateString() });
+  localStorage.setItem('ww-blog-posts', JSON.stringify(posts.slice(0, 12)));
+  document.getElementById('blog-text').value = '';
+  renderBlogPosts();
+}
+
+function renderBlogPosts() {
+  const box = document.getElementById('blog-posts');
+  if (!box) return;
+  const posts = JSON.parse(localStorage.getItem('ww-blog-posts') || '[]');
+  box.innerHTML = posts.length ? posts.map(p => `<div class="blog-post">
+    ${p.media ? `<div class="blog-media" style="background-image:url('${escapeHtml(p.media)}')"></div>` : ''}
+    <strong>${escapeHtml(p.name)}</strong><span>${escapeHtml(p.date)}</span><p>${escapeHtml(p.text)}</p>
+  </div>`).join('') : '<div class="place-empty">No traveller stories yet. Add the first one.</div>';
+}
+
+
+function initDartMap() {
+  const canvas = document.getElementById('worldCanvas');
+  if (!canvas) return;
+  drawWorldMap();
+}
+
+function drawWorldMap(highlight = null) {
+  const canvas = document.getElementById('worldCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = 700, H = 380;
+  ctx.fillStyle = '#1D6B8C';
+  ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = 'rgba(255,255,255,.08)';
+  ctx.lineWidth = .5;
+  for (let x = 0; x < W; x += 70) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  for (let y = 0; y < H; y += 38) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+
+  const lands = [
+    {x:470,y:60,w:90,h:75,c:'#2D5A3D'},{x:550,y:50,w:170,h:120,c:'#2D5A3D'},
+    {x:480,y:145,w:95,h:140,c:'#C8714A'},{x:90,y:40,w:160,h:130,c:'#2D5A3D'},
+    {x:160,y:195,w:100,h:140,c:'#E8A83E'},{x:590,y:230,w:100,h:75,c:'#E8A83E'},
+    {x:220,y:20,w:60,h:45,c:'#4A7A5A'},{x:0,y:345,w:700,h:35,c:'#DDE8F0'},
+    {x:455,y:62,w:22,h:28,c:'#2D5A3D'},{x:638,y:82,w:18,h:50,c:'#2D5A3D'},
+    {x:598,y:200,w:80,h:28,c:'#2D5A3D'},{x:570,y:130,w:45,h:60,c:'#3A6A4A'},
+    {x:527,y:115,w:55,h:45,c:'#B8945A'},{x:145,y:160,w:35,h:35,c:'#3A7A4A'},
+    {x:655,y:285,w:18,h:40,c:'#2D5A3D'},{x:420,y:30,w:30,h:20,c:'#AAC8D8'},
+    {x:625,y:155,w:20,h:40,c:'#2D5A3D'},{x:178,y:155,w:32,h:12,c:'#C08040'},
+  ];
+
+  lands.forEach(l => {
+    const r = Math.min(l.w, l.h) * 0.35;
+    ctx.beginPath();
+    ctx.moveTo(l.x+r, l.y);
+    ctx.lineTo(l.x+l.w-r, l.y);
+    ctx.arcTo(l.x+l.w, l.y, l.x+l.w, l.y+r, r);
+    ctx.lineTo(l.x+l.w, l.y+l.h-r);
+    ctx.arcTo(l.x+l.w, l.y+l.h, l.x+l.w-r, l.y+l.h, r);
+    ctx.lineTo(l.x+r, l.y+l.h);
+    ctx.arcTo(l.x, l.y+l.h, l.x, l.y+l.h-r, r);
+    ctx.lineTo(l.x, l.y+r);
+    ctx.arcTo(l.x, l.y, l.x+r, l.y, r);
+    ctx.closePath();
+    ctx.fillStyle = l.c;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,.15)';
+    ctx.lineWidth = .5;
+    ctx.stroke();
+  });
+
+  ctx.fillStyle = 'rgba(255,255,255,.3)';
+  ctx.font = '9px sans-serif';
+  ctx.textAlign = 'center';
+  [{t:'Europe',x:515,y:100},{t:'Asia',x:640,y:105},{t:'Africa',x:527,y:210},{t:'N.America',x:170,y:100},{t:'S.America',x:210,y:265},{t:'Australia',x:640,y:268}]
+    .forEach(l => ctx.fillText(l.t, l.x, l.y));
+
+  destinations.forEach((d, i) => {
+    const px = Math.round(d.mapX * W);
+    const py = Math.round(d.mapY * H);
+    ctx.beginPath();
+    ctx.arc(px, py, highlight === i ? 8 : 5, 0, Math.PI*2);
+    ctx.fillStyle = highlight === i ? '#E8A83E' : '#FDFAF4';
+    ctx.fill();
+    ctx.strokeStyle = highlight === i ? '#C8714A' : 'rgba(200,113,74,.5)';
+    ctx.lineWidth = highlight === i ? 2.5 : 1.5;
+    ctx.stroke();
+    if (highlight === i) {
+      ctx.beginPath();
+      ctx.arc(px, py, 14, 0, Math.PI*2);
+      ctx.strokeStyle = 'rgba(232,168,62,.5)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.fillStyle = '#E8A83E';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(d.name, px, py - 18);
+    }
+  });
+}
+
+function dartClickMap(e) {
+  const canvas = document.getElementById('worldCanvas');
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  const cx = (e.clientX - rect.left) * scaleX;
+  const cy = (e.clientY - rect.top) * scaleY;
+  let best = 0, bestDist = Infinity;
+  destinations.forEach((d, i) => {
+    const dist = Math.hypot(cx - d.mapX*700, cy - d.mapY*380);
+    if (dist < bestDist) { bestDist = dist; best = i; }
+  });
+  showDartResult(best);
+}
+
+function throwDart() {
+  dartCount++;
+  document.getElementById('throw-count').textContent = 'Darts thrown: ' + dartCount;
+  showDartResult(Math.floor(Math.random() * destinations.length));
+}
+
+function showDartResult(idx) {
+  dartHighlight = idx;
+  drawWorldMap(idx);
+  const d = destinations[idx];
+  const res = document.getElementById('dart-result');
+  res.classList.add('show');
+  document.getElementById('dart-emoji').textContent = d.emoji;
+  document.getElementById('dart-dest-name').textContent = `${d.name}, ${d.country}`;
+  document.getElementById('dart-dest-info').textContent = `${d.continent.charAt(0).toUpperCase()+d.continent.slice(1)} · Best time: ${d.bestTime} · Flights from ${d.ticketFrom}`;
+}
+
+function dartPlanTrip() {
+  if (dartHighlight === null) return;
+  plannerState.destIdx = dartHighlight;
+  plannerState.customDest = null;
+  const d = destinations[dartHighlight];
+  document.getElementById('pl-dest-input').value = `${d.name}, ${d.country}`;
+  document.getElementById('pl-selected-dest').style.display = 'block';
+  document.getElementById('pl-sel-emoji').textContent = d.emoji;
+  document.getElementById('pl-sel-name').textContent = d.name;
+  document.getElementById('pl-sel-country').textContent = d.country;
+  document.querySelectorAll('.tool-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-planner').classList.add('active');
+  document.querySelectorAll('.tool-tab')[2].classList.add('active');
+  goStep(1);
+  document.getElementById('tools').scrollIntoView({behavior:'smooth'});
+}
+
+
+function buildCards() {
+  const grid = document.getElementById('dest-grid');
+  const nr = document.getElementById('no-results');
+  destinations.forEach((d, i) => {
+    const card = document.createElement('div');
+    card.className = 'dest-card visible';
+    card.id = 'dcard-' + i;
+    card.dataset.continent = d.continent;
+    const tagsHtml = d.tags.map(t => `<span class="tag tag-${t}">${t}</span>`).join('');
+    const foodDots = `<div class="food-dots">
+      ${d.food.veg ? '<span class="food-dot veg" title="Vegetarian friendly"></span>' : ''}
+      ${d.food.vegan ? '<span class="food-dot vegan" title="Vegan options"></span>' : ''}
+      ${d.food.non ? '<span class="food-dot non" title="Non-veg cuisine"></span>' : ''}
+    </div>`;
+    const contLabel = d.continent === 'middle-east' ? 'Middle East' : d.continent.charAt(0).toUpperCase() + d.continent.slice(1);
+    card.innerHTML = `
+      <div class="dest-img-ph" style="background-image:linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.28)),url('${imageForDestination(d)}')">
+        <span class="dest-continent-tag">${contLabel}</span>
+        <span class="price-tag">✈ ${d.ticketFrom}</span>
+      </div>
+      <div class="dest-body">
+        <p class="dest-country">${d.country}</p>
+        <h3 class="dest-name">${d.name}</h3>
+        <p class="dest-desc">${d.desc}</p>
+        ${foodDots}
+        <div class="dest-footer">
+          <div class="dest-tags">${tagsHtml}</div>
+          <button class="dest-btn" onclick="openModal(${i})">Explore →</button>
+        </div>
+      </div>`;
+    grid.insertBefore(card, nr);
+    hydrateDestinationCard(card, d);
+  });
+}
+
+function renderCards() {
+  const s = document.getElementById('search-input').value.toLowerCase();
+  let count = 0;
+  destinations.forEach((d, i) => {
+    const card = document.getElementById('dcard-' + i);
+    if (!card) return;
+    const mc = currentFilter === 'all' || d.continent === currentFilter;
+    const ms = !s || (d.name + d.country + d.desc + d.tags.join(' ')).toLowerCase().includes(s);
+    const mf = !currentFoodFilter ||
+      (currentFoodFilter === 'veg' && d.food.veg) ||
+      (currentFoodFilter === 'vegan' && d.food.vegan) ||
+      (currentFoodFilter === 'non' && d.food.non);
+    const show = mc && ms && mf;
+    card.classList.toggle('visible', show);
+    if (show) count++;
+  });
+  document.getElementById('no-results').classList.toggle('show', count === 0);
+}
+
+function openModal(i) {
+  const d = destinations[i];
+  applyDestinationTheme(d);
+  document.getElementById('modal-header').style.backgroundImage = `linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.35)),url('${imageForDestination(d)}')`;
+  document.getElementById('modal-header').innerHTML = `<button class="modal-close" onclick="closeModal()">✕</button>`;
+  hydratePlaceImage(document.getElementById('modal-header'), d.name, imageForDestination(d));
+  document.getElementById('modal-country').textContent = d.country;
+  document.getElementById('modal-title').textContent = d.name;
+   document.getElementById('pl-sel-country').textContent = d.country;
+  document.querySelectorAll('.tool-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-planner').classList.add('active');
+  document.querySelectorAll('.tool-tab')[2].classList.add('active');
+  goStep(1);
+  document.getElementById('tools').scrollIntoView({behavior:'smooth'});
+}
+
+
+function buildCards() {
+  const grid = document.getElementById('dest-grid');
+  const nr = document.getElementById('no-results');
+  destinations.forEach((d, i) => {
+    const card = document.createElement('div');
+    card.className = 'dest-card visible';
+    card.id = 'dcard-' + i;
+    card.dataset.continent = d.continent;
+    const tagsHtml = d.tags.map(t => `<span class="tag tag-${t}">${t}</span>`).join('');
+    const foodDots = `<div class="food-dots">
+      ${d.food.veg ? '<span class="food-dot veg" title="Vegetarian friendly"></span>' : ''}
+      ${d.food.vegan ? '<span class="food-dot vegan" title="Vegan options"></span>' : ''}
+      ${d.food.non ? '<span class="food-dot non" title="Non-veg cuisine"></span>' : ''}
+    </div>`;
+    const contLabel = d.continent === 'middle-east' ? 'Middle East' : d.continent.charAt(0).toUpperCase() + d.continent.slice(1);
+    card.innerHTML = `
+      <div class="dest-img-ph" style="background-image:linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.28)),url('${imageForDestination(d)}')">
+        <span class="dest-continent-tag">${contLabel}</span>
+        <span class="price-tag">✈ ${d.ticketFrom}</span>
+      </div>
+      <div class="dest-body">
+        <p class="dest-country">${d.country}</p>
+        <h3 class="dest-name">${d.name}</h3>
+        <p class="dest-desc">${d.desc}</p>
+        ${foodDots}
+        <div class="dest-footer">
+          <div class="dest-tags">${tagsHtml}</div>
+          <button class="dest-btn" onclick="openModal(${i})">Explore →</button>
+        </div>
+      </div>`;
+    grid.insertBefore(card, nr);
+    hydrateDestinationCard(card, d);
+  });
+}
+
+function renderCards() {
+  const s = document.getElementById('search-input').value.toLowerCase();
+  let count = 0;
+  destinations.forEach((d, i) => {
+    const card = document.getElementById('dcard-' + i);
+    if (!card) return;
+    const mc = currentFilter === 'all' || d.continent === currentFilter;
+    const ms = !s || (d.name + d.country + d.desc + d.tags.join(' ')).toLowerCase().includes(s);
+    const mf = !currentFoodFilter ||
+      (currentFoodFilter === 'veg' && d.food.veg) ||
+      (currentFoodFilter === 'vegan' && d.food.vegan) ||
+      (currentFoodFilter === 'non' && d.food.non);
+    const show = mc && ms && mf;
+    card.classList.toggle('visible', show);
+    if (show) count++;
+  });
+  document.getElementById('no-results').classList.toggle('show', count === 0);
+}
+
+function openModal(i) {
+  const d = destinations[i];
+  applyDestinationTheme(d);
+  document.getElementById('modal-header').style.backgroundImage = `linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.35)),url('${imageForDestination(d)}')`;
+  document.getElementById('modal-header').innerHTML = `<button class="modal-close" onclick="closeModal()">✕</button>`;
+  hydratePlaceImage(document.getElementById('modal-header'), d.name, imageForDestination(d));
+  document.getElementById('modal-country').textContent = d.country;
+  document.getElementById('modal-title').textContent = d.name;
+  document.getElementById('modal-desc').textContent = d.fullDesc;
+  document.getElementById('modal-grid').innerHTML = `
+    <div class="modal-info-card"><p class="mic-label">Currency</p><p class="mic-value">${d.currency}</p></div>
+    <div class="modal-info-card"><p class="mic-label">Language</p><p class="mic-value">${d.language}</p></div>
+    <div class="modal-info-card"><p class="mic-label">Best Time</p><p class="mic-value">${d.bestTime}</p></div>
+    <div class="modal-info-card"><p class="mic-label">Climate</p><p class="mic-value">${d.climate}</p></div>`;
+  document.getElementById('modal-tickets').innerHTML = d.tickets.map(t =>
+    `<div class="ticket-row"><span class="ticket-type">${t.type}</span><span class="ticket-price">${t.price}</span></div>`
+  ).join('');
+  document.getElementById('modal-food').innerHTML = d.foodDetail.map(f =>
+    `<div class="food-option"><span class="food-type-dot ${f.dot}"></span><div><strong>${f.type}</strong>: ${f.note}</div></div>`
+  ).join('');
+  document.getElementById('modal-attractions').innerHTML = d.attractions.map(a => `<li>${a}</li>`).join('');
+  document.getElementById('modal-tips').textContent = d.localTips;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal-overlay')) {
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+
+window.addEventListener('scroll', () =>
+  document.getElementById('navbar').classList.toggle('scrolled', scrollY > 40)
+);
+
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobile-menu').classList.toggle('open');
+});
+
+function closeMM() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobile-menu').classList.remove('open');
+}
+
+document.querySelectorAll('.filter-chip').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderCards();
+  });
+});
+
+document.querySelectorAll('.food-chip').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const same = btn.classList.contains('active');
+    document.querySelectorAll('.food-chip').forEach(b => b.classList.remove('active'));
+    if (!same) { btn.classList.add('active'); currentFoodFilter = btn.dataset.food; }
+    else currentFoodFilter = null;
+    renderCards();
+  });
+});
+
+document.getElementById('search-input').addEventListener('input', renderCards);
+document.getElementById('search-btn').addEventListener('click', renderCards);
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: .1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+function handleSubscribe() {
+  const inp = document.getElementById('email-input');
+  if (inp.value && inp.value.includes('@')) {
+    inp.value = '';
+    document.getElementById('sub-msg').style.display = 'block';
+  }
+}
+
+
+buildCards();
+initCurrency();
+initTranslator();
+initCountryList();
+loadSharedItinerary();
 
