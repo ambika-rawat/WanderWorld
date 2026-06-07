@@ -382,6 +382,27 @@ const fallbackCityData = {
   }
 };
 
+const imageLibrary = {
+  default:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Colosseo_2020.jpg/1280px-Colosseo_2020.jpg',
+  paris:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/1280px-Tour_Eiffel_Wikimedia_Commons.jpg',
+  eiffel:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/1280px-Tour_Eiffel_Wikimedia_Commons.jpg',
+  louvre:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Louvre_Museum_Wikimedia_Commons.jpg/1280px-Louvre_Museum_Wikimedia_Commons.jpg',
+  bali:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Tanah_Lot_Temple%2C_Bali%2C_Indonesia.jpg/1280px-Tanah_Lot_Temple%2C_Bali%2C_Indonesia.jpg',
+  bali2:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Jatiluwih_Rice_Terraces%2C_Bali%2C_Indonesia.jpg/1280px-Jatiluwih_Rice_Terraces%2C_Bali%2C_Indonesia.jpg',
+  bali3:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Ubud_Market_Bali.jpg/1280px-Ubud_Market_Bali.jpg',
+  edinburgh:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Edinburgh_Castle_from_the_south_east.JPG/1280px-Edinburgh_Castle_from_the_south_east.JPG',
+  castle:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Edinburgh_Castle_from_the_south_east.JPG/1280px-Edinburgh_Castle_from_the_south_east.JPG',
+  kyoto:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Fushimi_Inari-taisha%2C_Kyoto%2C_Japan.jpg/1280px-Fushimi_Inari-taisha%2C_Kyoto%2C_Japan.jpg',
+  japan:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Fushimi_Inari-taisha%2C_Kyoto%2C_Japan.jpg/1280px-Fushimi_Inari-taisha%2C_Kyoto%2C_Japan.jpg',
+  restaurant:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Restaurant_interior.jpg/1024px-Restaurant_interior.jpg',
+  hotel:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Hotel_room_interior.jpg/1024px-Hotel_room_interior.jpg',
+  adventure:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Hiking_trail_in_mountains.jpg/1024px-Hiking_trail_in_mountains.jpg',
+  craft:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Pottery_making.jpg/1024px-Pottery_making.jpg',
+  weather:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Altocumulus_clouds.jpg/1280px-Altocumulus_clouds.jpg'
+};
+
+const wikiImageCache = {};
+
 const allCountries = [
   "Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo","Costa Rica","Cote d'Ivoire","Croatia","Cuba","Cyprus","Czechia","Democratic Republic of the Congo","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea","North Macedonia","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","UAE","Uganda","Ukraine","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"
 ];
@@ -590,6 +611,7 @@ function speechLocale(code) {
 function filterPlannerDests() {
   const q = document.getElementById('pl-dest-input').value.toLowerCase();
   const dd = document.getElementById('pl-dest-dd');
+  if (q.length > 2) previewDestinationTheme(q);
   if (!q) { dd.style.display = 'none'; return; }
   const matches = destinations.filter(d =>
     d.name.toLowerCase().includes(q) || d.country.toLowerCase().includes(q)
@@ -624,7 +646,9 @@ function selectPlannerDest(idx) {
   document.getElementById('pl-dest-dd').style.display = 'none';
   const sel = document.getElementById('pl-selected-dest');
   sel.style.display = 'block';
-  setImageBackground(document.getElementById('pl-sel-emoji'), imageForDestination(d));
+  const selectedPhoto = document.getElementById('pl-sel-emoji');
+  setImageBackground(selectedPhoto, imageForDestination(d));
+  hydratePlaceImage(selectedPhoto, d.name, imageForDestination(d));
   document.getElementById('pl-sel-name').textContent = d.name;
   document.getElementById('pl-sel-country').textContent = `${d.country} · ${d.ticketFrom} est. flight`;
 }
@@ -638,7 +662,9 @@ function selectPlannerPlace(place) {
   document.getElementById('pl-dest-dd').style.display = 'none';
   const sel = document.getElementById('pl-selected-dest');
   sel.style.display = 'block';
-  setImageBackground(document.getElementById('pl-sel-emoji'), imageForDestination(d));
+  const selectedPhoto = document.getElementById('pl-sel-emoji');
+  setImageBackground(selectedPhoto, imageForDestination(d));
+  hydratePlaceImage(selectedPhoto, d.name, imageForDestination(d));
   document.getElementById('pl-sel-name').textContent = d.name;
   document.getElementById('pl-sel-country').textContent = `${d.country} · worldwide place search`;
 }
@@ -661,17 +687,60 @@ function normalizePlaceDestination(place) {
 }
 
 function imageForDestination(dest) {
-  const query = `${dest.name} ${dest.country} landmark luxury travel`;
-  return unsplashUrl(query, '1600x1000');
+  return imageFromText(`${dest.name} ${dest.country} landmark luxury travel`);
 }
 
 function imageForPlace(place, dest) {
-  const query = `${place?.name || dest?.name || 'travel'} ${dest?.name || ''} ${dest?.country || ''}`;
-  return unsplashUrl(query, '900x650');
+  return imageFromText(`${place?.name || ''} ${place?.tourism || ''} ${place?.amenity || ''} ${place?.category || ''} ${dest?.name || ''} ${dest?.country || ''}`);
 }
 
-function unsplashUrl(query, size = '1200x800') {
-  return `https://source.unsplash.com/${size}/?${encodeURIComponent(query)}`;
+function imageFromText(text) {
+  const t = String(text || '').toLowerCase();
+  if (t.includes('bali') || t.includes('ubud') || t.includes('tanah') || t.includes('rice terrace')) return imageLibrary.bali;
+  if (t.includes('paris')) return imageLibrary.paris;
+  if (t.includes('eiffel')) return imageLibrary.eiffel;
+  if (t.includes('louvre')) return imageLibrary.louvre;
+  if (t.includes('edinburgh')) return imageLibrary.edinburgh;
+  if (t.includes('castle')) return imageLibrary.castle;
+  if (t.includes('kyoto')) return imageLibrary.kyoto;
+  if (t.includes('japan')) return imageLibrary.japan;
+  if (t.includes('hotel') || t.includes('hostel') || t.includes('guest')) return imageLibrary.hotel;
+  if (t.includes('restaurant') || t.includes('cafe') || t.includes('food') || t.includes('vegan')) return imageLibrary.restaurant;
+  if (t.includes('pottery') || t.includes('craft') || t.includes('creative')) return imageLibrary.craft;
+  if (t.includes('adventure') || t.includes('peak') || t.includes('viewpoint') || t.includes('walk')) return imageLibrary.adventure;
+  return imageLibrary.default;
+}
+
+async function getWikipediaImage(query) {
+  const clean = String(query || '').replace(/\s+/g, ' ').trim();
+  if (!clean) return '';
+  const key = clean.toLowerCase();
+  if (wikiImageCache[key]) return wikiImageCache[key];
+  try {
+    const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(clean)}`;
+    const res = await fetchWithTimeout(url, {}, 6500);
+    if (!res.ok) throw new Error('wiki image failed');
+    const data = await res.json();
+    const img = data?.thumbnail?.source || data?.originalimage?.source || '';
+    if (img) {
+      wikiImageCache[key] = img;
+      return img;
+    }
+  } catch (err) {}
+  wikiImageCache[key] = '';
+  return '';
+}
+
+async function hydratePlaceImage(el, query, fallback) {
+  if (!el) return;
+  const img = await getWikipediaImage(query);
+  el.style.backgroundImage = `linear-gradient(rgba(0,0,0,.04),rgba(0,0,0,.18)),url("${img || fallback}")`;
+}
+
+async function hydrateDestinationCard(card, dest) {
+  const img = await getWikipediaImage(dest.name);
+  const ph = card.querySelector('.dest-img-ph');
+  if (ph) ph.style.backgroundImage = `linear-gradient(rgba(0,0,0,.04),rgba(0,0,0,.28)),url("${img || imageForDestination(dest)}")`;
 }
 
 function setImageBackground(el, url) {
@@ -681,19 +750,49 @@ function setImageBackground(el, url) {
 }
 
 function applyDestinationTheme(dest) {
-  const slug = (dest.name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  const profile = destinationProfile(dest);
   document.body.className = document.body.className
     .split(' ')
     .filter(c => !c.startsWith('luxe-') && c !== 'destination-themed')
     .join(' ');
-  document.body.classList.add('destination-themed', `luxe-${slug}`);
-  document.body.style.setProperty('--theme-image', `url("${imageForDestination(dest)}")`);
+  document.body.classList.add('destination-themed', profile.className);
+  setMotionBackground(profile.images);
+  hydrateMotionBackground(profile.queries);
+}
+
+function previewDestinationTheme(text) {
+  applyDestinationTheme({ name: text, country: text });
+}
+
+function destinationProfile(dest) {
+  const t = `${dest.name || ''} ${dest.country || ''}`.toLowerCase();
+  if (/bali|indonesia|maldives|beach|island/.test(t)) return { className:'luxe-bali', images:[imageLibrary.bali, imageLibrary.bali2, imageLibrary.bali3], queries:['Bali','Ubud','Tanah Lot'] };
+  if (/paris|france/.test(t)) return { className:'luxe-paris', images:[imageLibrary.paris, imageLibrary.eiffel, imageLibrary.louvre], queries:['Paris','Eiffel Tower','Louvre'] };
+  if (/edinburgh|scotland/.test(t)) return { className:'luxe-edinburgh', images:[imageLibrary.edinburgh, imageLibrary.castle, imageLibrary.default], queries:['Edinburgh','Edinburgh Castle','Royal Mile'] };
+  if (/kyoto|tokyo|japan/.test(t)) return { className:'luxe-kyoto', images:[imageLibrary.kyoto, imageLibrary.japan, imageLibrary.default], queries:['Kyoto','Fushimi Inari-taisha','Arashiyama'] };
+  if (/dubai|cairo|marrakech|jordan|petra|rajasthan|desert/.test(t)) return { className:'luxe-desert', images:[imageForDestination(dest), imageLibrary.default, imageLibrary.craft], queries:[dest.name, `${dest.name} market`, `${dest.name} culture`] };
+  if (/iceland|switzerland|mountain|machu|cape town/.test(t)) return { className:'luxe-alpine', images:[imageForDestination(dest), imageLibrary.adventure, imageLibrary.weather], queries:[dest.name, `${dest.name} nature`, `${dest.name} viewpoint`] };
+  return { className:'luxe-alpine', images:[imageForDestination(dest), imageLibrary.default, imageLibrary.craft], queries:[dest.name, `${dest.name} landmark`, `${dest.name} culture`] };
+}
+
+function setMotionBackground(images) {
+  ['--motion-image-1', '--motion-image-2', '--motion-image-3'].forEach((prop, i) => {
+    document.documentElement.style.setProperty(prop, `url("${images[i] || images[0] || imageLibrary.default}")`);
+  });
+}
+
+async function hydrateMotionBackground(queries) {
+  const results = await Promise.all((queries || []).slice(0, 3).map(q => getWikipediaImage(q)));
+  results.forEach((img, i) => {
+    if (img) document.documentElement.style.setProperty(`--motion-image-${i + 1}`, `url("${img}")`);
+  });
 }
 
 async function searchGlobalPlaces() {
   const query = document.getElementById('pl-dest-input').value.trim();
   const dd = document.getElementById('pl-dest-dd');
   if (!query) { alert('Type a city, country, landmark, or place first.'); return; }
+  previewDestinationTheme(query);
   dd.style.display = 'block';
   dd.innerHTML = '<div class="dest-option"><span>Searching worldwide...</span><span></span></div>';
   try {
@@ -841,13 +940,19 @@ function buildItinerary() {
 
   document.getElementById('itin-output').innerHTML = `
     <div class="itin-header">
-      <h3>${d.emoji} ${days}-Day ${d.name} Itinerary</h3>
+      <h3>${days}-Day ${d.name} Travel Journal</h3>
       <div class="itin-stats">
         <div class="itin-stat"><strong>${d.name}, ${d.country}</strong></div>
         <div class="itin-stat">🏨 <strong>${hotelType}</strong></div>
         <div class="itin-stat">🍽️ <strong>${foodLevel}</strong></div>
         <div class="itin-stat">${pref==='veg'?'🥗 Vegetarian':pref==='vegan'?'🌱 Vegan':pref==='halal'?'☪️ Halal':'🍽️ All food'}</div>
       </div>
+    </div>
+    <div class="journal-toolbar">
+      <button class="voice-btn" onclick="toggleEditMode()">Edit itinerary</button>
+      <button class="voice-btn" onclick="shareItinerary()">Share itinerary</button>
+      <button class="voice-btn ghost" onclick="addFreeTimeBlock()">Add custom note</button>
+      <span id="share-msg" class="translator-status"></span>
     </div>
     <div class="live-results">
       <div class="live-panel">
@@ -866,8 +971,27 @@ function buildItinerary() {
         <button class="voice-btn" onclick="useOriginForTransport()">Use my current location</button>
         <div class="place-list" id="transport-results"><div class="place-empty">Local apps and route advice will appear here.</div></div>
       </div>
+      <div class="live-panel weather-panel">
+        <h4>Weather Guide</h4>
+        <div class="place-list" id="weather-results"><div class="place-empty">Loading destination weather...</div></div>
+      </div>
+      <div class="live-panel activity-panel">
+        <h4>Activities By Trip Type</h4>
+        <div id="activity-results" class="activity-grid"><div class="place-empty">Finding creative, family, couple, friends, and adventure ideas...</div></div>
+      </div>
     </div>
     ${daysHtml}
+    <div class="blogger-column">
+      <h4>Traveller Stories</h4>
+      <p class="live-note">Post a photo/video URL and a real experience. Saved locally in this browser.</p>
+      <div class="blog-form">
+        <input id="blog-name" placeholder="Your name">
+        <input id="blog-media" placeholder="Photo/video URL">
+        <textarea id="blog-text" placeholder="Write your experience or suggestion..."></textarea>
+        <button class="voice-btn" onclick="addBlogPost()">Post story</button>
+      </div>
+      <div id="blog-posts" class="blog-posts"></div>
+    </div>
     <div class="budget-summary">
       <h4>💰 Budget Breakdown (${days} Days)</h4>
       <div class="budget-bars">
@@ -904,7 +1028,10 @@ async function loadLiveTravelMatches(dest) {
   const restaurantBox = document.getElementById('restaurant-results');
   const hotelBox = document.getElementById('hotel-results');
   const transportBox = document.getElementById('transport-results');
+  const weatherBox = document.getElementById('weather-results');
+  const activityBox = document.getElementById('activity-results');
   renderTransportAdvice(transportBox, dest, null);
+  renderBlogPosts();
   try {
     const coords = await getDestinationCoords(dest);
     if (!coords) throw new Error('No coordinates');
@@ -923,10 +1050,14 @@ async function loadLiveTravelMatches(dest) {
     renderHotelMatches(hotelBox, hotels, dest);
     updateItineraryWithLivePlaces(dest);
     renderTransportAdvice(transportBox, dest, coords);
+    renderActivityIdeas(activityBox, dest);
+    loadWeatherGuide(weatherBox, coords);
   } catch (err) {
     restaurantBox.innerHTML = `<div class="place-empty">Could not load live restaurants. Try the worldwide search again, or confirm names on Google Maps before travelling.</div>`;
     hotelBox.innerHTML = `<div class="place-empty">Could not load live hotels. Booking sites will have the most current rates and availability.</div>`;
     renderTransportAdvice(transportBox, dest, null);
+    renderActivityIdeas(activityBox, dest);
+    weatherBox.innerHTML = `<div class="place-empty">Weather is unavailable right now. Check a weather app before booking outdoor activities.</div>`;
   }
 }
 
@@ -1071,12 +1202,13 @@ function renderRestaurantMatches(box, places, dest) {
     if (p.source === 'search' && pref === 'halal') badges.push('<span class="place-badge">halal search</span>');
     if (p.cuisine) badges.push(`<span class="place-badge">${escapeHtml(p.cuisine.split(';')[0])}</span>`);
     return `<div class="place-card with-photo">
-      <div class="place-photo" style="background-image:url('${imageForPlace(p, dest)}')"></div>
+      <div class="place-photo js-live-photo" data-query="${escapeHtml(p.name)}" style="background-image:url('${imageForPlace(p, dest)}')"></div>
       <div><div class="place-name">${escapeHtml(p.name)}</div>
       <div class="place-meta">${escapeHtml(p.amenity || 'restaurant')}${p['addr:street'] ? ' · ' + escapeHtml(p['addr:street']) : p.display_name ? ' · ' + escapeHtml(shortAddress(p.display_name)) : ''}</div>
       <div class="place-badges">${badges.length ? badges.join('') : '<span class="place-badge">check menu</span>'}</div></div>
     </div>`;
   }).join('');
+  hydrateLivePhotos(dest);
 }
 
 function restaurantScore(place, pref) {
@@ -1102,12 +1234,13 @@ function renderHotelMatches(box, places, dest) {
     const type = p.tourism || 'hotel';
     const selected = plannerState.recommendedHotel?.name === p.name;
     return `<div class="place-card with-photo">
-      <div class="place-photo" style="background-image:url('${imageForPlace(p, dest)}')"></div>
+      <div class="place-photo js-live-photo" data-query="${escapeHtml(p.name)}" style="background-image:url('${imageForPlace(p, dest)}')"></div>
       <div><div class="place-name">${escapeHtml(p.name)}${selected ? ' <span class="place-badge hotel">recommended stay</span>' : ''}</div>
       <div class="place-meta">${escapeHtml(type.replace('_',' '))}${p.stars ? ' · ' + escapeHtml(p.stars) + ' stars' : ''}${p['addr:street'] ? ' · ' + escapeHtml(p['addr:street']) : p.display_name ? ' · ' + escapeHtml(shortAddress(p.display_name)) : ''}</div>
       <div class="place-badges"><span class="place-badge hotel">${escapeHtml(type.replace('_',' '))}</span><span class="place-badge price">${budgetHotelLabel(budget)}</span>${p.lat && p.lon ? '<span class="place-badge">route ready</span>' : ''}</div></div>
     </div>`;
   }).join('');
+  hydrateLivePhotos(dest);
 }
 
 function renderTrustedMatches(box, attractions, adventures, dest) {
@@ -1176,15 +1309,26 @@ function updateItineraryWithLivePlaces(dest) {
       setLiveText('.js-lunch', day, lunch.name);
       setLiveText('.js-lunch-note', day, `${plannerState.foodPref === 'all' ? 'restaurant' : plannerState.foodPref + ' option'} · ${liveRouteNote(hotel, lunch, 'lunch')}`);
       setThumb(day, 'lunch', imageForPlace(lunch, dest));
+      hydrateThumb(day, 'lunch', `${lunch.name} ${dest.name}`, imageForPlace(lunch, dest));
     }
     if (dinner) {
       setLiveText('.js-dinner', day, dinner.name);
       setLiveText('.js-dinner-note', day, `${plannerState.foodPref === 'all' ? 'dinner spot' : plannerState.foodPref + ' dinner'} · ${liveRouteNote(hotel, dinner, 'dinner')}`);
       setThumb(day, 'dinner', imageForPlace(dinner, dest));
+      hydrateThumb(day, 'dinner', `${dinner.name} ${dest.name}`, imageForPlace(dinner, dest));
     }
-    if (attr) setThumb(day, 'attraction', imageForPlace(attr, dest));
-    if (adv) setThumb(day, 'adventure', imageForPlace(adv, dest));
-    if (hotel) setThumb(day, 'breakfast', imageForPlace(hotel, dest));
+    if (attr) {
+      setThumb(day, 'attraction', imageForPlace(attr, dest));
+      hydrateThumb(day, 'attraction', `${attr.name} ${dest.name}`, imageForPlace(attr, dest));
+    }
+    if (adv) {
+      setThumb(day, 'adventure', imageForPlace(adv, dest));
+      hydrateThumb(day, 'adventure', `${adv.name} ${dest.name}`, imageForPlace(adv, dest));
+    }
+    if (hotel) {
+      setThumb(day, 'breakfast', imageForPlace(hotel, dest));
+      hydrateThumb(day, 'breakfast', `${hotel.name} ${dest.name}`, imageForPlace(hotel, dest));
+    }
     if (hotel) {
       setLiveText('.js-breakfast-note', day, `Start from recommended stay: ${hotel.name}`);
     }
@@ -1199,6 +1343,21 @@ function setLiveText(selector, day, text) {
 function setThumb(day, slot, url) {
   const el = document.querySelector(`.js-thumb[data-day="${day}"][data-slot="${slot}"]`);
   if (el) el.style.backgroundImage = `url("${url}")`;
+}
+
+function hydrateThumb(day, slot, query, fallback) {
+  const el = document.querySelector(`.js-thumb[data-day="${day}"][data-slot="${slot}"]`);
+  hydratePlaceImage(el, query, fallback);
+}
+
+function hydrateLivePhotos(dest) {
+  document.querySelectorAll('.js-live-photo').forEach(el => {
+    const q = el.dataset.query;
+    if (q && !el.dataset.hydrated) {
+      el.dataset.hydrated = 'true';
+      hydratePlaceImage(el, `${q} ${dest.name}`, el.style.backgroundImage.replace(/^url\(["']?|["']?\)$/g, '') || imageForDestination(dest));
+    }
+  });
 }
 
 function liveRouteNote(from, to, fallback) {
@@ -1374,277 +1533,118 @@ function transportAppsForCountry(country = '') {
   ];
 }
 
-
-function initDartMap() {
-  const canvas = document.getElementById('worldCanvas');
-  if (!canvas) return;
-  drawWorldMap();
-}
-
-function drawWorldMap(highlight = null) {
-  const canvas = document.getElementById('worldCanvas');
-  const ctx = canvas.getContext('2d');
-  const W = 700, H = 380;
-  ctx.fillStyle = '#1D6B8C';
-  ctx.fillRect(0, 0, W, H);
-  ctx.strokeStyle = 'rgba(255,255,255,.08)';
-  ctx.lineWidth = .5;
-  for (let x = 0; x < W; x += 70) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
-  for (let y = 0; y < H; y += 38) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
-
-  const lands = [
-    {x:470,y:60,w:90,h:75,c:'#2D5A3D'},{x:550,y:50,w:170,h:120,c:'#2D5A3D'},
-    {x:480,y:145,w:95,h:140,c:'#C8714A'},{x:90,y:40,w:160,h:130,c:'#2D5A3D'},
-    {x:160,y:195,w:100,h:140,c:'#E8A83E'},{x:590,y:230,w:100,h:75,c:'#E8A83E'},
-    {x:220,y:20,w:60,h:45,c:'#4A7A5A'},{x:0,y:345,w:700,h:35,c:'#DDE8F0'},
-    {x:455,y:62,w:22,h:28,c:'#2D5A3D'},{x:638,y:82,w:18,h:50,c:'#2D5A3D'},
-    {x:598,y:200,w:80,h:28,c:'#2D5A3D'},{x:570,y:130,w:45,h:60,c:'#3A6A4A'},
-    {x:527,y:115,w:55,h:45,c:'#B8945A'},{x:145,y:160,w:35,h:35,c:'#3A7A4A'},
-    {x:655,y:285,w:18,h:40,c:'#2D5A3D'},{x:420,y:30,w:30,h:20,c:'#AAC8D8'},
-    {x:625,y:155,w:20,h:40,c:'#2D5A3D'},{x:178,y:155,w:32,h:12,c:'#C08040'},
-  ];
-
-  lands.forEach(l => {
-    const r = Math.min(l.w, l.h) * 0.35;
-    ctx.beginPath();
-    ctx.moveTo(l.x+r, l.y);
-    ctx.lineTo(l.x+l.w-r, l.y);
-    ctx.arcTo(l.x+l.w, l.y, l.x+l.w, l.y+r, r);
-    ctx.lineTo(l.x+l.w, l.y+l.h-r);
-    ctx.arcTo(l.x+l.w, l.y+l.h, l.x+l.w-r, l.y+l.h, r);
-    ctx.lineTo(l.x+r, l.y+l.h);
-    ctx.arcTo(l.x, l.y+l.h, l.x, l.y+l.h-r, r);
-    ctx.lineTo(l.x, l.y+r);
-    ctx.arcTo(l.x, l.y, l.x+r, l.y, r);
-    ctx.closePath();
-    ctx.fillStyle = l.c;
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(255,255,255,.15)';
-    ctx.lineWidth = .5;
-    ctx.stroke();
-  });
-
-  ctx.fillStyle = 'rgba(255,255,255,.3)';
-  ctx.font = '9px sans-serif';
-  ctx.textAlign = 'center';
-  [{t:'Europe',x:515,y:100},{t:'Asia',x:640,y:105},{t:'Africa',x:527,y:210},{t:'N.America',x:170,y:100},{t:'S.America',x:210,y:265},{t:'Australia',x:640,y:268}]
-    .forEach(l => ctx.fillText(l.t, l.x, l.y));
-
-  destinations.forEach((d, i) => {
-    const px = Math.round(d.mapX * W);
-    const py = Math.round(d.mapY * H);
-    ctx.beginPath();
-    ctx.arc(px, py, highlight === i ? 8 : 5, 0, Math.PI*2);
-    ctx.fillStyle = highlight === i ? '#E8A83E' : '#FDFAF4';
-    ctx.fill();
-    ctx.strokeStyle = highlight === i ? '#C8714A' : 'rgba(200,113,74,.5)';
-    ctx.lineWidth = highlight === i ? 2.5 : 1.5;
-    ctx.stroke();
-    if (highlight === i) {
-      ctx.beginPath();
-      ctx.arc(px, py, 14, 0, Math.PI*2);
-      ctx.strokeStyle = 'rgba(232,168,62,.5)';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-      ctx.fillStyle = '#E8A83E';
-      ctx.font = 'bold 11px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(d.name, px, py - 18);
-    }
-  });
-}
-
-function dartClickMap(e) {
-  const canvas = document.getElementById('worldCanvas');
-  const rect = canvas.getBoundingClientRect();
-  const scaleX = canvas.width / rect.width;
-  const scaleY = canvas.height / rect.height;
-  const cx = (e.clientX - rect.left) * scaleX;
-  const cy = (e.clientY - rect.top) * scaleY;
-  let best = 0, bestDist = Infinity;
-  destinations.forEach((d, i) => {
-    const dist = Math.hypot(cx - d.mapX*700, cy - d.mapY*380);
-    if (dist < bestDist) { bestDist = dist; best = i; }
-  });
-  showDartResult(best);
-}
-
-function throwDart() {
-  dartCount++;
-  document.getElementById('throw-count').textContent = 'Darts thrown: ' + dartCount;
-  showDartResult(Math.floor(Math.random() * destinations.length));
-}
-
-function showDartResult(idx) {
-  dartHighlight = idx;
-  drawWorldMap(idx);
-  const d = destinations[idx];
-  const res = document.getElementById('dart-result');
-  res.classList.add('show');
-  document.getElementById('dart-emoji').textContent = d.emoji;
-  document.getElementById('dart-dest-name').textContent = `${d.name}, ${d.country}`;
-  document.getElementById('dart-dest-info').textContent = `${d.continent.charAt(0).toUpperCase()+d.continent.slice(1)} · Best time: ${d.bestTime} · Flights from ${d.ticketFrom}`;
-}
-
-function dartPlanTrip() {
-  if (dartHighlight === null) return;
-  plannerState.destIdx = dartHighlight;
-  plannerState.customDest = null;
-  const d = destinations[dartHighlight];
-  document.getElementById('pl-dest-input').value = `${d.name}, ${d.country}`;
-  document.getElementById('pl-selected-dest').style.display = 'block';
-  document.getElementById('pl-sel-emoji').textContent = d.emoji;
-  document.getElementById('pl-sel-name').textContent = d.name;
-  document.getElementById('pl-sel-country').textContent = d.country;
-  document.querySelectorAll('.tool-tab').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel-planner').classList.add('active');
-  document.querySelectorAll('.tool-tab')[2].classList.add('active');
-  goStep(1);
-  document.getElementById('tools').scrollIntoView({behavior:'smooth'});
-}
-
-
-function buildCards() {
-  const grid = document.getElementById('dest-grid');
-  const nr = document.getElementById('no-results');
-  destinations.forEach((d, i) => {
-    const card = document.createElement('div');
-    card.className = 'dest-card visible';
-    card.id = 'dcard-' + i;
-    card.dataset.continent = d.continent;
-    const tagsHtml = d.tags.map(t => `<span class="tag tag-${t}">${t}</span>`).join('');
-    const foodDots = `<div class="food-dots">
-      ${d.food.veg ? '<span class="food-dot veg" title="Vegetarian friendly"></span>' : ''}
-      ${d.food.vegan ? '<span class="food-dot vegan" title="Vegan options"></span>' : ''}
-      ${d.food.non ? '<span class="food-dot non" title="Non-veg cuisine"></span>' : ''}
-    </div>`;
-    const contLabel = d.continent === 'middle-east' ? 'Middle East' : d.continent.charAt(0).toUpperCase() + d.continent.slice(1);
-    card.innerHTML = `
-      <div class="dest-img-ph" style="background-image:linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.28)),url('${imageForDestination(d)}')">
-        <span class="dest-continent-tag">${contLabel}</span>
-        <span class="price-tag">✈ ${d.ticketFrom}</span>
+async function loadWeatherGuide(box, coords) {
+  if (!box || !coords) return;
+  try {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weather_code&current=temperature_2m,weather_code&timezone=auto&forecast_days=5`;
+    const res = await fetchWithTimeout(url, {}, 9000);
+    if (!res.ok) throw new Error('weather failed');
+    const data = await res.json();
+    const days = data.daily.time.map((date, i) => ({
+      date,
+      min: Math.round(data.daily.temperature_2m_min[i]),
+      max: Math.round(data.daily.temperature_2m_max[i]),
+      rain: data.daily.precipitation_probability_max[i] ?? 0,
+      code: data.daily.weather_code[i]
+    }));
+    box.innerHTML = `
+      <div class="weather-now" style="background-image:linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.48)),url('${imageLibrary.weather}')">
+        <strong>${Math.round(data.current.temperature_2m)}°C now</strong>
+        <span>${weatherLabel(data.current.weather_code)} · ${weatherPackingTip(days[0])}</span>
       </div>
-      <div class="dest-body">
-        <p class="dest-country">${d.country}</p>
-        <h3 class="dest-name">${d.name}</h3>
-        <p class="dest-desc">${d.desc}</p>
-        ${foodDots}
-        <div class="dest-footer">
-          <div class="dest-tags">${tagsHtml}</div>
-          <button class="dest-btn" onclick="openModal(${i})">Explore →</button>
-        </div>
-      </div>`;
-    grid.insertBefore(card, nr);
-  });
-}
-
-function renderCards() {
-  const s = document.getElementById('search-input').value.toLowerCase();
-  let count = 0;
-  destinations.forEach((d, i) => {
-    const card = document.getElementById('dcard-' + i);
-    if (!card) return;
-    const mc = currentFilter === 'all' || d.continent === currentFilter;
-    const ms = !s || (d.name + d.country + d.desc + d.tags.join(' ')).toLowerCase().includes(s);
-    const mf = !currentFoodFilter ||
-      (currentFoodFilter === 'veg' && d.food.veg) ||
-      (currentFoodFilter === 'vegan' && d.food.vegan) ||
-      (currentFoodFilter === 'non' && d.food.non);
-    const show = mc && ms && mf;
-    card.classList.toggle('visible', show);
-    if (show) count++;
-  });
-  document.getElementById('no-results').classList.toggle('show', count === 0);
-}
-
-function openModal(i) {
-  const d = destinations[i];
-  applyDestinationTheme(d);
-  document.getElementById('modal-header').style.backgroundImage = `linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.35)),url('${imageForDestination(d)}')`;
-  document.getElementById('modal-header').innerHTML = `<button class="modal-close" onclick="closeModal()">✕</button>`;
-  document.getElementById('modal-country').textContent = d.country;
-  document.getElementById('modal-title').textContent = d.name;
-  document.getElementById('modal-desc').textContent = d.fullDesc;
-  document.getElementById('modal-grid').innerHTML = `
-    <div class="modal-info-card"><p class="mic-label">Currency</p><p class="mic-value">${d.currency}</p></div>
-    <div class="modal-info-card"><p class="mic-label">Language</p><p class="mic-value">${d.language}</p></div>
-    <div class="modal-info-card"><p class="mic-label">Best Time</p><p class="mic-value">${d.bestTime}</p></div>
-    <div class="modal-info-card"><p class="mic-label">Climate</p><p class="mic-value">${d.climate}</p></div>`;
-  document.getElementById('modal-tickets').innerHTML = d.tickets.map(t =>
-    `<div class="ticket-row"><span class="ticket-type">${t.type}</span><span class="ticket-price">${t.price}</span></div>`
-  ).join('');
-  document.getElementById('modal-food').innerHTML = d.foodDetail.map(f =>
-    `<div class="food-option"><span class="food-type-dot ${f.dot}"></span><div><strong>${f.type}</strong>: ${f.note}</div></div>`
-  ).join('');
-  document.getElementById('modal-attractions').innerHTML = d.attractions.map(a => `<li>${a}</li>`).join('');
-  document.getElementById('modal-tips').textContent = d.localTips;
-  document.getElementById('modal-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal(e) {
-  if (!e || e.target === document.getElementById('modal-overlay')) {
-    document.getElementById('modal-overlay').classList.remove('open');
-    document.body.style.overflow = '';
+      <div class="weather-strip">${days.map(d => `<div class="weather-day"><strong>${new Date(d.date).toLocaleDateString('en', { weekday:'short' })}</strong><span>${d.min}°-${d.max}°C</span><span>${d.rain}% rain</span></div>`).join('')}</div>`;
+  } catch (err) {
+    box.innerHTML = `<div class="place-empty">Weather is unavailable right now. Check a weather app before finalising outdoor activities.</div>`;
   }
 }
 
-
-window.addEventListener('scroll', () =>
-  document.getElementById('navbar').classList.toggle('scrolled', scrollY > 40)
-);
-
-document.getElementById('hamburger').addEventListener('click', () => {
-  document.getElementById('hamburger').classList.toggle('open');
-  document.getElementById('mobile-menu').classList.toggle('open');
-});
-
-function closeMM() {
-  document.getElementById('hamburger').classList.remove('open');
-  document.getElementById('mobile-menu').classList.remove('open');
+function weatherLabel(code) {
+  if ([0, 1].includes(code)) return 'clear';
+  if ([2, 3].includes(code)) return 'cloudy';
+  if ([45, 48].includes(code)) return 'foggy';
+  if (code >= 51 && code <= 67) return 'rain likely';
+  if (code >= 71 && code <= 77) return 'snow likely';
+  if (code >= 80) return 'showers';
+  return 'mixed weather';
 }
 
-document.querySelectorAll('.filter-chip').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentFilter = btn.dataset.filter;
-    renderCards();
-  });
-});
-
-document.querySelectorAll('.food-chip').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const same = btn.classList.contains('active');
-    document.querySelectorAll('.food-chip').forEach(b => b.classList.remove('active'));
-    if (!same) { btn.classList.add('active'); currentFoodFilter = btn.dataset.food; }
-    else currentFoodFilter = null;
-    renderCards();
-  });
-});
-
-document.getElementById('search-input').addEventListener('input', renderCards);
-document.getElementById('search-btn').addEventListener('click', renderCards);
-
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-  });
-}, { threshold: .1 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-function handleSubscribe() {
-  const inp = document.getElementById('email-input');
-  if (inp.value && inp.value.includes('@')) {
-    inp.value = '';
-    document.getElementById('sub-msg').style.display = 'block';
-  }
+function weatherPackingTip(day) {
+  if (!day) return 'pack layers';
+  if (day.rain > 45) return 'carry umbrella and waterproof shoes';
+  if (day.max > 28) return 'carry sunscreen and water';
+  if (day.min < 8) return 'pack warm layers';
+  return 'comfortable walking weather';
 }
 
+function renderActivityIdeas(box, dest) {
+  if (!box) return;
+  const live = plannerState.live || {};
+  const creative = activitySearchLinks(dest, ['pottery class', 'painting workshop', 'cooking class']);
+  const categories = [
+    { title:'Couples', vibe:'romantic slow day', picks:['sunset viewpoint', 'wine tasting', 'river walk'], base: live.attractions },
+    { title:'Friends', vibe:'social and photogenic', picks:['food tour', 'night market', 'escape room'], base: live.restaurants },
+    { title:'Family', vibe:'easy and safe', picks:['museum', 'park', 'aquarium'], base: live.attractions },
+    { title:'Creative', vibe:'hands-on workshops', picks:['pottery', 'painting', 'cooking class'], base: creative },
+    { title:'Adventure', vibe:'active trusted spots', picks:['hike', 'viewpoint', 'bike tour'], base: live.adventures }
+  ];
+  box.innerHTML = categories.map(cat => {
+    const first = Array.isArray(cat.base) && cat.base.length ? cat.base[0] : null;
+    const name = first?.name || `${cat.picks[0]} in ${dest.name}`;
+    const contact = first?.phone || first?.['contact:phone'] || first?.website || 'Contact not listed';
+    const price = first?.fee === 'yes' ? 'Paid entry likely' : first?.fee === 'no' ? 'Usually free' : 'Price varies';
+    const reel = `https://www.instagram.com/explore/search/keyword/?q=${encodeURIComponent(`${name} ${dest.name} activity`)}`;
+    const maps = `https://www.google.com/maps/search/${encodeURIComponent(`${name} ${dest.name}`)}`;
+    return `<div class="activity-card">
+      <div class="activity-photo" style="background-image:url('${imageFromText(`${cat.title} ${name} ${dest.name}`)}')"></div>
+      <strong>${cat.title}</strong>
+      <span>${escapeHtml(cat.vibe)}</span>
+      <p>${escapeHtml(name)}</p>
+      <small>${escapeHtml(price)} · ${escapeHtml(contact)}</small>
+      <div class="place-badges"><a href="${maps}" target="_blank" class="mini-link">Maps</a><a href="${reel}" target="_blank" class="mini-link">Reels search</a></div>
+    </div>`;
+  }).join('');
+}
 
-buildCards();
-initCurrency();
-initTranslator();
-initCountryList();
+function activitySearchLinks(dest, terms) {
+  return terms.map(term => ({ name:`${term} in ${dest.name}`, category:'creative', display_name:dest.country, source:'search' }));
+}
+
+let editMode = false;
+function toggleEditMode() {
+  editMode = !editMode;
+  document.querySelectorAll('.itin-day-body, .itin-day-header').forEach(el => el.contentEditable = editMode ? 'true' : 'false');
+  document.getElementById('share-msg').textContent = editMode ? 'Editing on. Click text in the journal to change it.' : 'Editing saved in this browser view.';
+}
+
+function addFreeTimeBlock() {
+  const firstBody = document.querySelector('.itin-day-body');
+  if (!firstBody) return;
+  firstBody.insertAdjacentHTML('beforeend', `<div class="itin-item custom-note"><span class="itin-time">Anytime</span><div class="itin-thumb" style="background-image:url('${imageLibrary.default}')"></div><div class="itin-act" contenteditable="true"><strong>Custom note</strong><span>Add your own plan here.</span></div><span class="itin-cost">edit</span></div>`);
+}
+
+function shareItinerary() {
+  const output = document.getElementById('itin-output');
+  const encoded = btoa(unescape(encodeURIComponent(output.innerHTML))).slice(0, 6000);
+  const url = `${location.origin}${location.pathname}?v=4#itinerary=${encoded}`;
+  navigator.clipboard?.writeText(url).then(() => {
+    document.getElementById('share-msg').textContent = 'Share link copied. Others can open and edit their copy.';
+  }).catch(() => {
+    document.getElementById('share-msg').textContent = 'Copy this URL: ' + url;
+  });
+}
+
+function loadSharedItinerary() {
+  const marker = '#itinerary=';
+  if (!location.hash.startsWith(marker)) return;
+  try {
+    const html = decodeURIComponent(escape(atob(location.hash.slice(marker.length))));
+    switchTool('planner', document.querySelectorAll('.tool-tab')[2]);
+    goStep(3);
+    document.getElementById('itin-output').innerHTML = html;
+  } catch (err) {}
+}
+
+function addBlogPost() {
+  const name = document.getElementById('blog-name').value.trim() || 'Traveller';
+  const media = document.getElementById('blog-media').value.trim();
 
